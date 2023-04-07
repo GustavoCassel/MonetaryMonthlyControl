@@ -1,4 +1,4 @@
-using MonetaryMonthlyControl.DatabaseConnection;
+using MonetaryMonthlyControl.DatabaseMaintenance;
 
 namespace MonetaryMonthlyControl
 {
@@ -14,10 +14,11 @@ namespace MonetaryMonthlyControl
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            //DatabaseManager.DeleteDatabase();
             DatabaseManager.CreateDatabase();
             DatabaseManager.CreateTables();
 
-            Application.Run(new Form1());
+            Application.Run(new MainMenu());
         }
     }
 }
