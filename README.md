@@ -8,7 +8,7 @@
 <br>
 <div align="center">
    <a href="https://github.com/GustavoCassel/MonetaryMonthlyControl">
-      <img src="images/book-512.png" alt="Logo" width="60" height="60">
+      <img src="Images/book-512.png" alt="Logo" width="60" height="60">
    </a>
 
    <h3 align="center" style="font: 30px Consolas; font-weight: bold">
@@ -25,25 +25,12 @@
    <ol>
       <li>
          <a href="#about-the-project">About The Project</a>
-         <ul>
-            <li>
-               <a href="#built-with">Built With</a>
-            </li>
-         </ul>
+         <li><a href="#built-with">Built With</a></li>
       </li>
       <li>
          <a href="#getting-started">Getting Started</a>
-         <ul>
-            <li><a href="#prerequisites">Prerequisites</a></li>
-            <li><a href="#installation">Installation</a></li>
-         </ul>
+         <li><a href="#prerequisites">Prerequisites</a></li>
       </li>
-      <li><a href="#usage">Usage</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#contributing">Contributing</a></li>
-      <li><a href="#license">License</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#acknowledgments">Acknowledgments</a></li>
    </ol>
 </details>
 
@@ -53,20 +40,19 @@
 
 That's the story of the origin of this app. :D
 
-### Built With
+## Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Here's a list of major frameworks/libraries used to create this project.
 
 * ![C#][CSharp-shield]
 * ![.Net][DotNet-shield]
 * ![MicrosoftSQLServer][SQLServer-shield]
 
-<!-- GETTING STARTED -->
-### Getting Started
+## Getting Started
 
 Just clonate this repo and add a shortcut to the builded .exe and thats it!
 
-### Prerequisites
+## Prerequisites
 
 You will need the LocalDB installed on your computer.
 Install LocalDB through the installation wizard or by using the `SqlLocalDB.msi` program.
