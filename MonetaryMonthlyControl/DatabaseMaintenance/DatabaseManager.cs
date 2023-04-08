@@ -90,13 +90,18 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
                     FROM {DatabaseName}.INFORMATION_SCHEMA.COLUMNS
                     WHERE TABLE_NAME = '{tableName}'
                 )
+                BEGIN
                 CREATE TABLE [{tableName}]
                 (
                     [Id] INT NOT NULL IDENTITY(1,1),
                     [Description] VARCHAR(128) NOT NULL,
                     [Amount] DECIMAL(9,2) NOT NULL,
                     PRIMARY KEY (Id)
-                )";
+                )
+                END
+                    ALTER TABLE {tableName}
+                    ADD [Teste] INT NOT NULL
+                ";
 
             SqlConnection connection = new(_fullConnectionString);
             connection.Open();
