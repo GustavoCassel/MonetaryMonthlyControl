@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
+
+/*
+ * SQL queries run in this order:
+ * 
+ * FROM + JOIN
+ * WHERE
+ * GROUP BY
+ * HAVING
+ * SELECT
+ * ORDER BY
+ * LIMIT
+ */
 
 namespace MonetaryMonthlyControl.DatabaseMaintenance
 {
@@ -14,30 +19,35 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
         private const string SqlLocalDBName = "MSSQLLocalDB";
         private const string DatabaseName = "MyDatabase";
 
-        private static string GetConnectionString()
+        private readonly string _fullConnectionString;
+        private readonly string _shortConnectionString;
+
+        public DatabaseManager()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
 
-            return $"Data Source = (LocalDB)\\{SqlLocalDBName};" +
+            _shortConnectionString = $"Data Source=(LocalDB)\\{SqlLocalDBName};";
+
+            _fullConnectionString = $"Data Source = (LocalDB)\\{SqlLocalDBName};" +
             $"AttachDbFilename = {currentDirectory}\\{DatabaseName}.mdf;" +
             "Integrated Security = True";
         }
 
-        public static async void DeleteDatabase()
+        public void DeleteDatabase()
         {
-            string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
+            const string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
 
-            using SqlConnection connection = new($"Data Source=(LocalDB)\\{SqlLocalDBName};");
+            SqlConnection connection = new(_shortConnectionString);
             connection.Open();
 
-            using SqlCommand command = new(sql, connection);
-            await command.ExecuteNonQueryAsync();
+            SqlCommand command = new(sql, connection);
+            command.ExecuteNonQuery();
 
             command.Dispose();
             connection.Close();
         }
 
-        public static async void CreateDatabase()
+        public void CreateDatabase()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -60,40 +70,39 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
                         FILENAME = '{currentDirectory}\{DatabaseName}_log.ldf'
                     );";
 
-            using SqlConnection connection = new($"Data Source=(LocalDB)\\{SqlLocalDBName};");
+            SqlConnection connection = new(_shortConnectionString);
             connection.Open();
 
-            using SqlCommand command = new(sql, connection);
-            await command.ExecuteNonQueryAsync();
+            SqlCommand command = new(sql, connection);
+            command.ExecuteNonQuery();
 
             command.Dispose();
             connection.Close();
         }
 
-        public static async void CreateTables()
+        public void CreateTable(string tableName)
         {
             string sql = $@"
+                USE {DatabaseName}
                 IF NOT EXISTS
                 (
                     SELECT TABLE_NAME
                     FROM {DatabaseName}.INFORMATION_SCHEMA.COLUMNS
-                    WHERE TABLE_NAME = 'January'
+                    WHERE TABLE_NAME = '{tableName}'
                 )
-                BEGIN
-                CREATE TABLE January
+                CREATE TABLE [{tableName}]
                 (
-                    id int NOT NULL IDENTITY(1,1),
-                    description varchar(128) NOT NULL,
-                    amount decimal(9,2) NOT NULL,
-                    PRIMARY KEY (id)
-                )
-                END;";
+                    [Id] INT NOT NULL IDENTITY(1,1),
+                    [Description] VARCHAR(128) NOT NULL,
+                    [Amount] DECIMAL(9,2) NOT NULL,
+                    PRIMARY KEY (Id)
+                )";
 
-            using SqlConnection connection = new(GetConnectionString());
+            SqlConnection connection = new(_fullConnectionString);
             connection.Open();
 
-            using SqlCommand command = new(sql, connection);
-            await command.ExecuteNonQueryAsync();
+            SqlCommand command = new(sql, connection);
+            command.ExecuteNonQuery();
 
             command.Dispose();
             connection.Close();

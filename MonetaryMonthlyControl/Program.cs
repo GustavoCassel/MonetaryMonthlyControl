@@ -1,5 +1,3 @@
-using MonetaryMonthlyControl.DatabaseMaintenance;
-
 namespace MonetaryMonthlyControl
 {
     internal static class Program
@@ -13,12 +11,23 @@ namespace MonetaryMonthlyControl
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            //DatabaseManager.DeleteDatabase();
-            DatabaseManager.CreateDatabase();
-            DatabaseManager.CreateTables();
-
             Application.Run(new MainMenu());
         }
+    }
+    public enum Month
+    {
+        Unknown = 0,
+        January = 1,
+        February = 2,
+        March = 3,
+        April = 4,
+        May = 5,
+        June = 6,
+        July = 7,
+        August = 8,
+        September = 9,
+        October = 10,
+        November = 11,
+        December = 12
     }
 }
