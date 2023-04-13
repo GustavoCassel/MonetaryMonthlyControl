@@ -98,10 +98,10 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
                     [Amount] DECIMAL(9,2) NOT NULL,
                     PRIMARY KEY (Id)
                 )
-                END
-                    ALTER TABLE {tableName}
+                END;";
+                    /*ALTER TABLE {tableName}
                     ADD [Teste] INT NOT NULL
-                ";
+                ";*/
 
             SqlConnection connection = new(_fullConnectionString);
             connection.Open();

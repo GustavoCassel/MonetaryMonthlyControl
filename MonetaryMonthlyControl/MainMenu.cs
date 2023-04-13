@@ -4,6 +4,7 @@ namespace MonetaryMonthlyControl
 {
     public partial class MainMenu : Form
     {
+        private readonly FormManager formManager = new();
         public MainMenu()
         {
             InitializeComponent();
@@ -33,6 +34,19 @@ namespace MonetaryMonthlyControl
 
             LabelLoading.Text = "Finalizado!";
             PictureBoxLoading.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            formManager.ShowDialog();
+            Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+            Dispose();
         }
     }
 }
