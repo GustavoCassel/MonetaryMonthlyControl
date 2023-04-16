@@ -29,133 +29,222 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
-            ButtonCreateDB = new Button();
-            PictureBoxLoading = new PictureBox();
-            LabelLoading = new Label();
-            button1 = new Button();
-            groupBox1 = new GroupBox();
+            labelTitle = new Label();
+            panelMenu = new Panel();
+            panelChangeColor = new Panel();
+            ButtonChangeColor = new Button();
+            button4 = new Button();
+            button3 = new Button();
             button2 = new Button();
-            MainContainer = new SplitContainer();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxLoading).BeginInit();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)MainContainer).BeginInit();
-            MainContainer.Panel1.SuspendLayout();
-            MainContainer.SuspendLayout();
+            ButtonVisualize = new Button();
+            panelLogo = new Panel();
+            ButtonLogo = new Button();
+            panelTitle = new Panel();
+            colorDialog = new ColorDialog();
+            panelMenu.SuspendLayout();
+            panelChangeColor.SuspendLayout();
+            panelLogo.SuspendLayout();
+            panelTitle.SuspendLayout();
             SuspendLayout();
             // 
-            // ButtonCreateDB
+            // labelTitle
             // 
-            ButtonCreateDB.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            ButtonCreateDB.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ButtonCreateDB.Location = new Point(127, 476);
-            ButtonCreateDB.Name = "ButtonCreateDB";
-            ButtonCreateDB.Size = new Size(139, 53);
-            ButtonCreateDB.TabIndex = 0;
-            ButtonCreateDB.Text = "Configurar Banco";
-            ButtonCreateDB.UseVisualStyleBackColor = true;
-            ButtonCreateDB.Click += ButtonCreateDB_Click;
+            labelTitle.Anchor = AnchorStyles.None;
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            labelTitle.Location = new Point(352, 27);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(73, 30);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "Home";
             // 
-            // PictureBoxLoading
+            // panelMenu
             // 
-            PictureBoxLoading.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            PictureBoxLoading.Image = Properties.Resources.loading;
-            PictureBoxLoading.Location = new Point(6, 476);
-            PictureBoxLoading.Name = "PictureBoxLoading";
-            PictureBoxLoading.Size = new Size(100, 100);
-            PictureBoxLoading.SizeMode = PictureBoxSizeMode.Zoom;
-            PictureBoxLoading.TabIndex = 1;
-            PictureBoxLoading.TabStop = false;
-            PictureBoxLoading.Visible = false;
+            panelMenu.BackColor = Color.FromArgb(80, 80, 141);
+            panelMenu.Controls.Add(panelChangeColor);
+            panelMenu.Controls.Add(button4);
+            panelMenu.Controls.Add(button3);
+            panelMenu.Controls.Add(button2);
+            panelMenu.Controls.Add(ButtonVisualize);
+            panelMenu.Controls.Add(panelLogo);
+            panelMenu.Dock = DockStyle.Left;
+            panelMenu.Location = new Point(0, 0);
+            panelMenu.Name = "panelMenu";
+            panelMenu.Size = new Size(250, 561);
+            panelMenu.TabIndex = 0;
             // 
-            // LabelLoading
+            // panelChangeColor
             // 
-            LabelLoading.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            LabelLoading.AutoSize = true;
-            LabelLoading.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            LabelLoading.Location = new Point(127, 551);
-            LabelLoading.Name = "LabelLoading";
-            LabelLoading.Size = new Size(92, 25);
-            LabelLoading.TabIndex = 2;
-            LabelLoading.Text = "Loading...";
-            LabelLoading.Visible = false;
+            panelChangeColor.Controls.Add(ButtonChangeColor);
+            panelChangeColor.Dock = DockStyle.Bottom;
+            panelChangeColor.Location = new Point(0, 503);
+            panelChangeColor.Name = "panelChangeColor";
+            panelChangeColor.Size = new Size(250, 58);
+            panelChangeColor.TabIndex = 6;
             // 
-            // button1
+            // ButtonChangeColor
             // 
-            button1.Location = new Point(6, 22);
-            button1.Name = "button1";
-            button1.Size = new Size(138, 47);
-            button1.TabIndex = 3;
-            button1.Text = "open manager";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            ButtonChangeColor.BackColor = Color.FromArgb(51, 51, 105);
+            ButtonChangeColor.Dock = DockStyle.Fill;
+            ButtonChangeColor.FlatAppearance.BorderSize = 0;
+            ButtonChangeColor.FlatStyle = FlatStyle.Flat;
+            ButtonChangeColor.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            ButtonChangeColor.ForeColor = Color.Gainsboro;
+            ButtonChangeColor.ImageAlign = ContentAlignment.MiddleLeft;
+            ButtonChangeColor.Location = new Point(0, 0);
+            ButtonChangeColor.Name = "ButtonChangeColor";
+            ButtonChangeColor.Padding = new Padding(15, 0, 0, 0);
+            ButtonChangeColor.Size = new Size(250, 58);
+            ButtonChangeColor.TabIndex = 5;
+            ButtonChangeColor.Text = "Dark Theme";
+            ButtonChangeColor.TextAlign = ContentAlignment.MiddleLeft;
+            ButtonChangeColor.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ButtonChangeColor.UseVisualStyleBackColor = false;
+            ButtonChangeColor.Click += ButtonChangeColor_Click;
             // 
-            // groupBox1
+            // button4
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(button2);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(PictureBoxLoading);
-            groupBox1.Controls.Add(LabelLoading);
-            groupBox1.Controls.Add(ButtonCreateDB);
-            groupBox1.FlatStyle = FlatStyle.System;
-            groupBox1.Location = new Point(28, 21);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(427, 582);
-            groupBox1.TabIndex = 4;
-            groupBox1.TabStop = false;
+            button4.Dock = DockStyle.Top;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.ForeColor = Color.Gainsboro;
+            button4.Location = new Point(0, 260);
+            button4.Name = "button4";
+            button4.Size = new Size(250, 60);
+            button4.TabIndex = 4;
+            button4.Text = "button4";
+            button4.TextAlign = ContentAlignment.MiddleLeft;
+            button4.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Dock = DockStyle.Top;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.ForeColor = Color.Gainsboro;
+            button3.Location = new Point(0, 200);
+            button3.Name = "button3";
+            button3.Size = new Size(250, 60);
+            button3.TabIndex = 3;
+            button3.Text = "button3";
+            button3.TextAlign = ContentAlignment.MiddleLeft;
+            button3.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(55, 91);
+            button2.Dock = DockStyle.Top;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.Gainsboro;
+            button2.Location = new Point(0, 140);
             button2.Name = "button2";
-            button2.Size = new Size(211, 77);
-            button2.TabIndex = 4;
-            button2.Text = "sair";
+            button2.Size = new Size(250, 60);
+            button2.TabIndex = 2;
+            button2.Text = "button2";
+            button2.TextAlign = ContentAlignment.MiddleLeft;
+            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // MainContainer
+            // ButtonVisualize
             // 
-            MainContainer.Dock = DockStyle.Fill;
-            MainContainer.Location = new Point(0, 0);
-            MainContainer.Name = "MainContainer";
+            ButtonVisualize.Dock = DockStyle.Top;
+            ButtonVisualize.FlatAppearance.BorderSize = 0;
+            ButtonVisualize.FlatStyle = FlatStyle.Flat;
+            ButtonVisualize.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            ButtonVisualize.ForeColor = Color.Gainsboro;
+            ButtonVisualize.Location = new Point(0, 80);
+            ButtonVisualize.Name = "ButtonVisualize";
+            ButtonVisualize.Size = new Size(250, 60);
+            ButtonVisualize.TabIndex = 1;
+            ButtonVisualize.Text = "Visualize Relatory";
+            ButtonVisualize.TextAlign = ContentAlignment.MiddleLeft;
+            ButtonVisualize.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ButtonVisualize.UseVisualStyleBackColor = true;
+            ButtonVisualize.Click += ButtonVisualize_Click;
             // 
-            // MainContainer.Panel1
+            // panelLogo
             // 
-            MainContainer.Panel1.Controls.Add(groupBox1);
-            MainContainer.Size = new Size(1093, 615);
-            MainContainer.SplitterDistance = 534;
-            MainContainer.TabIndex = 5;
+            panelLogo.BackColor = Color.FromArgb(51, 51, 105);
+            panelLogo.Controls.Add(ButtonLogo);
+            panelLogo.Dock = DockStyle.Top;
+            panelLogo.Location = new Point(0, 0);
+            panelLogo.Name = "panelLogo";
+            panelLogo.Size = new Size(250, 80);
+            panelLogo.TabIndex = 0;
+            // 
+            // ButtonLogo
+            // 
+            ButtonLogo.Dock = DockStyle.Fill;
+            ButtonLogo.FlatAppearance.BorderSize = 0;
+            ButtonLogo.FlatStyle = FlatStyle.Flat;
+            ButtonLogo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            ButtonLogo.ForeColor = Color.Gainsboro;
+            ButtonLogo.Image = (Image)resources.GetObject("ButtonLogo.Image");
+            ButtonLogo.ImageAlign = ContentAlignment.MiddleLeft;
+            ButtonLogo.Location = new Point(0, 0);
+            ButtonLogo.Name = "ButtonLogo";
+            ButtonLogo.Padding = new Padding(15, 0, 0, 0);
+            ButtonLogo.Size = new Size(250, 80);
+            ButtonLogo.TabIndex = 5;
+            ButtonLogo.Text = "    Monetary Control";
+            ButtonLogo.TextAlign = ContentAlignment.MiddleLeft;
+            ButtonLogo.TextImageRelation = TextImageRelation.ImageBeforeText;
+            ButtonLogo.UseVisualStyleBackColor = true;
+            ButtonLogo.Click += ButtonLogo_Click;
+            // 
+            // panelTitle
+            // 
+            panelTitle.Controls.Add(labelTitle);
+            panelTitle.Dock = DockStyle.Top;
+            panelTitle.Location = new Point(250, 0);
+            panelTitle.Name = "panelTitle";
+            panelTitle.Size = new Size(834, 80);
+            panelTitle.TabIndex = 1;
+            // 
+            // colorDialog
+            // 
+            colorDialog.AnyColor = true;
+            colorDialog.FullOpen = true;
             // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.CornflowerBlue;
-            ClientSize = new Size(1093, 615);
-            Controls.Add(MainContainer);
+            ClientSize = new Size(1084, 561);
+            Controls.Add(panelTitle);
+            Controls.Add(panelMenu);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenu";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Monetary Monthly Control";
-            ((System.ComponentModel.ISupportInitialize)PictureBoxLoading).EndInit();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            MainContainer.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)MainContainer).EndInit();
-            MainContainer.ResumeLayout(false);
+            panelMenu.ResumeLayout(false);
+            panelChangeColor.ResumeLayout(false);
+            panelLogo.ResumeLayout(false);
+            panelTitle.ResumeLayout(false);
+            panelTitle.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button ButtonCreateDB;
-        private PictureBox PictureBoxLoading;
-        private Label LabelLoading;
-        private Button button1;
-        private GroupBox groupBox1;
-        private SplitContainer MainContainer;
+        private Panel panelMenu;
+        private Panel panelLogo;
+        private Button ButtonVisualize;
+        private Button ButtonChangeColor;
+        private Button button4;
+        private Button button3;
         private Button button2;
+        private Panel panelTitle;
+        private Label labelTitle;
+        private ColorDialog colorDialog;
+        private Panel panelChangeColor;
+        protected Button ButtonLogo;
     }
 }

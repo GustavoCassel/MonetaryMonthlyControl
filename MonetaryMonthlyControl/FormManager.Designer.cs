@@ -98,7 +98,8 @@
             // 
             // button1
             // 
-            button1.Location = new Point(791, 389);
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.Location = new Point(725, 316);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
             button1.Size = new Size(94, 52);
@@ -127,6 +128,8 @@
             TextBoxDate.Name = "TextBoxDate";
             TextBoxDate.Size = new Size(350, 29);
             TextBoxDate.TabIndex = 1;
+            TextBoxDate.Enter += TextBoxDate_Enter;
+            TextBoxDate.Leave += TextBoxDate_Leave;
             // 
             // TextBoxDescription
             // 
@@ -138,21 +141,26 @@
             TextBoxDescription.Name = "TextBoxDescription";
             TextBoxDescription.Size = new Size(350, 143);
             TextBoxDescription.TabIndex = 3;
+            TextBoxDescription.Enter += TextBoxDescription_Enter;
+            TextBoxDescription.Leave += TextBoxDescription_Leave;
             // 
             // ComboBoxCategory
             // 
+            ComboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxCategory.FormattingEnabled = true;
             ComboBoxCategory.Location = new Point(153, 130);
             ComboBoxCategory.Name = "ComboBoxCategory";
             ComboBoxCategory.Size = new Size(350, 29);
             ComboBoxCategory.TabIndex = 8;
+            ComboBoxCategory.Enter += ComboBoxCategory_Enter;
+            ComboBoxCategory.Leave += ComboBoxCategory_Leave;
             // 
             // FormManager
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
-            ClientSize = new Size(925, 475);
+            ClientSize = new Size(832, 381);
             Controls.Add(ComboBoxCategory);
             Controls.Add(TextBoxDescription);
             Controls.Add(label4);
