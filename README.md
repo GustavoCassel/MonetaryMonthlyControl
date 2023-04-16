@@ -38,8 +38,6 @@
 * I want to become a programmer, then I have to start building my own apps.
 * I need a way to control my financial situation.
 
-That's the story of the origin of this app. :D
-
 ## Built With
 
 Here's a list of major frameworks/libraries used to create this project.
