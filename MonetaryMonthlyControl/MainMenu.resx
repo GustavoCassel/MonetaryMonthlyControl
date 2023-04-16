@@ -58,10 +58,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ButtonLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAB11JREFUaEPtmX+EllkUxzNGMpIkGRnJyFpJxspYK5lZSX9kJUlWVlbGO2utlfTH
+        wQAADsEBuJFr7QAAB11JREFUaEPtmX+EllkUxzNGMpIkGRnJyFpJxspYK5lZSX9kJUlWVlbGO2utlfTH
         SmRlJfvHWllrJUnWyshayVpJslYykmStpOeRNbLWSDJGRvv5nnueX/O+z7vP8zYz7bCHr3ue+5zn3nPu
         Pffcc++z5H9qQcOjUffwaNwHNoClXr14CAPeR/Hb4C74GZwG+6hfS9nlYv89QsGlKLgbTA814peUszGD
         TDzUiMaGRqOPeX4XbAJrkNe33tJrIDrvRrFd4MFQs+JleD7ciH6nHAOnhhvxIfAOfC/lws4UnQ6ivFxG
@@ -95,9 +95,6 @@
         lFBSUe0tyqPgis1OI/6FGRtwkcVDKK5/Zboy6cWA+Yk4i4+WLPkHgCfIZ4UvAcEAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="colorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIAAogBAAFgAAACgAAAAAAgAAAAQAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

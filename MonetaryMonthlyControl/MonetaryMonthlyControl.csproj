@@ -10,15 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\loading.gif" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="book-512.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\loading.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\" />
     <Folder Include="Util\" />
   </ItemGroup>
 

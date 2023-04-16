@@ -10,6 +10,7 @@ namespace MonetaryMonthlyControl
     public partial class MainMenu : Form
     {
         private Button? _activeButton;
+        private Form _activeForm;
 
         private readonly ToolTip _toolTip = new();
         private readonly ThemeManager _themeManager;
@@ -17,35 +18,57 @@ namespace MonetaryMonthlyControl
         {
             InitializeComponent();
             _themeManager = new ThemeManager();
-            _toolTip.SetToolTip(ButtonLogo, "See Creator's Info");
+            UpdateAllStyles();
+            DisableAllButtonsInMenu();
         }
 
         private void UpdateAllStyles()
         {
-            ButtonLogo.BackColor = _themeManager.PrimaryColor;
-            ButtonChangeColor.BackColor = _themeManager.PrimaryColor;
+            this.BackColor = _themeManager.MainBackGroundColor;
+            RecursivePanels(this.Controls);
+            DisableAllButtonsInMenu();
+            ActivateButton(_activeButton);
+        }
 
+        private void RecursivePanels(Control.ControlCollection controls)
+        {
+            foreach (Control control in controls)
+            {
+                if (control.GetType() == typeof(Button))
+                {
+                    Button button = (Button)control;
+                    button.FlatAppearance.MouseOverBackColor = Color.LightBlue;
+                    button.BackColor = Color.Transparent;
+                    button.ForeColor = _themeManager.GeneralForeColor;
+                }
+
+                if (control.GetType() == typeof(Panel))
+                {
+                    Panel panel = (Panel)control;
+                    panel.BackColor = _themeManager.LighterBackColor;
+                    panel.ForeColor = _themeManager.GeneralForeColor;
+
+                    RecursivePanels(panel.Controls);
+                }
+            }
         }
 
         #region Responsive User Interface Methods
 
-        private void ActivateButton(object sender)
+        private void ActivateButton(object? sender)
         {
             if (sender is null)
-                throw new ArgumentNullException(nameof(sender));
+                return;
 
             if (sender.GetType() != typeof(Button))
                 throw new ArgumentException("Sender is not a Button!", nameof(sender));
-
-            if (_activeButton == (Button)sender)
-                return;
 
             DisableAllButtonsInMenu();
 
             _activeButton = (Button)sender;
 
             Font currentFont = _activeButton.Font;
-            _activeButton.BackColor = _themeManager.PrimaryColor;//  Color.FromArgb(67, 67, 138);
+            _activeButton.BackColor = _themeManager.DarkerBackColor;//  Color.FromArgb(67, 67, 138);
             _activeButton.ForeColor = Color.White;
             _activeButton.Font = new Font(currentFont.FontFamily, currentFont.Size + 2F, currentFont.Style, currentFont.Unit);
         }
@@ -58,8 +81,8 @@ namespace MonetaryMonthlyControl
                     continue;
 
                 Button button = (Button)control;
-                button.BackColor = _themeManager.SecondaryColor;
-                button.ForeColor = Color.Gainsboro;
+                button.BackColor = Color.Transparent;
+                button.ForeColor = _themeManager.GeneralForeColor;
                 Font currentFont = button.Font;
                 button.Font = new Font(currentFont.FontFamily, 12F, currentFont.Style, currentFont.Unit);
             }
@@ -69,17 +92,39 @@ namespace MonetaryMonthlyControl
 
         #region Button Click Events
 
-        private void ButtonLogo_Click(object sender, EventArgs e)
+
+        private void OpenChildForm(Form childForm, object sender)
         {
-            new AboutBox().ShowDialog(Owner);
+            _activeForm?.Close();
+
+            ActivateButton(sender);
+
+            _activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelContent.Controls.Add(childForm);
+            this.panelContent.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         private void ButtonVisualize_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            OpenChildForm(new FormManager(), sender);
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
         }
@@ -92,13 +137,8 @@ namespace MonetaryMonthlyControl
             bool isDarkThemeActive = ButtonChangeColor.Text == DarkThemeMessage;
             ButtonChangeColor.Text = isDarkThemeActive ? LightThemeMessage : DarkThemeMessage;
 
-            return;
-            if (colorDialog.ShowDialog() == DialogResult.Cancel)
-            {
-                return;
-            }
+            _themeManager.SetTheme(isDarkThemeActive);
 
-            _themeManager.ChangeColor(colorDialog.Color);
             UpdateAllStyles();
         }
 
