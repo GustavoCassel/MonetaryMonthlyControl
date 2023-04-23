@@ -51,7 +51,7 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
         {
             string currentDirectory = Directory.GetCurrentDirectory();
 
-            string sql = $@"
+            string sql = $"""
                     IF NOT EXISTS
                     (
                         SELECT name
@@ -68,7 +68,8 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
                     (
                         NAME = {DatabaseName}_log,
                         FILENAME = '{currentDirectory}\{DatabaseName}_log.ldf'
-                    );";
+                    );
+                    """;
 
             SqlConnection connection = new(_shortConnectionString);
             connection.Open();

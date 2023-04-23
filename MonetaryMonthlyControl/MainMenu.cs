@@ -10,7 +10,7 @@ namespace MonetaryMonthlyControl
     public partial class MainMenu : Form
     {
         private Button? _activeButton;
-        private Form _activeForm;
+        private Form? _activeForm;
 
         private readonly ToolTip _toolTip = new();
         private readonly ThemeManager _themeManager;
@@ -146,7 +146,8 @@ namespace MonetaryMonthlyControl
     }
 }
 
-/*private async void CreateDB()
+/*
+ private async void CreateDB()
 {
     Update();
 
