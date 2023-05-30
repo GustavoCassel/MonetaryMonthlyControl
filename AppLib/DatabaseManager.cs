@@ -12,46 +12,46 @@
  * LIMIT
  */
 
-namespace AppLib
+namespace AppLib;
+
+public class DatabaseManager
 {
-    public class DatabaseManager
+    private const string SqlLocalDBName = "MSSQLLocalDB";
+    private const string DatabaseName = "MyDatabase";
+
+    private readonly string _fullConnectionString;
+    private readonly string _shortConnectionString;
+
+    public DatabaseManager()
     {
-        private const string SqlLocalDBName = "MSSQLLocalDB";
-        private const string DatabaseName = "MyDatabase";
+        string currentDirectory = Directory.GetCurrentDirectory();
 
-        private readonly string _fullConnectionString;
-        private readonly string _shortConnectionString;
+        _shortConnectionString = $"Data Source=(LocalDB)\\{SqlLocalDBName};";
 
-        public DatabaseManager()
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
+        _fullConnectionString = $"Data Source = (LocalDB)\\{SqlLocalDBName};" +
+        $"AttachDbFilename = {currentDirectory}\\{DatabaseName}.mdf;" +
+        "Integrated Security = True";
+    }
 
-            _shortConnectionString = $"Data Source=(LocalDB)\\{SqlLocalDBName};";
+    public void DeleteDatabase()
+    {
+        const string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
 
-            _fullConnectionString = $"Data Source = (LocalDB)\\{SqlLocalDBName};" +
-            $"AttachDbFilename = {currentDirectory}\\{DatabaseName}.mdf;" +
-            "Integrated Security = True";
-        }
+        SqlConnection connection = new(_shortConnectionString);
+        connection.Open();
 
-        public void DeleteDatabase()
-        {
-            const string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
+        SqlCommand command = new(sql, connection);
+        command.ExecuteNonQuery();
 
-            SqlConnection connection = new(_shortConnectionString);
-            connection.Open();
+        command.Dispose();
+        connection.Close();
+    }
 
-            SqlCommand command = new(sql, connection);
-            command.ExecuteNonQuery();
+    public void CreateDatabase()
+    {
+        string currentDirectory = Directory.GetCurrentDirectory();
 
-            command.Dispose();
-            connection.Close();
-        }
-
-        public void CreateDatabase()
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
-
-            string sql = $"""
+        string sql = $"""
                     IF NOT EXISTS
                     (
                         SELECT name
@@ -71,19 +71,19 @@ namespace AppLib
                     );
                     """;
 
-            SqlConnection connection = new(_shortConnectionString);
-            connection.Open();
+        SqlConnection connection = new(_shortConnectionString);
+        connection.Open();
 
-            SqlCommand command = new(sql, connection);
-            command.ExecuteNonQuery();
+        SqlCommand command = new(sql, connection);
+        command.ExecuteNonQuery();
 
-            command.Dispose();
-            connection.Close();
-        }
+        command.Dispose();
+        connection.Close();
+    }
 
-        public void CreateTable(string tableName)
-        {
-            string sql = $@"
+    public void CreateTable(string tableName)
+    {
+        string sql = $@"
                 USE {DatabaseName}
                 IF NOT EXISTS
                 (
@@ -100,18 +100,17 @@ namespace AppLib
                     PRIMARY KEY (Id)
                 )
                 END;";
-            /*ALTER TABLE {tableName}
-            ADD [Teste] INT NOT NULL
-        ";*/
+        /*ALTER TABLE {tableName}
+        ADD [Teste] INT NOT NULL
+    ";*/
 
-            SqlConnection connection = new(_fullConnectionString);
-            connection.Open();
+        SqlConnection connection = new(_fullConnectionString);
+        connection.Open();
 
-            SqlCommand command = new(sql, connection);
-            command.ExecuteNonQuery();
+        SqlCommand command = new(sql, connection);
+        command.ExecuteNonQuery();
 
-            command.Dispose();
-            connection.Close();
-        }
+        command.Dispose();
+        connection.Close();
     }
 }
