@@ -12,7 +12,7 @@
  * LIMIT
  */
 
-namespace MonetaryMonthlyControl.DatabaseMaintenance
+namespace AppLib
 {
     public class DatabaseManager
     {
@@ -100,9 +100,9 @@ namespace MonetaryMonthlyControl.DatabaseMaintenance
                     PRIMARY KEY (Id)
                 )
                 END;";
-                    /*ALTER TABLE {tableName}
-                    ADD [Teste] INT NOT NULL
-                ";*/
+            /*ALTER TABLE {tableName}
+            ADD [Teste] INT NOT NULL
+        ";*/
 
             SqlConnection connection = new(_fullConnectionString);
             connection.Open();

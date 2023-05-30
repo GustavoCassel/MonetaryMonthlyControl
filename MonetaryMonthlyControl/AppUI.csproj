@@ -34,7 +34,10 @@
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Util\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppLib\AppLib.csproj" />
   </ItemGroup>
 
 </Project>
