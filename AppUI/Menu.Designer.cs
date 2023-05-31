@@ -28,198 +28,167 @@ partial class Menu
     /// </summary>
     private void InitializeComponent()
     {
-        PictureBox pictureBox3;
+        PictureBox PictureLogo;
         Panel PanelWindowButtons;
-        tableLayoutPanel1 = new TableLayoutPanel();
-        tableLayoutPanel2 = new TableLayoutPanel();
-        panel1 = new Panel();
-        pictureBox1 = new PictureBox();
-        label1 = new Label();
-        label2 = new Label();
-        panel2 = new Panel();
-        pictureBox2 = new PictureBox();
-        label3 = new Label();
-        label4 = new Label();
-        panel3 = new Panel();
+        PictureBox PictureMainLogo;
+        Label LabelMain;
+        ButtonMinimize = new Button();
+        ButtonMaximize = new Button();
+        ButtonClose = new Button();
+        PanelSideBar = new Panel();
         panel4 = new Panel();
         LabelVersion = new Label();
         PanelTitle = new Panel();
         LabelTitle = new Label();
-        button1 = new Button();
-        pictureBox3 = new PictureBox();
+        PaneMainContainer = new Panel();
+        PictureLogo = new PictureBox();
         PanelWindowButtons = new Panel();
-        tableLayoutPanel1.SuspendLayout();
-        panel1.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-        panel2.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-        panel3.SuspendLayout();
-        panel4.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-        PanelTitle.SuspendLayout();
+        PictureMainLogo = new PictureBox();
+        LabelMain = new Label();
+        ((System.ComponentModel.ISupportInitialize)PictureLogo).BeginInit();
         PanelWindowButtons.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).BeginInit();
+        PanelSideBar.SuspendLayout();
+        panel4.SuspendLayout();
+        PanelTitle.SuspendLayout();
+        PaneMainContainer.SuspendLayout();
         SuspendLayout();
         // 
-        // tableLayoutPanel1
+        // PictureLogo
         // 
-        tableLayoutPanel1.ColumnCount = 2;
-        tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 225F));
-        tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 0);
-        tableLayoutPanel1.Controls.Add(panel1, 0, 1);
-        tableLayoutPanel1.Controls.Add(label2, 1, 1);
-        tableLayoutPanel1.Controls.Add(panel2, 1, 2);
-        tableLayoutPanel1.Controls.Add(label4, 0, 2);
-        tableLayoutPanel1.Location = new Point(467, 275);
-        tableLayoutPanel1.Name = "tableLayoutPanel1";
-        tableLayoutPanel1.RowCount = 3;
-        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 85F));
-        tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        tableLayoutPanel1.Size = new Size(743, 449);
-        tableLayoutPanel1.TabIndex = 0;
+        PictureLogo.Anchor = AnchorStyles.None;
+        PictureLogo.ErrorImage = null;
+        PictureLogo.Image = Properties.Resources.book_512;
+        PictureLogo.InitialImage = null;
+        PictureLogo.Location = new Point(13, 18);
+        PictureLogo.Name = "PictureLogo";
+        PictureLogo.Size = new Size(48, 48);
+        PictureLogo.SizeMode = PictureBoxSizeMode.Zoom;
+        PictureLogo.TabIndex = 5;
+        PictureLogo.TabStop = false;
         // 
-        // tableLayoutPanel2
+        // PanelWindowButtons
         // 
-        tableLayoutPanel2.ColumnCount = 6;
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-        tableLayoutPanel2.Dock = DockStyle.Fill;
-        tableLayoutPanel2.Location = new Point(228, 3);
-        tableLayoutPanel2.Name = "tableLayoutPanel2";
-        tableLayoutPanel2.RowCount = 1;
-        tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        tableLayoutPanel2.Size = new Size(512, 24);
-        tableLayoutPanel2.TabIndex = 4;
+        PanelWindowButtons.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        PanelWindowButtons.Controls.Add(ButtonMinimize);
+        PanelWindowButtons.Controls.Add(ButtonMaximize);
+        PanelWindowButtons.Controls.Add(ButtonClose);
+        PanelWindowButtons.Location = new Point(237, 12);
+        PanelWindowButtons.Name = "PanelWindowButtons";
+        PanelWindowButtons.Size = new Size(750, 30);
+        PanelWindowButtons.TabIndex = 0;
         // 
-        // panel1
+        // ButtonMinimize
         // 
-        panel1.Controls.Add(pictureBox1);
-        panel1.Controls.Add(label1);
-        panel1.Dock = DockStyle.Fill;
-        panel1.Location = new Point(3, 33);
-        panel1.Name = "panel1";
-        panel1.Size = new Size(219, 79);
-        panel1.TabIndex = 0;
+        ButtonMinimize.BackColor = Color.Transparent;
+        ButtonMinimize.BackgroundImage = Properties.Resources.minimize_window_512;
+        ButtonMinimize.BackgroundImageLayout = ImageLayout.Zoom;
+        ButtonMinimize.Cursor = Cursors.Hand;
+        ButtonMinimize.DialogResult = DialogResult.OK;
+        ButtonMinimize.Dock = DockStyle.Right;
+        ButtonMinimize.FlatAppearance.BorderSize = 0;
+        ButtonMinimize.FlatAppearance.CheckedBackColor = Color.Transparent;
+        ButtonMinimize.FlatAppearance.MouseDownBackColor = Color.Transparent;
+        ButtonMinimize.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        ButtonMinimize.FlatStyle = FlatStyle.Flat;
+        ButtonMinimize.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonMinimize.Location = new Point(645, 0);
+        ButtonMinimize.Margin = new Padding(0);
+        ButtonMinimize.Name = "ButtonMinimize";
+        ButtonMinimize.Size = new Size(35, 30);
+        ButtonMinimize.TabIndex = 7;
+        ButtonMinimize.TabStop = false;
+        ButtonMinimize.UseVisualStyleBackColor = false;
+        ButtonMinimize.Click += ButtonMinimize_Click;
         // 
-        // pictureBox1
+        // ButtonMaximize
         // 
-        pictureBox1.Anchor = AnchorStyles.None;
-        pictureBox1.ErrorImage = null;
-        pictureBox1.Image = Properties.Resources.book_512;
-        pictureBox1.InitialImage = null;
-        pictureBox1.Location = new Point(9, 15);
-        pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(48, 48);
-        pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-        pictureBox1.TabIndex = 3;
-        pictureBox1.TabStop = false;
+        ButtonMaximize.BackColor = Color.Transparent;
+        ButtonMaximize.BackgroundImage = Properties.Resources.maximize_window_512;
+        ButtonMaximize.BackgroundImageLayout = ImageLayout.Zoom;
+        ButtonMaximize.Cursor = Cursors.Hand;
+        ButtonMaximize.DialogResult = DialogResult.OK;
+        ButtonMaximize.Dock = DockStyle.Right;
+        ButtonMaximize.FlatAppearance.BorderSize = 0;
+        ButtonMaximize.FlatAppearance.CheckedBackColor = Color.Transparent;
+        ButtonMaximize.FlatAppearance.MouseDownBackColor = Color.Transparent;
+        ButtonMaximize.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        ButtonMaximize.FlatStyle = FlatStyle.Flat;
+        ButtonMaximize.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonMaximize.Location = new Point(680, 0);
+        ButtonMaximize.Margin = new Padding(0);
+        ButtonMaximize.Name = "ButtonMaximize";
+        ButtonMaximize.Size = new Size(35, 30);
+        ButtonMaximize.TabIndex = 6;
+        ButtonMaximize.TabStop = false;
+        ButtonMaximize.UseVisualStyleBackColor = false;
+        ButtonMaximize.Click += ButtonMaximize_Click;
         // 
-        // label1
+        // ButtonClose
         // 
-        label1.Anchor = AnchorStyles.None;
-        label1.AutoSize = true;
-        label1.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        label1.Location = new Point(45, 21);
-        label1.Name = "label1";
-        label1.Size = new Size(171, 38);
-        label1.TabIndex = 2;
-        label1.Text = "Controle Monetário\r\nMensal";
-        label1.TextAlign = ContentAlignment.MiddleCenter;
+        ButtonClose.BackColor = Color.Transparent;
+        ButtonClose.BackgroundImage = Properties.Resources.close_window_512;
+        ButtonClose.BackgroundImageLayout = ImageLayout.Zoom;
+        ButtonClose.Cursor = Cursors.Hand;
+        ButtonClose.DialogResult = DialogResult.OK;
+        ButtonClose.Dock = DockStyle.Right;
+        ButtonClose.FlatAppearance.BorderSize = 0;
+        ButtonClose.FlatAppearance.MouseDownBackColor = Color.Transparent;
+        ButtonClose.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        ButtonClose.FlatStyle = FlatStyle.Flat;
+        ButtonClose.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonClose.Location = new Point(715, 0);
+        ButtonClose.Margin = new Padding(0);
+        ButtonClose.Name = "ButtonClose";
+        ButtonClose.Size = new Size(35, 30);
+        ButtonClose.TabIndex = 0;
+        ButtonClose.TabStop = false;
+        ButtonClose.UseVisualStyleBackColor = false;
+        ButtonClose.Click += ButtonClose_Click;
         // 
-        // label2
+        // PictureMainLogo
         // 
-        label2.Dock = DockStyle.Fill;
-        label2.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-        label2.Location = new Point(228, 30);
-        label2.Name = "label2";
-        label2.Size = new Size(512, 85);
-        label2.TabIndex = 2;
-        label2.Text = "Início";
-        label2.TextAlign = ContentAlignment.MiddleCenter;
+        PictureMainLogo.Anchor = AnchorStyles.None;
+        PictureMainLogo.ErrorImage = null;
+        PictureMainLogo.Image = Properties.Resources.book_512;
+        PictureMainLogo.InitialImage = null;
+        PictureMainLogo.Location = new Point(158, 180);
+        PictureMainLogo.Name = "PictureMainLogo";
+        PictureMainLogo.Size = new Size(128, 128);
+        PictureMainLogo.SizeMode = PictureBoxSizeMode.Zoom;
+        PictureMainLogo.TabIndex = 5;
+        PictureMainLogo.TabStop = false;
         // 
-        // panel2
+        // LabelMain
         // 
-        panel2.Controls.Add(pictureBox2);
-        panel2.Controls.Add(label3);
-        panel2.Dock = DockStyle.Fill;
-        panel2.Location = new Point(228, 118);
-        panel2.Name = "panel2";
-        panel2.Size = new Size(512, 328);
-        panel2.TabIndex = 3;
+        LabelMain.Anchor = AnchorStyles.None;
+        LabelMain.AutoSize = true;
+        LabelMain.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+        LabelMain.Location = new Point(298, 215);
+        LabelMain.Name = "LabelMain";
+        LabelMain.Size = new Size(303, 68);
+        LabelMain.TabIndex = 4;
+        LabelMain.Text = "Controle Monetário\r\nMensal";
+        LabelMain.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // pictureBox2
+        // PanelSideBar
         // 
-        pictureBox2.Anchor = AnchorStyles.None;
-        pictureBox2.ErrorImage = null;
-        pictureBox2.Image = Properties.Resources.book_512;
-        pictureBox2.InitialImage = null;
-        pictureBox2.Location = new Point(20, 80);
-        pictureBox2.Name = "pictureBox2";
-        pictureBox2.Size = new Size(128, 128);
-        pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-        pictureBox2.TabIndex = 3;
-        pictureBox2.TabStop = false;
-        // 
-        // label3
-        // 
-        label3.Anchor = AnchorStyles.None;
-        label3.AutoSize = true;
-        label3.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-        label3.Location = new Point(162, 114);
-        label3.Name = "label3";
-        label3.Size = new Size(303, 68);
-        label3.TabIndex = 2;
-        label3.Text = "Controle Monetário\r\nMensal";
-        label3.TextAlign = ContentAlignment.MiddleCenter;
-        // 
-        // label4
-        // 
-        label4.AutoSize = true;
-        label4.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-        label4.Location = new Point(3, 115);
-        label4.Name = "label4";
-        label4.Size = new Size(29, 32);
-        label4.TabIndex = 4;
-        label4.Text = "X";
-        label4.TextAlign = ContentAlignment.MiddleCenter;
-        label4.Click += label4_Click;
-        // 
-        // panel3
-        // 
-        panel3.Controls.Add(panel4);
-        panel3.Dock = DockStyle.Left;
-        panel3.Location = new Point(0, 0);
-        panel3.Name = "panel3";
-        panel3.Size = new Size(225, 769);
-        panel3.TabIndex = 1;
+        PanelSideBar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+        PanelSideBar.Controls.Add(panel4);
+        PanelSideBar.Location = new Point(12, 12);
+        PanelSideBar.Name = "PanelSideBar";
+        PanelSideBar.Size = new Size(225, 576);
+        PanelSideBar.TabIndex = 1;
         // 
         // panel4
         // 
-        panel4.Controls.Add(pictureBox3);
+        panel4.Controls.Add(PictureLogo);
         panel4.Controls.Add(LabelVersion);
         panel4.Dock = DockStyle.Top;
         panel4.Location = new Point(0, 0);
         panel4.Name = "panel4";
         panel4.Size = new Size(225, 85);
         panel4.TabIndex = 0;
-        // 
-        // pictureBox3
-        // 
-        pictureBox3.Anchor = AnchorStyles.None;
-        pictureBox3.ErrorImage = null;
-        pictureBox3.Image = Properties.Resources.book_512;
-        pictureBox3.InitialImage = null;
-        pictureBox3.Location = new Point(13, 18);
-        pictureBox3.Name = "pictureBox3";
-        pictureBox3.Size = new Size(48, 48);
-        pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-        pictureBox3.TabIndex = 5;
-        pictureBox3.TabStop = false;
         // 
         // LabelVersion
         // 
@@ -235,11 +204,11 @@ partial class Menu
         // 
         // PanelTitle
         // 
+        PanelTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         PanelTitle.Controls.Add(LabelTitle);
-        PanelTitle.Dock = DockStyle.Top;
-        PanelTitle.Location = new Point(225, 30);
+        PanelTitle.Location = new Point(237, 42);
         PanelTitle.Name = "PanelTitle";
-        PanelTitle.Size = new Size(1058, 55);
+        PanelTitle.Size = new Size(750, 55);
         PanelTitle.TabIndex = 2;
         // 
         // LabelTitle
@@ -248,45 +217,31 @@ partial class Menu
         LabelTitle.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
         LabelTitle.Location = new Point(0, 0);
         LabelTitle.Name = "LabelTitle";
-        LabelTitle.Size = new Size(1058, 55);
+        LabelTitle.Size = new Size(750, 55);
         LabelTitle.TabIndex = 3;
         LabelTitle.Text = "Início";
         LabelTitle.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // PanelWindowButtons
+        // PaneMainContainer
         // 
-        PanelWindowButtons.Controls.Add(button1);
-        PanelWindowButtons.Dock = DockStyle.Top;
-        PanelWindowButtons.Location = new Point(225, 0);
-        PanelWindowButtons.Name = "PanelWindowButtons";
-        PanelWindowButtons.Size = new Size(1058, 30);
-        PanelWindowButtons.TabIndex = 0;
-        // 
-        // button1
-        // 
-        button1.BackColor = Color.Red;
-        button1.Cursor = Cursors.Hand;
-        button1.DialogResult = DialogResult.OK;
-        button1.Dock = DockStyle.Right;
-        button1.Font = new Font("Consolas", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.ForeColor = Color.Black;
-        button1.Location = new Point(988, 0);
-        button1.Name = "button1";
-        button1.Size = new Size(70, 30);
-        button1.TabIndex = 3;
-        button1.Text = "X";
-        button1.UseVisualStyleBackColor = false;
+        PaneMainContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        PaneMainContainer.Controls.Add(PictureMainLogo);
+        PaneMainContainer.Controls.Add(LabelMain);
+        PaneMainContainer.Location = new Point(237, 97);
+        PaneMainContainer.Name = "PaneMainContainer";
+        PaneMainContainer.Size = new Size(750, 491);
+        PaneMainContainer.TabIndex = 6;
         // 
         // Menu
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(31, 30, 68);
-        ClientSize = new Size(1283, 769);
+        ClientSize = new Size(1000, 600);
+        Controls.Add(PaneMainContainer);
         Controls.Add(PanelTitle);
         Controls.Add(PanelWindowButtons);
-        Controls.Add(panel3);
-        Controls.Add(tableLayoutPanel1);
+        Controls.Add(PanelSideBar);
         DoubleBuffered = true;
         Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
@@ -297,40 +252,29 @@ partial class Menu
         SizeGripStyle = SizeGripStyle.Show;
         StartPosition = FormStartPosition.CenterScreen;
         KeyDown += Menu_KeyDown;
-        tableLayoutPanel1.ResumeLayout(false);
-        tableLayoutPanel1.PerformLayout();
-        panel1.ResumeLayout(false);
-        panel1.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-        panel2.ResumeLayout(false);
-        panel2.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-        panel3.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)PictureLogo).EndInit();
+        PanelWindowButtons.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).EndInit();
+        PanelSideBar.ResumeLayout(false);
         panel4.ResumeLayout(false);
         panel4.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
         PanelTitle.ResumeLayout(false);
-        PanelWindowButtons.ResumeLayout(false);
+        PaneMainContainer.ResumeLayout(false);
+        PaneMainContainer.PerformLayout();
         ResumeLayout(false);
     }
 
     #endregion
-
-    private TableLayoutPanel tableLayoutPanel1;
-    private Panel panel1;
-    private Label label1;
-    private Label label2;
-    private Panel panel2;
-    private PictureBox pictureBox2;
-    private Label label3;
-    private PictureBox pictureBox1;
-    private Label label4;
-    private TableLayoutPanel tableLayoutPanel2;
-    private Panel panel3;
+    private Panel PanelSideBar;
     private Panel panel4;
-    private PictureBox pictureBox3;
+    private PictureBox PictureLogo;
     private Label LabelVersion;
     private Panel PanelTitle;
     private Label LabelTitle;
-    private Button button1;
+    private Button ButtonClose;
+    private PictureBox PictureMainLogo;
+    private Label LabelMain;
+    private Button ButtonMinimize;
+    private Button ButtonMaximize;
+    private Panel PaneMainContainer;
 }
