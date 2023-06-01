@@ -21,7 +21,64 @@ public partial class Menu : Form
         FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
         LabelVersion.Text = $"Versão: {fvi.FileVersion}";
         PanelWindowButtons.MouseDown += Drag_MouseDownEvent;
+
+        button1.Click += ButtonCick;
+        button2.Click += ButtonCick;
+        button3.Click += ButtonCick;
+        button4.Click += ButtonCick;
     }
+
+    private void ButtonCick(object? sender, EventArgs e)
+    {
+        OpenChildForm(new Template(), sender);
+    }
+
+    #region Button Style
+
+    private void OpenChildForm(UserControl control, object? sender)
+    {
+        if (sender is not Button button)
+            return;
+
+        if (button.Equals(_activeButton))
+            return;
+
+        DeactivateButton();
+
+        _activeButton = button;
+
+        ActivateButton();
+
+        PanelMainContainer.Controls.Clear();
+        PanelMainContainer.Controls.Add(control);
+    }
+
+    private void ActivateButton()
+    {
+        if (_activeButton is null)
+            return;
+
+        _activeButton.BackColor = ThemeManager.ClickColor;
+        _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
+    }
+
+    private void DeactivateButton()
+    {
+        if (_activeButton is null)
+            return;
+
+        _activeButton.BackColor = Color.Transparent;
+        _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Regular);
+
+        _activeButton = null;
+    }
+
+    private void ReturnToHomeScreen(object sender, EventArgs e)
+    {
+        DeactivateButton();
+    }
+
+    #endregion
 
     #region Drag Move Window
 
@@ -41,6 +98,12 @@ public partial class Menu : Form
         {
             ReleaseCapture();
             _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+            // Drag to top to maximize
+            if (Location.Y <= 0)
+            {
+                WindowState = FormWindowState.Maximized;
+            }
         }
     }
 
@@ -69,6 +132,5 @@ public partial class Menu : Form
     {
         WindowState = FormWindowState.Minimized;
     }
-
 
 }

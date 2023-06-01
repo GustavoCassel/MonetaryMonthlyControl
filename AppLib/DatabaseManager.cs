@@ -14,15 +14,22 @@
 
 namespace AppLib;
 
-public class DatabaseManager
+public static class DatabaseManager
 {
     private const string SqlLocalDBName = "MSSQLLocalDB";
     private const string DatabaseName = "MyDatabase";
 
-    private readonly string _fullConnectionString;
-    private readonly string _shortConnectionString;
 
-    public DatabaseManager()
+
+    public static string FullConnectionString { get; } = $"""
+        Data Source = (LocalDB)\{SqlLocalDBName};
+        AttachDbFilename = {currentDirectory}\{DatabaseName}.mdf;
+        Integrated Security = True
+        """;
+
+    private static readonly string ShortConnectionString;
+
+    public static DatabaseManager()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -33,7 +40,7 @@ public class DatabaseManager
         "Integrated Security = True";
     }
 
-    public void DeleteDatabase()
+    public static void DeleteDatabase()
     {
         const string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
 
@@ -47,7 +54,7 @@ public class DatabaseManager
         connection.Close();
     }
 
-    public void CreateDatabase()
+    public static void CreateDatabase()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
 
@@ -81,7 +88,7 @@ public class DatabaseManager
         connection.Close();
     }
 
-    public void CreateTable(string tableName)
+    public static void CreateTable(string tableName)
     {
         string sql = $@"
                 USE {DatabaseName}
