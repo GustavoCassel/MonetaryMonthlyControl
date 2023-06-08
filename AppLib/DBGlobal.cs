@@ -1,8 +1,9 @@
 ﻿using System.Data.SqlClient;
+using System.Globalization;
 
 namespace AppLib;
 
-public static class Global
+public static class DBGlobal
 {
     private static SqlConnection myVar;
 
@@ -18,7 +19,7 @@ public static class Global
     //public static SqlConnection LocalDBConnection { get; private set; }
     public static void SetSqlConnection()
     {
-        LocalDBConnection = new SqlConnection(DatabaseManager.FullConnectionString)
+        LocalDBConnection = new SqlConnection("")
             ?? throw new Exception();
     }
 

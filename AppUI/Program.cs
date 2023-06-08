@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace AppUI;
 
 internal static class Program

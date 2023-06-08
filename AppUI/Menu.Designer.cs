@@ -28,49 +28,110 @@ partial class Menu
     /// </summary>
     private void InitializeComponent()
     {
-        PictureBox PictureLogo;
-        PictureBox PictureMainLogo;
         Label LabelMain;
-        Panel panel1;
-        Panel panel2;
-        Panel panel3;
-        Panel panel4;
+        PictureBox PictureMainLogo;
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-        button1 = new Button();
         button2 = new Button();
         button3 = new Button();
-        button4 = new Button();
+        ButtonConfigurations = new Button();
+        ButtonDataToCSV = new Button();
+        PictureLogo = new PictureBox();
         PanelWindowButtons = new Panel();
         ButtonMinimize = new Button();
         ButtonMaximize = new Button();
         ButtonClose = new Button();
         PanelSideBar = new Panel();
+        button1 = new Button();
         PanelLogo = new Panel();
         LabelVersion = new Label();
         PanelTitle = new Panel();
         LabelTitle = new Label();
-        PanelMainContainer = new Panel();
         MainTableLayoutPanel = new TableLayoutPanel();
-        PictureLogo = new PictureBox();
-        PictureMainLogo = new PictureBox();
+        PanelMainContainer = new Panel();
         LabelMain = new Label();
-        panel1 = new Panel();
-        panel2 = new Panel();
-        panel3 = new Panel();
-        panel4 = new Panel();
+        PictureMainLogo = new PictureBox();
         ((System.ComponentModel.ISupportInitialize)PictureLogo).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).BeginInit();
-        panel1.SuspendLayout();
-        panel2.SuspendLayout();
-        panel3.SuspendLayout();
-        panel4.SuspendLayout();
         PanelWindowButtons.SuspendLayout();
         PanelSideBar.SuspendLayout();
         PanelLogo.SuspendLayout();
         PanelTitle.SuspendLayout();
-        PanelMainContainer.SuspendLayout();
         MainTableLayoutPanel.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).BeginInit();
+        PanelMainContainer.SuspendLayout();
         SuspendLayout();
+        // 
+        // button2
+        // 
+        button2.Cursor = Cursors.Hand;
+        button2.Dock = DockStyle.Top;
+        button2.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        button2.FlatAppearance.BorderSize = 0;
+        button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        button2.FlatStyle = FlatStyle.Flat;
+        button2.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        button2.Location = new Point(0, 60);
+        button2.Margin = new Padding(1);
+        button2.Name = "button2";
+        button2.Size = new Size(221, 60);
+        button2.TabIndex = 0;
+        button2.Text = "Exportar Dados";
+        button2.UseVisualStyleBackColor = true;
+        // 
+        // button3
+        // 
+        button3.Cursor = Cursors.Hand;
+        button3.Dock = DockStyle.Top;
+        button3.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        button3.FlatAppearance.BorderSize = 0;
+        button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        button3.FlatStyle = FlatStyle.Flat;
+        button3.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        button3.Location = new Point(0, 0);
+        button3.Margin = new Padding(1);
+        button3.Name = "button3";
+        button3.Size = new Size(221, 60);
+        button3.TabIndex = 0;
+        button3.Text = "Adicionar";
+        button3.UseVisualStyleBackColor = true;
+        // 
+        // ButtonConfigurations
+        // 
+        ButtonConfigurations.Cursor = Cursors.Hand;
+        ButtonConfigurations.Dock = DockStyle.Bottom;
+        ButtonConfigurations.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonConfigurations.FlatAppearance.BorderSize = 0;
+        ButtonConfigurations.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonConfigurations.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonConfigurations.FlatStyle = FlatStyle.Flat;
+        ButtonConfigurations.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonConfigurations.Location = new Point(0, 446);
+        ButtonConfigurations.Margin = new Padding(1);
+        ButtonConfigurations.Name = "ButtonConfigurations";
+        ButtonConfigurations.Size = new Size(221, 60);
+        ButtonConfigurations.TabIndex = 0;
+        ButtonConfigurations.Text = "Configurações";
+        ButtonConfigurations.UseVisualStyleBackColor = true;
+        ButtonConfigurations.Click += ButtonConfigurations_Click;
+        // 
+        // ButtonDataToCSV
+        // 
+        ButtonDataToCSV.Cursor = Cursors.Hand;
+        ButtonDataToCSV.Dock = DockStyle.Bottom;
+        ButtonDataToCSV.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonDataToCSV.FlatAppearance.BorderSize = 0;
+        ButtonDataToCSV.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonDataToCSV.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonDataToCSV.FlatStyle = FlatStyle.Flat;
+        ButtonDataToCSV.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonDataToCSV.Location = new Point(0, 386);
+        ButtonDataToCSV.Margin = new Padding(1);
+        ButtonDataToCSV.Name = "ButtonDataToCSV";
+        ButtonDataToCSV.Size = new Size(221, 60);
+        ButtonDataToCSV.TabIndex = 0;
+        ButtonDataToCSV.Text = "Importar / Exportar Dados - CSV";
+        ButtonDataToCSV.UseVisualStyleBackColor = true;
         // 
         // PictureLogo
         // 
@@ -86,143 +147,6 @@ partial class Menu
         PictureLogo.TabStop = false;
         PictureLogo.Click += ReturnToHomeScreen;
         // 
-        // PictureMainLogo
-        // 
-        PictureMainLogo.Anchor = AnchorStyles.None;
-        PictureMainLogo.ErrorImage = null;
-        PictureMainLogo.Image = Properties.Resources.book_512;
-        PictureMainLogo.InitialImage = null;
-        PictureMainLogo.Location = new Point(168, 188);
-        PictureMainLogo.Name = "PictureMainLogo";
-        PictureMainLogo.Size = new Size(128, 128);
-        PictureMainLogo.SizeMode = PictureBoxSizeMode.Zoom;
-        PictureMainLogo.TabIndex = 5;
-        PictureMainLogo.TabStop = false;
-        // 
-        // LabelMain
-        // 
-        LabelMain.Anchor = AnchorStyles.None;
-        LabelMain.AutoSize = true;
-        LabelMain.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-        LabelMain.Location = new Point(308, 223);
-        LabelMain.Name = "LabelMain";
-        LabelMain.Size = new Size(303, 68);
-        LabelMain.TabIndex = 4;
-        LabelMain.Text = "Controle Monetário\r\nMensal";
-        LabelMain.TextAlign = ContentAlignment.MiddleCenter;
-        // 
-        // panel1
-        // 
-        panel1.Controls.Add(button1);
-        panel1.Dock = DockStyle.Top;
-        panel1.Location = new Point(0, 0);
-        panel1.Margin = new Padding(0);
-        panel1.Name = "panel1";
-        panel1.Size = new Size(221, 60);
-        panel1.TabIndex = 0;
-        // 
-        // button1
-        // 
-        button1.Cursor = Cursors.Hand;
-        button1.Dock = DockStyle.Fill;
-        button1.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button1.FlatAppearance.BorderSize = 0;
-        button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button1.FlatStyle = FlatStyle.Flat;
-        button1.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.Location = new Point(0, 0);
-        button1.Margin = new Padding(1);
-        button1.Name = "button1";
-        button1.Size = new Size(221, 60);
-        button1.TabIndex = 0;
-        button1.Text = "Visualizar Situação";
-        button1.UseVisualStyleBackColor = true;
-        // 
-        // panel2
-        // 
-        panel2.Controls.Add(button2);
-        panel2.Dock = DockStyle.Top;
-        panel2.Location = new Point(0, 60);
-        panel2.Margin = new Padding(0);
-        panel2.Name = "panel2";
-        panel2.Size = new Size(221, 60);
-        panel2.TabIndex = 1;
-        // 
-        // button2
-        // 
-        button2.Cursor = Cursors.Hand;
-        button2.Dock = DockStyle.Fill;
-        button2.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button2.FlatAppearance.BorderSize = 0;
-        button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button2.FlatStyle = FlatStyle.Flat;
-        button2.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button2.Location = new Point(0, 0);
-        button2.Margin = new Padding(1);
-        button2.Name = "button2";
-        button2.Size = new Size(221, 60);
-        button2.TabIndex = 0;
-        button2.Text = "Exportar Dados";
-        button2.UseVisualStyleBackColor = true;
-        // 
-        // panel3
-        // 
-        panel3.Controls.Add(button3);
-        panel3.Dock = DockStyle.Top;
-        panel3.Location = new Point(0, 120);
-        panel3.Margin = new Padding(0);
-        panel3.Name = "panel3";
-        panel3.Size = new Size(221, 60);
-        panel3.TabIndex = 2;
-        // 
-        // button3
-        // 
-        button3.Cursor = Cursors.Hand;
-        button3.Dock = DockStyle.Fill;
-        button3.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button3.FlatAppearance.BorderSize = 0;
-        button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button3.FlatStyle = FlatStyle.Flat;
-        button3.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button3.Location = new Point(0, 0);
-        button3.Margin = new Padding(1);
-        button3.Name = "button3";
-        button3.Size = new Size(221, 60);
-        button3.TabIndex = 0;
-        button3.Text = "Adicionar";
-        button3.UseVisualStyleBackColor = true;
-        // 
-        // panel4
-        // 
-        panel4.Controls.Add(button4);
-        panel4.Dock = DockStyle.Bottom;
-        panel4.Location = new Point(0, 446);
-        panel4.Margin = new Padding(0);
-        panel4.Name = "panel4";
-        panel4.Size = new Size(221, 60);
-        panel4.TabIndex = 3;
-        // 
-        // button4
-        // 
-        button4.Cursor = Cursors.Hand;
-        button4.Dock = DockStyle.Fill;
-        button4.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button4.FlatAppearance.BorderSize = 0;
-        button4.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button4.FlatStyle = FlatStyle.Flat;
-        button4.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button4.Location = new Point(0, 0);
-        button4.Margin = new Padding(1);
-        button4.Name = "button4";
-        button4.Size = new Size(221, 60);
-        button4.TabIndex = 0;
-        button4.Text = "Importar / Exportar Dados - CSV";
-        button4.UseVisualStyleBackColor = true;
-        // 
         // PanelWindowButtons
         // 
         PanelWindowButtons.BackColor = Color.FromArgb(20, 66, 114);
@@ -234,6 +158,7 @@ partial class Menu
         PanelWindowButtons.Name = "PanelWindowButtons";
         PanelWindowButtons.Size = new Size(1000, 25);
         PanelWindowButtons.TabIndex = 0;
+        PanelWindowButtons.MouseDown += PanelWindowButtons_MouseDown;
         // 
         // ButtonMinimize
         // 
@@ -303,16 +228,35 @@ partial class Menu
         // PanelSideBar
         // 
         PanelSideBar.BackColor = Color.Transparent;
-        PanelSideBar.Controls.Add(panel4);
-        PanelSideBar.Controls.Add(panel3);
-        PanelSideBar.Controls.Add(panel2);
-        PanelSideBar.Controls.Add(panel1);
+        PanelSideBar.Controls.Add(ButtonDataToCSV);
+        PanelSideBar.Controls.Add(ButtonConfigurations);
+        PanelSideBar.Controls.Add(button1);
+        PanelSideBar.Controls.Add(button2);
+        PanelSideBar.Controls.Add(button3);
         PanelSideBar.Dock = DockStyle.Fill;
         PanelSideBar.Location = new Point(2, 67);
         PanelSideBar.Margin = new Padding(2);
         PanelSideBar.Name = "PanelSideBar";
         PanelSideBar.Size = new Size(221, 506);
         PanelSideBar.TabIndex = 1;
+        // 
+        // button1
+        // 
+        button1.Cursor = Cursors.Hand;
+        button1.Dock = DockStyle.Top;
+        button1.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        button1.FlatAppearance.BorderSize = 0;
+        button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        button1.FlatStyle = FlatStyle.Flat;
+        button1.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        button1.Location = new Point(0, 120);
+        button1.Margin = new Padding(1);
+        button1.Name = "button1";
+        button1.Size = new Size(221, 60);
+        button1.TabIndex = 0;
+        button1.Text = "Visualizar Situação";
+        button1.UseVisualStyleBackColor = true;
         // 
         // PanelLogo
         // 
@@ -363,18 +307,6 @@ partial class Menu
         LabelTitle.Text = "Início";
         LabelTitle.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // PanelMainContainer
-        // 
-        PanelMainContainer.BackColor = Color.Transparent;
-        PanelMainContainer.Controls.Add(PictureMainLogo);
-        PanelMainContainer.Controls.Add(LabelMain);
-        PanelMainContainer.Dock = DockStyle.Fill;
-        PanelMainContainer.Location = new Point(227, 67);
-        PanelMainContainer.Margin = new Padding(2);
-        PanelMainContainer.Name = "PanelMainContainer";
-        PanelMainContainer.Size = new Size(771, 506);
-        PanelMainContainer.TabIndex = 6;
-        // 
         // MainTableLayoutPanel
         // 
         MainTableLayoutPanel.ColumnCount = 2;
@@ -393,6 +325,43 @@ partial class Menu
         MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
         MainTableLayoutPanel.Size = new Size(1000, 575);
         MainTableLayoutPanel.TabIndex = 7;
+        // 
+        // LabelMain
+        // 
+        LabelMain.Anchor = AnchorStyles.None;
+        LabelMain.AutoSize = true;
+        LabelMain.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+        LabelMain.Location = new Point(378, 214);
+        LabelMain.Name = "LabelMain";
+        LabelMain.Size = new Size(303, 68);
+        LabelMain.TabIndex = 4;
+        LabelMain.Text = "Controle Monetário\r\nMensal";
+        LabelMain.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // PictureMainLogo
+        // 
+        PictureMainLogo.Anchor = AnchorStyles.None;
+        PictureMainLogo.ErrorImage = null;
+        PictureMainLogo.Image = Properties.Resources.book_512;
+        PictureMainLogo.InitialImage = null;
+        PictureMainLogo.Location = new Point(218, 186);
+        PictureMainLogo.Name = "PictureMainLogo";
+        PictureMainLogo.Size = new Size(128, 128);
+        PictureMainLogo.SizeMode = PictureBoxSizeMode.Zoom;
+        PictureMainLogo.TabIndex = 5;
+        PictureMainLogo.TabStop = false;
+        // 
+        // PanelMainContainer
+        // 
+        PanelMainContainer.BackColor = Color.Transparent;
+        PanelMainContainer.Controls.Add(PictureMainLogo);
+        PanelMainContainer.Controls.Add(LabelMain);
+        PanelMainContainer.Dock = DockStyle.Fill;
+        PanelMainContainer.Location = new Point(227, 67);
+        PanelMainContainer.Margin = new Padding(2);
+        PanelMainContainer.Name = "PanelMainContainer";
+        PanelMainContainer.Size = new Size(771, 506);
+        PanelMainContainer.TabIndex = 6;
         // 
         // Menu
         // 
@@ -415,19 +384,15 @@ partial class Menu
         StartPosition = FormStartPosition.CenterScreen;
         KeyDown += Menu_KeyDown;
         ((System.ComponentModel.ISupportInitialize)PictureLogo).EndInit();
-        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).EndInit();
-        panel1.ResumeLayout(false);
-        panel2.ResumeLayout(false);
-        panel3.ResumeLayout(false);
-        panel4.ResumeLayout(false);
         PanelWindowButtons.ResumeLayout(false);
         PanelSideBar.ResumeLayout(false);
         PanelLogo.ResumeLayout(false);
         PanelLogo.PerformLayout();
         PanelTitle.ResumeLayout(false);
+        MainTableLayoutPanel.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)PictureMainLogo).EndInit();
         PanelMainContainer.ResumeLayout(false);
         PanelMainContainer.PerformLayout();
-        MainTableLayoutPanel.ResumeLayout(false);
         ResumeLayout(false);
     }
 
@@ -439,16 +404,14 @@ partial class Menu
     private Panel PanelTitle;
     private Label LabelTitle;
     private Button ButtonClose;
-    private PictureBox PictureMainLogo;
-    private Label LabelMain;
     private Button ButtonMinimize;
     private Button ButtonMaximize;
-    private Panel PanelMainContainer;
     private Panel PanelWindowButtons;
     private TableLayoutPanel MainTableLayoutPanel;
-    private Button button1;
-    private Panel panel1;
     private Button button2;
-    private Button button4;
+    private Button ButtonConfigurations;
     private Button button3;
+    private Button ButtonDataToCSV;
+    private Button button1;
+    private Panel PanelMainContainer;
 }

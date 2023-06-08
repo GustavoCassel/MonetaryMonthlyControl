@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using AppLib.Properties;
+using System.Data.SqlClient;
 
 /*
  * SQL queries run in this order:
@@ -16,108 +17,100 @@ namespace AppLib;
 
 public static class DatabaseManager
 {
-    private const string SqlLocalDBName = "MSSQLLocalDB";
-    private const string DatabaseName = "MyDatabase";
+    private static string ShortConnectionString { get; }
+    private static string FullConnectionString { get; }
+    private static string AttachDBPath { get; } = "C:\\MonetaryControlDBFiles";
 
-
-
-    public static string FullConnectionString { get; } = $"""
-        Data Source = (LocalDB)\{SqlLocalDBName};
-        AttachDbFilename = {currentDirectory}\{DatabaseName}.mdf;
-        Integrated Security = True
-        """;
-
-    private static readonly string ShortConnectionString;
-
-    public static DatabaseManager()
+    static DatabaseManager()
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
+        Directory.CreateDirectory(AttachDBPath);
 
-        _shortConnectionString = $"Data Source=(LocalDB)\\{SqlLocalDBName};";
+        ShortConnectionString = $"Data Source=(LocalDB)\\{Resources.SqlLocalDBName};";
 
-        _fullConnectionString = $"Data Source = (LocalDB)\\{SqlLocalDBName};" +
-        $"AttachDbFilename = {currentDirectory}\\{DatabaseName}.mdf;" +
-        "Integrated Security = True";
+        FullConnectionString = $"""
+            {ShortConnectionString}
+            AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
+            Integrated Security = True
+            """;
     }
 
-    public static void DeleteDatabase()
+    public static async Task DeleteDatabase()
     {
-        const string sql = $"DROP DATABASE IF EXISTS [{DatabaseName}]";
+        const string sql = "DROP DATABASE IF EXISTS [@Database]";
 
-        SqlConnection connection = new(_shortConnectionString);
+        using SqlConnection connection = new(ShortConnectionString);
         connection.Open();
 
-        SqlCommand command = new(sql, connection);
-        command.ExecuteNonQuery();
+        using SqlCommand command = new(sql, connection);
+        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
 
-        command.Dispose();
-        connection.Close();
+        await command.ExecuteNonQueryAsync();
     }
 
-    public static void CreateDatabase()
+    public static async Task CreateDatabase()
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
+        const string sql = $"""
+            IF NOT EXISTS
+            (
+                SELECT name
+                FROM sys.databases
+                WHERE name = '@Database'
+            )
+            CREATE DATABASE @Database
+            ON PRIMARY
+            (
+                NAME = @Database,
+                FILENAME = '@FilePath\@Database.mdf'
+            )
+            LOG ON
+            (
+                NAME = @Database_log,
+                FILENAME = '@FilePath\@Database_log.ldf'
+            );
+            """;
 
-        string sql = $"""
-                    IF NOT EXISTS
-                    (
-                        SELECT name
-                        FROM sys.databases
-                        WHERE name = '{DatabaseName}'
-                    )
-                    CREATE DATABASE {DatabaseName}
-                    ON PRIMARY
-                    (
-                        NAME = {DatabaseName},
-                        FILENAME = '{currentDirectory}\{DatabaseName}.mdf'
-                    )
-                    LOG ON
-                    (
-                        NAME = {DatabaseName}_log,
-                        FILENAME = '{currentDirectory}\{DatabaseName}_log.ldf'
-                    );
-                    """;
-
-        SqlConnection connection = new(_shortConnectionString);
+        using SqlConnection connection = new(ShortConnectionString);
         connection.Open();
 
-        SqlCommand command = new(sql, connection);
-        command.ExecuteNonQuery();
+        using SqlCommand command = new(sql, connection);
+        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
+        command.Parameters.AddWithValue("@FilePath", AttachDBPath);
 
-        command.Dispose();
-        connection.Close();
+        await command.ExecuteNonQueryAsync();
     }
 
-    public static void CreateTable(string tableName)
+    public static async Task CreateTable(string tableName)
     {
-        string sql = $@"
-                USE {DatabaseName}
-                IF NOT EXISTS
-                (
-                    SELECT TABLE_NAME
-                    FROM {DatabaseName}.INFORMATION_SCHEMA.COLUMNS
-                    WHERE TABLE_NAME = '{tableName}'
-                )
-                BEGIN
-                CREATE TABLE [{tableName}]
-                (
-                    [Id] INT NOT NULL IDENTITY(1,1),
-                    [Description] VARCHAR(128) NOT NULL,
-                    [Amount] DECIMAL(9,2) NOT NULL,
-                    PRIMARY KEY (Id)
-                )
-                END;";
+        const string sql = $"""
+            USE @Database
+            IF NOT EXISTS
+            (
+                SELECT TABLE_NAME
+                FROM @Database.INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_NAME = '@TableName'
+            )
+            BEGIN
+            CREATE TABLE [@TableName]
+            (
+                [Id] INT NOT NULL IDENTITY(1,1),
+                [Description] VARCHAR(128) NOT NULL,
+                [Amount] DECIMAL(9,2) NOT NULL,
+                PRIMARY KEY (Id)
+            )
+            END;
+            """;
+
         /*ALTER TABLE {tableName}
         ADD [Teste] INT NOT NULL
-    ";*/
+        ";*/
 
-        SqlConnection connection = new(_fullConnectionString);
+        using SqlConnection connection = new(FullConnectionString);
         connection.Open();
 
-        SqlCommand command = new(sql, connection);
-        command.ExecuteNonQuery();
+        using SqlCommand command = new(sql, connection);
+        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
+        command.Parameters.AddWithValue("@TableName", tableName);
 
-        command.Dispose();
-        connection.Close();
+        await command.ExecuteNonQueryAsync();
     }
 }

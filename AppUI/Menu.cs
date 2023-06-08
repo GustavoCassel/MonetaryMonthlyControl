@@ -1,36 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Reflection;
+﻿using AppUI.Properties;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace AppUI;
 
-public partial class Menu : Form
+public partial class Menu : Form, IUserInterfaceUpdater
 {
     private Button? _activeButton = null;
     public Menu()
     {
         InitializeComponent();
+        UIConfig.SetTheme(Theme.Dark);
+        UpdateUserInterface();
+
         FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
         LabelVersion.Text = $"Versão: {fvi.FileVersion}";
-        PanelWindowButtons.MouseDown += Drag_MouseDownEvent;
-
-        button1.Click += ButtonCick;
-        button2.Click += ButtonCick;
-        button3.Click += ButtonCick;
-        button4.Click += ButtonCick;
-    }
-
-    private void ButtonCick(object? sender, EventArgs e)
-    {
-        OpenChildForm(new Template(), sender);
     }
 
     #region Button Style
@@ -49,8 +33,12 @@ public partial class Menu : Form
 
         ActivateButton();
 
+        control.Dock = DockStyle.Fill;
+
         PanelMainContainer.Controls.Clear();
         PanelMainContainer.Controls.Add(control);
+
+        UpdateUserInterface();
     }
 
     private void ActivateButton()
@@ -58,7 +46,6 @@ public partial class Menu : Form
         if (_activeButton is null)
             return;
 
-        _activeButton.BackColor = ThemeManager.ClickColor;
         _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
     }
 
@@ -75,36 +62,25 @@ public partial class Menu : Form
 
     private void ReturnToHomeScreen(object sender, EventArgs e)
     {
-        DeactivateButton();
-    }
+        if (_activeButton is null)
+            return;
 
-    #endregion
+        PanelMainContainer.Controls.Clear();
 
-    #region Drag Move Window
-
-    [System.Runtime.InteropServices.DllImport("user32.dll")]
-    internal static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-    [System.Runtime.InteropServices.LibraryImport("user32.dll")]
-    [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
-    internal static partial bool ReleaseCapture();
-
-    private void Drag_MouseDownEvent(object? sender, MouseEventArgs e)
-    {
-        const int WM_NCLBUTTONDOWN = 0xA1;
-        const int HT_CAPTION = 0x2;
-
-        if (e.Button == MouseButtons.Left)
+        PictureBox pictureBox = new()
         {
-            ReleaseCapture();
-            _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            Size = new Size(128, 128),
+            Image = Resources.book_512,
+            Visible = true
 
-            // Drag to top to maximize
-            if (Location.Y <= 0)
-            {
-                WindowState = FormWindowState.Maximized;
-            }
-        }
+        };
+
+        pictureBox.Location = new Point(
+            (PanelMainContainer.Width - pictureBox.Width) / 2,
+            (PanelMainContainer.Height - pictureBox.Height) / 2);
+
+        PanelMainContainer.Controls.Add(pictureBox);
+        DeactivateButton();
     }
 
     #endregion
@@ -114,6 +90,8 @@ public partial class Menu : Form
         if (e.KeyCode == Keys.Escape)
             Application.Exit();
     }
+
+    #region Buttons Events
 
     private void ButtonClose_Click(object sender, EventArgs e)
     {
@@ -132,5 +110,49 @@ public partial class Menu : Form
     {
         WindowState = FormWindowState.Minimized;
     }
+
+    private void ButtonConfigurations_Click(object sender, EventArgs e)
+    {
+        LabelTitle.Text = "Configurações";
+        OpenChildForm(new Configurations(), sender);
+    }
+
+    private void PanelWindowButtons_MouseDown(object sender, MouseEventArgs e)
+    {
+        const int WM_NCLBUTTONDOWN = 0xA1;
+        const int HT_CAPTION = 0x2;
+
+        if (e.Button == MouseButtons.Left)
+        {
+            ReleaseCapture();
+            _ = SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                if (Location.Y == screen.Bounds.Y)
+                    WindowState = FormWindowState.Maximized;
+            }
+        }
+    }
+
+    public void UpdateUserInterface()
+    {
+        BackColor = UIConfig.BackColor;
+        PanelWindowButtons.BackColor = UIConfig.MidColor;
+        UIConfig.UpdateStyles(Controls);
+    }
+
+    #endregion
+
+    #region Drag Move Window
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    internal static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+    [System.Runtime.InteropServices.LibraryImport("user32.dll")]
+    [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+    internal static partial bool ReleaseCapture();
+
+    #endregion
 
 }

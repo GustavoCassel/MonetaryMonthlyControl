@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace AppLib;
+﻿namespace AppLib;
 
 public enum LocalDbCommand
 {
@@ -8,7 +6,7 @@ public enum LocalDbCommand
     Stop,
     Info
 }
-
+/*
 public static class LocalDbManager
 {
     public static void RunCommandOnCmd(LocalDbCommand localDbCommand)
@@ -66,4 +64,4 @@ public static class LocalDbManager
 
         return lstInstances;
     }
-}
+}*/
