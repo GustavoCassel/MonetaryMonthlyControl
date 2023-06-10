@@ -1,4 +1,5 @@
 ﻿using AppLib.Properties;
+using System.Data;
 using System.Data.SqlClient;
 
 /*
@@ -36,10 +37,11 @@ public static class DatabaseManager
 
     public static async Task Main()
     {
-
+        await CreateDatabase();
     }
 
-    public static async Task DeleteDatabase()
+    [Obsolete("Test Purposes")]
+    private static async Task DeleteDatabase()
     {
         const string sql = "DROP DATABASE IF EXISTS [@Database]";
 
@@ -52,25 +54,25 @@ public static class DatabaseManager
         await command.ExecuteNonQueryAsync();
     }
 
-    public static async Task CreateDatabase()
+    private static async Task CreateDatabase()
     {
-        const string sql = $"""
+        string sql = $"""
             IF NOT EXISTS
             (
                 SELECT name
                 FROM sys.databases
-                WHERE name = '@Database'
+                WHERE name = '{Resources.DatabaseName}'
             )
-            CREATE DATABASE @Database
+            CREATE DATABASE {Resources.DatabaseName}
             ON PRIMARY
             (
-                NAME = @Database,
-                FILENAME = '@FilePath\@Database.mdf'
+                NAME = {Resources.DatabaseName},
+                FILENAME = '{AttachDBPath}\{Resources.DatabaseName}.mdf'
             )
             LOG ON
             (
-                NAME = @Database_log,
-                FILENAME = '@FilePath\@Database_log.ldf'
+                NAME = {Resources.DatabaseName}_log,
+                FILENAME = '{AttachDBPath}\{Resources.DatabaseName}_log.ldf'
             );
             """;
 
@@ -78,13 +80,11 @@ public static class DatabaseManager
         connection.Open();
 
         using SqlCommand command = new(sql, connection);
-        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
-        command.Parameters.AddWithValue("@FilePath", AttachDBPath);
-
+        
         await command.ExecuteNonQueryAsync();
     }
 
-    public static async Task CreateTable(string tableName)
+    private static async Task CreateTable(string tableName)
     {
         const string sql = $"""
             USE @Database

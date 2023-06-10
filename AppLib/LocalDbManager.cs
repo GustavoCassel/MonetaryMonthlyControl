@@ -22,10 +22,7 @@ public static class LocalDbManager
         {
             throw new LocalDBNotFoundException();
         }
-
-
     }
-
 
     private static async Task<IReadOnlyCollection<string>?> GetLocalDBInstances()
     {
