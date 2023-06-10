@@ -19,7 +19,7 @@ public static class DatabaseManager
 {
     private static string ShortConnectionString { get; }
     private static string FullConnectionString { get; }
-    private static string AttachDBPath { get; } = "C:\\MonetaryControlDBFiles";
+    private static string AttachDBPath { get; } = "C:\\MonetaryControlDatabaseFiles";
 
     static DatabaseManager()
     {
@@ -32,6 +32,11 @@ public static class DatabaseManager
             AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
             Integrated Security = True
             """;
+    }
+
+    public static async Task Main()
+    {
+
     }
 
     public static async Task DeleteDatabase()

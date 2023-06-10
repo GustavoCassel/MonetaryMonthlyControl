@@ -10,7 +10,7 @@ public partial class Menu : Form, IUserInterfaceUpdater
     public Menu()
     {
         InitializeComponent();
-        UIConfig.SetTheme(Theme.Dark);
+
         UpdateUserInterface();
 
         ReturnToMainMenu();
@@ -78,6 +78,12 @@ public partial class Menu : Form, IUserInterfaceUpdater
 
     #region Buttons Events
 
+    private void ButtonMainMenu_Click(object sender, EventArgs e)
+    {
+        LabelTitle.Text = "Início";
+        ReturnToMainMenu();
+    }
+
     private void ButtonClose_Click(object sender, EventArgs e)
     {
         Application.Exit();
@@ -102,9 +108,10 @@ public partial class Menu : Form, IUserInterfaceUpdater
         OpenChildForm(new Configurations(), (Button)sender);
     }
 
-    private void ButtonMainMenu_Click(object sender, EventArgs e)
+    private void ButtonInsertEntry_Click(object sender, EventArgs e)
     {
-        ReturnToMainMenu();
+        LabelTitle.Text = "Adicionar Entrada";
+        OpenChildForm(new FormInsertEntry(), (Button)sender);
     }
 
     private void PanelWindowButtons_MouseDown(object sender, MouseEventArgs e)

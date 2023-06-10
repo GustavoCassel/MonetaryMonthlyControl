@@ -7,6 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationIcon>book-256.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +16,10 @@
     <None Remove="Resources\close-window-512.png" />
     <None Remove="Resources\maximize-window-512.png" />
     <None Remove="Resources\minimize-window-512.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="book-256.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +48,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\FormInsertEntry.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 

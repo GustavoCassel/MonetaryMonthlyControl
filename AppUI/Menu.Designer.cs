@@ -30,7 +30,7 @@ partial class Menu
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
         button2 = new Button();
-        button3 = new Button();
+        ButtonInsertEntry = new Button();
         ButtonConfigurations = new Button();
         ButtonDataToCSV = new Button();
         PanelWindowButtons = new Panel();
@@ -65,26 +65,29 @@ partial class Menu
         button2.Name = "button2";
         button2.Size = new Size(221, 60);
         button2.TabIndex = 0;
-        button2.Text = "Exportar Dados";
+        button2.TabStop = false;
+        button2.Text = "Editar Parâmetros";
         button2.UseVisualStyleBackColor = true;
         // 
-        // button3
+        // ButtonInsertEntry
         // 
-        button3.Cursor = Cursors.Hand;
-        button3.Dock = DockStyle.Top;
-        button3.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button3.FlatAppearance.BorderSize = 0;
-        button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button3.FlatStyle = FlatStyle.Flat;
-        button3.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button3.Location = new Point(0, 0);
-        button3.Margin = new Padding(1);
-        button3.Name = "button3";
-        button3.Size = new Size(221, 60);
-        button3.TabIndex = 0;
-        button3.Text = "Adicionar";
-        button3.UseVisualStyleBackColor = true;
+        ButtonInsertEntry.Cursor = Cursors.Hand;
+        ButtonInsertEntry.Dock = DockStyle.Top;
+        ButtonInsertEntry.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonInsertEntry.FlatAppearance.BorderSize = 0;
+        ButtonInsertEntry.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonInsertEntry.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonInsertEntry.FlatStyle = FlatStyle.Flat;
+        ButtonInsertEntry.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonInsertEntry.Location = new Point(0, 0);
+        ButtonInsertEntry.Margin = new Padding(1);
+        ButtonInsertEntry.Name = "ButtonInsertEntry";
+        ButtonInsertEntry.Size = new Size(221, 60);
+        ButtonInsertEntry.TabIndex = 0;
+        ButtonInsertEntry.TabStop = false;
+        ButtonInsertEntry.Text = "Adicionar";
+        ButtonInsertEntry.UseVisualStyleBackColor = true;
+        ButtonInsertEntry.Click += ButtonInsertEntry_Click;
         // 
         // ButtonConfigurations
         // 
@@ -101,6 +104,7 @@ partial class Menu
         ButtonConfigurations.Name = "ButtonConfigurations";
         ButtonConfigurations.Size = new Size(221, 60);
         ButtonConfigurations.TabIndex = 0;
+        ButtonConfigurations.TabStop = false;
         ButtonConfigurations.Text = "Configurações";
         ButtonConfigurations.UseVisualStyleBackColor = true;
         ButtonConfigurations.Click += ButtonConfigurations_Click;
@@ -120,6 +124,7 @@ partial class Menu
         ButtonDataToCSV.Name = "ButtonDataToCSV";
         ButtonDataToCSV.Size = new Size(221, 60);
         ButtonDataToCSV.TabIndex = 0;
+        ButtonDataToCSV.TabStop = false;
         ButtonDataToCSV.Text = "Importar / Exportar Dados - CSV";
         ButtonDataToCSV.UseVisualStyleBackColor = true;
         // 
@@ -208,7 +213,7 @@ partial class Menu
         PanelSideBar.Controls.Add(ButtonConfigurations);
         PanelSideBar.Controls.Add(button1);
         PanelSideBar.Controls.Add(button2);
-        PanelSideBar.Controls.Add(button3);
+        PanelSideBar.Controls.Add(ButtonInsertEntry);
         PanelSideBar.Dock = DockStyle.Fill;
         PanelSideBar.Location = new Point(2, 67);
         PanelSideBar.Margin = new Padding(2);
@@ -231,6 +236,7 @@ partial class Menu
         button1.Name = "button1";
         button1.Size = new Size(221, 60);
         button1.TabIndex = 0;
+        button1.TabStop = false;
         button1.Text = "Visualizar Situação";
         button1.UseVisualStyleBackColor = true;
         // 
@@ -349,7 +355,7 @@ partial class Menu
     private TableLayoutPanel MainTableLayoutPanel;
     private Button button2;
     private Button ButtonConfigurations;
-    private Button button3;
+    private Button ButtonInsertEntry;
     private Button ButtonDataToCSV;
     private Button button1;
     private Panel PanelMainContainer;

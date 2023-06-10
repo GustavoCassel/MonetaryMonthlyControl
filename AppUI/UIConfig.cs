@@ -48,7 +48,7 @@ internal static class UIConfig
                 break;
 
             default:
-                break;
+                throw new NotImplementedException();
         }
     }
 

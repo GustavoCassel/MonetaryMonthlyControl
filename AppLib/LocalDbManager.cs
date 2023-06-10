@@ -1,43 +1,40 @@
-﻿namespace AppLib;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using AppLib.Properties;
+using Microsoft.Win32;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
-public enum LocalDbCommand
-{
-    Create,
-    Stop,
-    Info
-}
-/*
+namespace AppLib;
+
 public static class LocalDbManager
 {
-    public static void RunCommandOnCmd(LocalDbCommand localDbCommand)
+    public static async Task Main()
     {
-        ProcessStartInfo processStartInfo = new()
+        if (!IsLocalDBInstalled())
         {
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            FileName = "cmd.exe",
-            Arguments = $"/C SQLLocalDB {localDbCommand} \"{Global.SqlLocalDbServerName}\"",
-            CreateNoWindow = true,
-            WindowStyle = ProcessWindowStyle.Hidden
-        };
+            throw new LocalDBNotInstalledException();
+        }
 
-        Process process = new()
+        if (!await IsInstanceCreated())
         {
-            StartInfo = processStartInfo
-        };
+            throw new LocalDBNotFoundException();
+        }
 
-        process.Start();
-        process.WaitForExit();
+
     }
 
-    public static List<string>? GetLocalDBInstances()
+
+    private static async Task<IReadOnlyCollection<string>?> GetLocalDBInstances()
     {
         ProcessStartInfo processStartInfo = new()
         {
             UseShellExecute = false,
             RedirectStandardOutput = true,
             FileName = "cmd.exe",
-            Arguments = $"/C SQLLocalDB {LocalDbCommand.Info}",
+            Arguments = $"/C SQLLocalDB Info",
             CreateNoWindow = true,
             WindowStyle = ProcessWindowStyle.Hidden
         };
@@ -49,10 +46,12 @@ public static class LocalDbManager
 
         process.Start();
 
-        string output = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
+        string output = await process.StandardOutput.ReadToEndAsync();
 
-        // If LocalDb is not installed then it will return that 'sqllocaldb' is not recognized as an internal or external command operable program or batch file.
+        await process.WaitForExitAsync();
+
+        // If LocalDb is not installed then it will return that 'sqllocaldb' is not
+        // recognized as an internal or external command operable program or batch file.
         if (string.IsNullOrWhiteSpace(output) || output.Contains("not recognized"))
         {
             return null;
@@ -60,8 +59,26 @@ public static class LocalDbManager
 
         string[] instances = output.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
         List<string> lstInstances = new(instances);
-        lstInstances.RemoveAll(instance => instance.Trim().Length <= 0);
 
-        return lstInstances;
+        lstInstances.RemoveAll(string.IsNullOrWhiteSpace);
+
+        return lstInstances.AsReadOnly<string>();
     }
-}*/
+
+    private static bool IsLocalDBInstalled()
+    {
+        return GetLocalDBInstances().Result != null;
+    }
+
+    private static async Task<bool> IsInstanceCreated()
+    {
+        IReadOnlyCollection<string>? instances = await GetLocalDBInstances();
+
+        if (instances == null)
+        {
+            return false;
+        }
+
+        return instances.Any(instance => instance == Resources.SqlLocalDBName);
+    }
+}
