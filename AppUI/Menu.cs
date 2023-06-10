@@ -6,26 +6,24 @@ namespace AppUI;
 
 public partial class Menu : Form, IUserInterfaceUpdater
 {
-    private Button? _activeButton = null;
+    private Button? _activeButton;
     public Menu()
     {
         InitializeComponent();
         UIConfig.SetTheme(Theme.Dark);
         UpdateUserInterface();
 
-        FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-        LabelVersion.Text = $"Versão: {fvi.FileVersion}";
+        ReturnToMainMenu();
     }
 
     #region Button Style
 
-    private void OpenChildForm(UserControl control, object? sender)
+    private void OpenChildForm(UserControl control, Button button)
     {
-        if (sender is not Button button)
-            return;
-
         if (button.Equals(_activeButton))
             return;
+
+        ButtonMainMenu.Visible = true;
 
         DeactivateButton();
 
@@ -46,6 +44,8 @@ public partial class Menu : Form, IUserInterfaceUpdater
         if (_activeButton is null)
             return;
 
+        _activeButton.FlatAppearance.BorderSize = 2;
+        _activeButton.BackColor = UIConfig.MidColor;
         _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
     }
 
@@ -54,33 +54,18 @@ public partial class Menu : Form, IUserInterfaceUpdater
         if (_activeButton is null)
             return;
 
+        _activeButton.FlatAppearance.BorderSize = 0;
         _activeButton.BackColor = Color.Transparent;
         _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Regular);
 
         _activeButton = null;
     }
 
-    private void ReturnToHomeScreen(object sender, EventArgs e)
+    private void ReturnToMainMenu()
     {
-        if (_activeButton is null)
-            return;
-
-        PanelMainContainer.Controls.Clear();
-
-        PictureBox pictureBox = new()
-        {
-            Size = new Size(128, 128),
-            Image = Resources.book_512,
-            Visible = true
-
-        };
-
-        pictureBox.Location = new Point(
-            (PanelMainContainer.Width - pictureBox.Width) / 2,
-            (PanelMainContainer.Height - pictureBox.Height) / 2);
-
-        PanelMainContainer.Controls.Add(pictureBox);
         DeactivateButton();
+        OpenChildForm(new MainMenu(), ButtonMainMenu);
+        ButtonMainMenu.Visible = false;
     }
 
     #endregion
@@ -114,7 +99,12 @@ public partial class Menu : Form, IUserInterfaceUpdater
     private void ButtonConfigurations_Click(object sender, EventArgs e)
     {
         LabelTitle.Text = "Configurações";
-        OpenChildForm(new Configurations(), sender);
+        OpenChildForm(new Configurations(), (Button)sender);
+    }
+
+    private void ButtonMainMenu_Click(object sender, EventArgs e)
+    {
+        ReturnToMainMenu();
     }
 
     private void PanelWindowButtons_MouseDown(object sender, MouseEventArgs e)
@@ -154,5 +144,4 @@ public partial class Menu : Form, IUserInterfaceUpdater
     internal static partial bool ReleaseCapture();
 
     #endregion
-
 }

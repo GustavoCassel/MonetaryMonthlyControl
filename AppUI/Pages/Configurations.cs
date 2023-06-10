@@ -29,6 +29,6 @@ public partial class Configurations : UserControl, IUserInterfaceUpdater
     {
         UIConfig.SetTheme((Theme)ComboBoxThemes.SelectedIndex);
         UpdateUserInterface();
-        ((IUserInterfaceUpdater?)this.ParentForm)?.UpdateUserInterface();
+        ((IUserInterfaceUpdater?)ParentForm)?.UpdateUserInterface();
     }
 }

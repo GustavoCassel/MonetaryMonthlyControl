@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppLib", "AppLib\AppLib.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppUI", "AppUI\AppUI.csproj", "{6D9EDB6B-87EA-4AC5-97CF-884109E2F827}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{2CAFC3D0-8A73-4C77-A087-A177DB240813}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6D9EDB6B-87EA-4AC5-97CF-884109E2F827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D9EDB6B-87EA-4AC5-97CF-884109E2F827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D9EDB6B-87EA-4AC5-97CF-884109E2F827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CAFC3D0-8A73-4C77-A087-A177DB240813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CAFC3D0-8A73-4C77-A087-A177DB240813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CAFC3D0-8A73-4C77-A087-A177DB240813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CAFC3D0-8A73-4C77-A087-A177DB240813}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

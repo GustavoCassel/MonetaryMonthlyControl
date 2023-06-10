@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\book-48.png" />
     <None Remove="Resources\book-512.png" />
     <None Remove="Resources\close-window-512.png" />
     <None Remove="Resources\maximize-window-512.png" />
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\book-48.png" />
     <EmbeddedResource Include="Resources\book-512.png" />
     <EmbeddedResource Include="Resources\close-window-512.png" />
     <EmbeddedResource Include="Resources\maximize-window-512.png" />
@@ -32,6 +34,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Pages\Configurations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pages\MainMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
