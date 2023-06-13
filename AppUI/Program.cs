@@ -1,7 +1,4 @@
 using AppLib;
-using AppUI.Properties;
-using Microsoft.Win32;
-using System.Reflection;
 
 namespace AppUI;
 
@@ -13,6 +10,8 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+        DBGlobal.Teste();
+        return;
         try
         {
             LocalDbManager.Main().Wait();

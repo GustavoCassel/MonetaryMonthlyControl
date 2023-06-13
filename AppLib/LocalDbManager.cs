@@ -1,11 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AppLib.Properties;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
-using AppLib.Properties;
-using Microsoft.Win32;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 
 namespace AppLib;
 
@@ -13,7 +7,7 @@ public static class LocalDbManager
 {
     public static async Task Main()
     {
-        if (!IsLocalDBInstalled())
+        if (!await IsLocalDBInstalled())
         {
             throw new LocalDBNotInstalledException();
         }
@@ -62,9 +56,9 @@ public static class LocalDbManager
         return lstInstances.AsReadOnly<string>();
     }
 
-    private static bool IsLocalDBInstalled()
+    private static async Task<bool> IsLocalDBInstalled()
     {
-        return GetLocalDBInstances().Result != null;
+        return await GetLocalDBInstances() != null;
     }
 
     private static async Task<bool> IsInstanceCreated()

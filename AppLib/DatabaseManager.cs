@@ -1,5 +1,4 @@
 ﻿using AppLib.Properties;
-using System.Data;
 using System.Data.SqlClient;
 
 /*
@@ -80,7 +79,7 @@ public static class DatabaseManager
         connection.Open();
 
         using SqlCommand command = new(sql, connection);
-        
+
         await command.ExecuteNonQueryAsync();
     }
 

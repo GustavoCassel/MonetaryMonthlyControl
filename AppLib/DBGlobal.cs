@@ -1,10 +1,17 @@
 ﻿using System.Data.SqlClient;
-using System.Globalization;
 
 namespace AppLib;
 
 public static class DBGlobal
 {
+    public static void Teste()
+    {
+        string sqlQuery = System.IO.File.ReadAllText("SQL-Commands\\query.sql");
+
+    }
+
+
+
     private static SqlConnection myVar;
 
     public static SqlConnection LocalDBConnection

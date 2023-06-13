@@ -1,8 +1,4 @@
-﻿using AppUI.Properties;
-using System.Diagnostics;
-using System.Reflection;
-
-namespace AppUI;
+﻿namespace AppUI;
 
 public partial class Menu : Form, IUserInterfaceUpdater
 {

@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace AppUI;
+﻿namespace AppUI;
 
 public partial class Configurations : UserControl, IUserInterfaceUpdater
 {
