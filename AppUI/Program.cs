@@ -10,7 +10,8 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-        DBGlobal.Teste();
+        string teste = DBGlobal.GetSqlStatement("aquery").Result;
+
         return;
         try
         {

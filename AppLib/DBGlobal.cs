@@ -1,16 +1,21 @@
 ﻿using System.Data.SqlClient;
+using System.Reflection;
 
 namespace AppLib;
 
 public static class DBGlobal
 {
-    public static void Teste()
+    public static async Task<string> GetSqlStatement(string fileName)
     {
-        string sqlQuery = System.IO.File.ReadAllText("SQL-Commands\\query.sql");
+        string fullPath = $"SQL-Commands\\{fileName}.sql";
 
+        if (File.Exists(fullPath))
+        {
+
+        }
+
+        return await File.ReadAllTextAsync(fullPath);
     }
-
-
 
     private static SqlConnection myVar;
 
