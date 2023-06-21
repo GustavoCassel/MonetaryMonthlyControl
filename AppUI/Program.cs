@@ -10,12 +10,18 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-        string teste = DBGlobal.GetSqlStatement("aquery").Result;
-
-        return;
         try
         {
             LocalDbManager.Main().Wait();
+        }
+        catch (Exception ex) when
+        (
+            ex is LocalDBNotInstalledException ||
+            ex is LocalDBNotFoundException
+        )
+        {
+            ErrorMessage.Show(ex.Message, Level.Success);
+            return;
         }
         catch (Exception ex)
         {
@@ -33,11 +39,13 @@ internal static class Program
             return;
         }
 
+        return;
+
         UIConfig.SetTheme(Theme.Dark);
 
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
-        Application.Run(new Menu());
+        Application.Run(new FormMenu());
     }
 }

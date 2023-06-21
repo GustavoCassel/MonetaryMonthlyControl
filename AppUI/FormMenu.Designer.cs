@@ -1,6 +1,6 @@
 ﻿namespace AppUI;
 
-partial class Menu
+partial class FormMenu
 {
     /// <summary>
     /// Required designer variable.
@@ -28,7 +28,7 @@ partial class Menu
     /// </summary>
     private void InitializeComponent()
     {
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
         button2 = new Button();
         ButtonInsertEntry = new Button();
         ButtonConfigurations = new Button();
@@ -316,7 +316,7 @@ partial class Menu
         ButtonMainMenu.Visible = false;
         ButtonMainMenu.Click += ButtonMainMenu_Click;
         // 
-        // Menu
+        // FormMenu
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -332,7 +332,7 @@ partial class Menu
         KeyPreview = true;
         Margin = new Padding(4);
         MinimumSize = new Size(1200, 700);
-        Name = "Menu";
+        Name = "FormMenu";
         SizeGripStyle = SizeGripStyle.Show;
         StartPosition = FormStartPosition.CenterScreen;
         KeyDown += Menu_KeyDown;

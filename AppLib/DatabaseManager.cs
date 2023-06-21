@@ -1,17 +1,19 @@
 ﻿using AppLib.Properties;
+using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 /*
- * SQL queries run in this order:
- * 
- * FROM + JOIN
- * WHERE
- * GROUP BY
- * HAVING
- * SELECT
- * ORDER BY
- * LIMIT
- */
+* SQL queries run in this order:
+* 
+* FROM + JOIN
+* WHERE
+* GROUP BY
+* HAVING
+* SELECT
+* ORDER BY
+* LIMIT
+*/
 
 namespace AppLib;
 
@@ -36,6 +38,33 @@ public static class DatabaseManager
 
     public static async Task Main()
     {
+        string sql = await DBGlobal.GetSqlStatementFromFile("CreateDatabase");
+
+        using SqlConnection sqlConnection = new(FullConnectionString);
+        sqlConnection.Open();
+        using SqlCommand cmd = new(sql, sqlConnection);
+        // cmd.Parameters.AddWithValue("@teste", Resources.DatabaseName);
+        await cmd.ExecuteNonQueryAsync();
+
+        using SqlDataAdapter dataAdapter = new(cmd);
+
+        DataTable table = new();
+        dataAdapter.Fill(table);
+
+        foreach (DataRow row in table.Rows)
+        {
+            Category category = new(row);
+
+        }
+
+        /*foreach (DataColumn column in table.Columns)
+        {
+            Debug.WriteLine(column.ColumnName);
+            Debug.WriteLine(row[column]);
+        }*/
+
+        return;
+
         await CreateDatabase();
     }
 

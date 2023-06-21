@@ -1,9 +1,9 @@
 ﻿namespace AppUI;
 
-public partial class Menu : Form, IUserInterfaceUpdater
+public partial class FormMenu : Form, IUserInterfaceUpdater
 {
     private Button? _activeButton;
-    public Menu()
+    public FormMenu()
     {
         InitializeComponent();
 

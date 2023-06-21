@@ -1,64 +1,65 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <ApplicationIcon>book-256.ico</ApplicationIcon>
-  </PropertyGroup>
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<ApplicationIcon>book-256.ico</ApplicationIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Resources\book-48.png" />
-    <None Remove="Resources\book-512.png" />
-    <None Remove="Resources\close-window-512.png" />
-    <None Remove="Resources\maximize-window-512.png" />
-    <None Remove="Resources\minimize-window-512.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Resources\book-48.png" />
+		<None Remove="Resources\book-512.png" />
+		<None Remove="Resources\close-window-512.png" />
+		<None Remove="Resources\maximize-window-512.png" />
+		<None Remove="Resources\minimize-window-512.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="book-256.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="book-256.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\book-48.png" />
-    <EmbeddedResource Include="Resources\book-512.png" />
-    <EmbeddedResource Include="Resources\close-window-512.png" />
-    <EmbeddedResource Include="Resources\maximize-window-512.png" />
-    <EmbeddedResource Include="Resources\minimize-window-512.png" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\book-48.png" />
+		<EmbeddedResource Include="Resources\book-512.png" />
+		<EmbeddedResource Include="Resources\close-window-512.png" />
+		<EmbeddedResource Include="Resources\maximize-window-512.png" />
+		<EmbeddedResource Include="Resources\minimize-window-512.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AppLib\AppLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AppLib\AppLib.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="FormManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Pages\Configurations.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Pages\MainMenu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\FormInsertEntry.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="FormManager.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Pages\Configurations.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Pages\MainMenu.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Pages\FormInsertEntry.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>
