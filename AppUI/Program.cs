@@ -1,5 +1,6 @@
 using AppLib;
-
+using AppLib.Data;
+using System.Data.Odbc;
 namespace AppUI;
 
 internal static class Program
@@ -10,6 +11,14 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+
+        using DataContext db = new();
+        var cat = new Category();
+        db.Categories.Add(cat);
+        db.SaveChanges();
+
+        return;
+
         try
         {
             LocalDbManager.Main().Wait();

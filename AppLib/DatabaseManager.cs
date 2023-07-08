@@ -19,9 +19,9 @@ namespace AppLib;
 
 public static class DatabaseManager
 {
-    private static string ShortConnectionString { get; }
-    private static string FullConnectionString { get; }
-    private static string AttachDBPath { get; } = "C:\\MonetaryControlDatabaseFiles";
+    public static string ShortConnectionString { get; }
+    public static string FullConnectionString { get; }
+    public static string AttachDBPath { get; } = "C:\\MonetaryControlDatabaseFiles";
 
     static DatabaseManager()
     {
@@ -31,9 +31,9 @@ public static class DatabaseManager
 
         FullConnectionString = $"""
             {ShortConnectionString}
-            AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
             Integrated Security = True
             """;
+            //AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
     }
 
     public static async Task Main()
@@ -53,7 +53,7 @@ public static class DatabaseManager
 
         foreach (DataRow row in table.Rows)
         {
-            Category category = new(row);
+            //Category category = new(row);
 
         }
 
