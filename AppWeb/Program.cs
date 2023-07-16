@@ -8,7 +8,9 @@ public class Program
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddRazorPages();
+        builder.Services
+            .AddRazorPages()
+            .AddRazorRuntimeCompilation();
 
         builder.Services.AddDbContext<MyDbContext>();
 
@@ -16,7 +18,7 @@ public class Program
 
         app.UseDefaultFiles();
 
-        //app.UseStaticFiles();
+        app.UseStaticFiles();
 
         app.MapRazorPages();
 

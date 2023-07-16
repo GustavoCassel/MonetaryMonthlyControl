@@ -1,14 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AppWeb.Models
-{
-    public class MyDbContext : DbContext
-    {
-        public DbSet<Person> People { get; set; }
+namespace AppWeb.Models;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase("MyDb");
-        }
+public sealed class MyDbContext : DbContext
+{
+    public DbSet<Person> People { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseInMemoryDatabase("MyDb");
     }
 }
