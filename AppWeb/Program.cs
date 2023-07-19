@@ -16,6 +16,9 @@ public class Program
 
         WebApplication app = builder.Build();
 
+        app.UseAuthentication();
+        app.UseAuthorization();
+
         app.UseDefaultFiles();
 
         app.UseStaticFiles();

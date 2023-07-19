@@ -8,29 +8,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page with Background Image Example</title>
-    <link rel="stylesheet" href="~/css/Styles.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="~/script/script.js"></script>
 </head>
 
 <body>
-    <div class="cores-classe">
-        <h1>teste</h1>
+    <div class="sidenav" id="mySidenav" onmouseout="">
+        <a class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
     </div>
 
-    
-    <div id="bg"></div>
-    <form>
-        <div class="form-field">
-            <input type="email" placeholder="Email / Username" required />
-        </div>
+    <!-- Use any element to open the sidenav -->
+    <span onclick="openNav()" style="background-color:green" onmouseover="openNav()">Menu</span>
 
-        <div class="form-field">
-            <input type="password" placeholder="Password" required />
-        </div>
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+        ...
+    </div>
 
-        <div class="form-field">
-            <button class="btn" type="submit">Log in</button>
-        </div>
-    </form>
-    
+    <script>
+
+    </script>
 </body>
 </html>

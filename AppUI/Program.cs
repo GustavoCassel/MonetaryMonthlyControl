@@ -11,14 +11,6 @@ internal static class Program
     [STAThread]
     static void Main()
     {
-
-        using DataContext db = new();
-        var cat = new Category();
-        db.Categories.Add(cat);
-        db.SaveChanges();
-
-        return;
-
         try
         {
             LocalDbManager.Main().Wait();
@@ -47,8 +39,6 @@ internal static class Program
             ErrorMessage.Show($"Ocorreu um erro desconhecido!\nErro: {ex.Message}", Level.FatalError);
             return;
         }
-
-        return;
 
         UIConfig.SetTheme(Theme.Dark);
 
