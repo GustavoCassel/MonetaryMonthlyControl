@@ -1,4 +1,18 @@
 ﻿
+.body {
+    margin: 0;
+    padding: 0;
+}
+
+.superiorMenu {
+    background-color: red;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 10px;
+}
+
 /* The side navigation menu */
 .sidenav {
     height: 100%; /* 100% Full-height */
@@ -39,8 +53,8 @@
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-    transition: margin-left .2s;
-    padding: 20px;
+    /*transition: margin-left .2s;
+    padding: 20px;*/
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
