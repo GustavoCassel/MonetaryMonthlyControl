@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace AppLib;
@@ -9,9 +10,10 @@ public sealed class Category
     public Guid Id { get; }
 
     [Required, MaxLength(100)]
-    public string? Name { get; }
+    public string Name { get; }
 
-    public string? Description { get; }
+    [Required, MaxLength(100)]
+    public string Description { get; }
 
     [Required]
     public DateTime Created { get; }
@@ -20,8 +22,10 @@ public sealed class Category
     public Category()
     {
         Id = Guid.NewGuid();
-        Name = "Nome Teste";
-        Description = "Descrição Teste";
+
+        Faker faker = new();
+        Name = faker.Person.FullName;
+        Description = faker.Lorem.Text();
         Created = DateTime.Now;
     }
 

@@ -2,9 +2,9 @@
 
 namespace AppUI;
 
-public partial class MainMenu : UserControl
+public partial class MainMenuPlaceholderControl : UserControl
 {
-    public MainMenu(bool loading = false)
+    public MainMenuPlaceholderControl(bool loading = false)
     {
         InitializeComponent();
 

@@ -29,8 +29,8 @@ partial class FormMenu
     private void InitializeComponent()
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenu));
-        button2 = new Button();
-        ButtonInsertEntry = new Button();
+        ButtonCategories = new Button();
+        ButtonEntries = new Button();
         ButtonConfigurations = new Button();
         ButtonDataToCSV = new Button();
         PanelWindowButtons = new Panel();
@@ -38,7 +38,7 @@ partial class FormMenu
         ButtonMaximize = new Button();
         ButtonClose = new Button();
         PanelSideBar = new Panel();
-        button1 = new Button();
+        ButtonReport = new Button();
         PanelTitle = new Panel();
         LabelTitle = new Label();
         MainTableLayoutPanel = new TableLayoutPanel();
@@ -50,44 +50,45 @@ partial class FormMenu
         MainTableLayoutPanel.SuspendLayout();
         SuspendLayout();
         // 
-        // button2
+        // ButtonCategories
         // 
-        button2.Cursor = Cursors.Hand;
-        button2.Dock = DockStyle.Top;
-        button2.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button2.FlatAppearance.BorderSize = 0;
-        button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button2.FlatStyle = FlatStyle.Flat;
-        button2.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button2.Location = new Point(0, 60);
-        button2.Margin = new Padding(1);
-        button2.Name = "button2";
-        button2.Size = new Size(221, 60);
-        button2.TabIndex = 0;
-        button2.TabStop = false;
-        button2.Text = "Editar Parâmetros";
-        button2.UseVisualStyleBackColor = true;
+        ButtonCategories.Cursor = Cursors.Hand;
+        ButtonCategories.Dock = DockStyle.Top;
+        ButtonCategories.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonCategories.FlatAppearance.BorderSize = 0;
+        ButtonCategories.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonCategories.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonCategories.FlatStyle = FlatStyle.Flat;
+        ButtonCategories.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonCategories.Location = new Point(0, 60);
+        ButtonCategories.Margin = new Padding(1);
+        ButtonCategories.Name = "ButtonCategories";
+        ButtonCategories.Size = new Size(221, 60);
+        ButtonCategories.TabIndex = 0;
+        ButtonCategories.TabStop = false;
+        ButtonCategories.Text = "Manage Categories";
+        ButtonCategories.UseVisualStyleBackColor = true;
+        ButtonCategories.Click += ButtonCategories_Click;
         // 
-        // ButtonInsertEntry
+        // ButtonEntries
         // 
-        ButtonInsertEntry.Cursor = Cursors.Hand;
-        ButtonInsertEntry.Dock = DockStyle.Top;
-        ButtonInsertEntry.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        ButtonInsertEntry.FlatAppearance.BorderSize = 0;
-        ButtonInsertEntry.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        ButtonInsertEntry.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        ButtonInsertEntry.FlatStyle = FlatStyle.Flat;
-        ButtonInsertEntry.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ButtonInsertEntry.Location = new Point(0, 0);
-        ButtonInsertEntry.Margin = new Padding(1);
-        ButtonInsertEntry.Name = "ButtonInsertEntry";
-        ButtonInsertEntry.Size = new Size(221, 60);
-        ButtonInsertEntry.TabIndex = 0;
-        ButtonInsertEntry.TabStop = false;
-        ButtonInsertEntry.Text = "Add New Entry";
-        ButtonInsertEntry.UseVisualStyleBackColor = true;
-        ButtonInsertEntry.Click += ButtonInsertEntry_Click;
+        ButtonEntries.Cursor = Cursors.Hand;
+        ButtonEntries.Dock = DockStyle.Top;
+        ButtonEntries.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonEntries.FlatAppearance.BorderSize = 0;
+        ButtonEntries.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonEntries.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonEntries.FlatStyle = FlatStyle.Flat;
+        ButtonEntries.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonEntries.Location = new Point(0, 0);
+        ButtonEntries.Margin = new Padding(1);
+        ButtonEntries.Name = "ButtonEntries";
+        ButtonEntries.Size = new Size(221, 60);
+        ButtonEntries.TabIndex = 0;
+        ButtonEntries.TabStop = false;
+        ButtonEntries.Text = "Manage Entries";
+        ButtonEntries.UseVisualStyleBackColor = true;
+        ButtonEntries.Click += ButtonEntries_Click;
         // 
         // ButtonConfigurations
         // 
@@ -105,7 +106,7 @@ partial class FormMenu
         ButtonConfigurations.Size = new Size(221, 60);
         ButtonConfigurations.TabIndex = 0;
         ButtonConfigurations.TabStop = false;
-        ButtonConfigurations.Text = "Configurações";
+        ButtonConfigurations.Text = "Configurations";
         ButtonConfigurations.UseVisualStyleBackColor = true;
         ButtonConfigurations.Click += ButtonConfigurations_Click;
         // 
@@ -125,7 +126,7 @@ partial class FormMenu
         ButtonDataToCSV.Size = new Size(221, 60);
         ButtonDataToCSV.TabIndex = 0;
         ButtonDataToCSV.TabStop = false;
-        ButtonDataToCSV.Text = "Importar / Exportar Dados - CSV";
+        ButtonDataToCSV.Text = "Import / Export\r\nData - CSV";
         ButtonDataToCSV.UseVisualStyleBackColor = true;
         // 
         // PanelWindowButtons
@@ -211,9 +212,9 @@ partial class FormMenu
         PanelSideBar.BackColor = Color.Transparent;
         PanelSideBar.Controls.Add(ButtonDataToCSV);
         PanelSideBar.Controls.Add(ButtonConfigurations);
-        PanelSideBar.Controls.Add(button1);
-        PanelSideBar.Controls.Add(button2);
-        PanelSideBar.Controls.Add(ButtonInsertEntry);
+        PanelSideBar.Controls.Add(ButtonReport);
+        PanelSideBar.Controls.Add(ButtonCategories);
+        PanelSideBar.Controls.Add(ButtonEntries);
         PanelSideBar.Dock = DockStyle.Fill;
         PanelSideBar.Location = new Point(2, 67);
         PanelSideBar.Margin = new Padding(2);
@@ -221,24 +222,25 @@ partial class FormMenu
         PanelSideBar.Size = new Size(221, 606);
         PanelSideBar.TabIndex = 1;
         // 
-        // button1
+        // ButtonReport
         // 
-        button1.Cursor = Cursors.Hand;
-        button1.Dock = DockStyle.Top;
-        button1.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        button1.FlatAppearance.BorderSize = 0;
-        button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        button1.FlatStyle = FlatStyle.Flat;
-        button1.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        button1.Location = new Point(0, 120);
-        button1.Margin = new Padding(1);
-        button1.Name = "button1";
-        button1.Size = new Size(221, 60);
-        button1.TabIndex = 0;
-        button1.TabStop = false;
-        button1.Text = "Visualizar Situação";
-        button1.UseVisualStyleBackColor = true;
+        ButtonReport.Cursor = Cursors.Hand;
+        ButtonReport.Dock = DockStyle.Top;
+        ButtonReport.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonReport.FlatAppearance.BorderSize = 0;
+        ButtonReport.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonReport.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonReport.FlatStyle = FlatStyle.Flat;
+        ButtonReport.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonReport.Location = new Point(0, 120);
+        ButtonReport.Margin = new Padding(1);
+        ButtonReport.Name = "ButtonReport";
+        ButtonReport.Size = new Size(221, 60);
+        ButtonReport.TabIndex = 0;
+        ButtonReport.TabStop = false;
+        ButtonReport.Text = "Generate Report";
+        ButtonReport.UseVisualStyleBackColor = true;
+        ButtonReport.Click += ButtonReport_Click;
         // 
         // PanelTitle
         // 
@@ -259,7 +261,7 @@ partial class FormMenu
         LabelTitle.Name = "LabelTitle";
         LabelTitle.Size = new Size(971, 61);
         LabelTitle.TabIndex = 3;
-        LabelTitle.Text = "Início";
+        LabelTitle.Text = "Main Menu";
         LabelTitle.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // MainTableLayoutPanel
@@ -310,7 +312,7 @@ partial class FormMenu
         ButtonMainMenu.Size = new Size(219, 59);
         ButtonMainMenu.TabIndex = 7;
         ButtonMainMenu.TabStop = false;
-        ButtonMainMenu.Text = "Go Back";
+        ButtonMainMenu.Text = "Main Menu";
         ButtonMainMenu.UseVisualStyleBackColor = true;
         ButtonMainMenu.Visible = false;
         ButtonMainMenu.Click += ButtonMainMenu_Click;
@@ -349,11 +351,11 @@ partial class FormMenu
     private Button ButtonMaximize;
     private Panel PanelWindowButtons;
     private TableLayoutPanel MainTableLayoutPanel;
-    private Button button2;
+    private Button ButtonCategories;
     private Button ButtonConfigurations;
-    private Button ButtonInsertEntry;
+    private Button ButtonEntries;
     private Button ButtonDataToCSV;
-    private Button button1;
+    private Button ButtonReport;
     private Panel PanelMainContainer;
     private Button ButtonMainMenu;
 }

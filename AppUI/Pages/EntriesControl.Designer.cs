@@ -1,6 +1,6 @@
 ﻿namespace AppUI;
 
-partial class FormInsertEntry
+partial class EntriesControl
 {
     /// <summary> 
     /// Required designer variable.

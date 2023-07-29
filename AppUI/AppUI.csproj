@@ -38,10 +38,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="FormManager.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Update="Pages\MainMenu.cs">
+		<Compile Update="Pages\MainMenuPlaceholderControl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
@@ -49,7 +46,7 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Pages\FormInsertEntry.cs">
+		<Compile Update="Pages\EntriesControl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
 	</ItemGroup>

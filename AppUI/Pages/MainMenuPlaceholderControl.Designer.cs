@@ -1,6 +1,6 @@
 ﻿namespace AppUI;
 
-partial class MainMenu
+partial class MainMenuPlaceholderControl
 {
     /// <summary> 
     /// Required designer variable.

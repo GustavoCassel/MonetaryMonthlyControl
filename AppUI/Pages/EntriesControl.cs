@@ -1,8 +1,8 @@
 ﻿namespace AppUI;
 
-public partial class FormInsertEntry : UserControl
+public partial class EntriesControl : UserControl
 {
-    public FormInsertEntry()
+    public EntriesControl()
     {
         InitializeComponent();
         TextBox textBox = new()
