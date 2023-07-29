@@ -41,9 +41,7 @@ public static class DatabaseManager
 
     public static async Task ConfigureEntireDatabase(CancellationToken cancellationToken)
     {
-        await CreateDatabase(cancellationToken);
-        return;
-
+        /*
         string sql = await GetSqlStatementFromFile("CreateDatabase");
 
         using SqlConnection sqlConnection = new(FullConnectionString);
@@ -56,48 +54,6 @@ public static class DatabaseManager
 
         DataTable table = new();
         dataAdapter.Fill(table);
-
-        foreach (DataRow row in table.Rows)
-        {
-            //Category category = new(row);
-
-        }
-
-        /*foreach (DataColumn column in table.Columns)
-        {
-            Debug.WriteLine(column.ColumnName);
-            Debug.WriteLine(row[column]);
-        }*/
-
-        return;
-
-    }
-
-    [Obsolete("Test Purposes")]
-    private static async Task DeleteDatabase()
-    {
-        const string sql = "DROP DATABASE IF EXISTS [@Database]";
-
-        using SqlConnection connection = new(ShortConnectionString);
-        connection.Open();
-
-        using SqlCommand command = new(sql, connection);
-        command.Parameters.AddWithValue("@Database", DatabaseName);
-
-        await command.ExecuteNonQueryAsync();
-    }
-
-    private static async Task CreateDatabase(CancellationToken cancellationToken)
-    {
-        return;
-
-        string sql = await GetSqlStatementFromFile("CreateDatabase");
-
-        using SqlConnection connection = new(ShortConnectionString);
-        await connection.OpenAsync(cancellationToken);
-
-        await using SqlCommand command = new(sql, connection);
-
-        await command.ExecuteNonQueryAsync(cancellationToken);
+        */
     }
 }

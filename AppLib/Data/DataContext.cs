@@ -9,6 +9,13 @@ public sealed class DataContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer(DatabaseManager.FullConnectionString);
+
+        const string ConnectionString = $"""
+            Server=(LocalDB)\{DatabaseManager.LocalDBName};
+            Database={DatabaseManager.DatabaseName};
+            Integrated Security = True;
+            """;
+
+        optionsBuilder.UseSqlServer(ConnectionString);
     }
 }

@@ -151,13 +151,17 @@ public partial class FormMenu : Form
     }
     private void ButtonConfigurations_Click(object sender, EventArgs e)
     {
-        LabelTitle.Text = "Configurations";
-        //OpenChildForm(new Configurations(), (Button)sender);
+        Button button = (Button)sender;
+
+        LabelTitle.Text = button.Text;
+        //OpenChildForm(new Configurations(), button);
     }
     private void ButtonInsertEntry_Click(object sender, EventArgs e)
     {
-        LabelTitle.Text = "Add New Entry";
-        OpenChildForm(new FormInsertEntry(), (Button)sender);
+        Button button = (Button)sender;
+
+        LabelTitle.Text = button.Text;
+        OpenChildForm(new FormInsertEntry(), button);
     }
 
     #endregion

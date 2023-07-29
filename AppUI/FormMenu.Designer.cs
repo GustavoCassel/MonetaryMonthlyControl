@@ -85,7 +85,7 @@ partial class FormMenu
         ButtonInsertEntry.Size = new Size(221, 60);
         ButtonInsertEntry.TabIndex = 0;
         ButtonInsertEntry.TabStop = false;
-        ButtonInsertEntry.Text = "Adicionar";
+        ButtonInsertEntry.Text = "Add New Entry";
         ButtonInsertEntry.UseVisualStyleBackColor = true;
         ButtonInsertEntry.Click += ButtonInsertEntry_Click;
         // 
@@ -310,8 +310,7 @@ partial class FormMenu
         ButtonMainMenu.Size = new Size(219, 59);
         ButtonMainMenu.TabIndex = 7;
         ButtonMainMenu.TabStop = false;
-        ButtonMainMenu.Text = "Voltar ao Menu";
-        ButtonMainMenu.TextImageRelation = TextImageRelation.ImageBeforeText;
+        ButtonMainMenu.Text = "Go Back";
         ButtonMainMenu.UseVisualStyleBackColor = true;
         ButtonMainMenu.Visible = false;
         ButtonMainMenu.Click += ButtonMainMenu_Click;
@@ -325,7 +324,6 @@ partial class FormMenu
         Controls.Add(MainTableLayoutPanel);
         Controls.Add(PanelWindowButtons);
         DoubleBuffered = true;
-        Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
         ForeColor = Color.White;
         FormBorderStyle = FormBorderStyle.None;
         Icon = (Icon)resources.GetObject("$this.Icon");
