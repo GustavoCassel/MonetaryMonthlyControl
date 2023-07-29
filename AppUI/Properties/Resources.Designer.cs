@@ -95,7 +95,7 @@ namespace AppUI.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap loading_gif {
             get {
-                object obj = ResourceManager.GetObject("loading-gif", resourceCulture);
+                object obj = ResourceManager.GetObject("loading_gif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

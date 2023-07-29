@@ -4,13 +4,13 @@ namespace AppUI;
 
 public partial class MainMenu : UserControl
 {
-    public MainMenu(bool loading)
+    public MainMenu(bool loading = false)
     {
         InitializeComponent();
 
         PictureBoxLogo.Image = loading ? Resources.loading_gif : Resources.book_512;
 
-        LabelText.Text = loading ? "Loading..." : "Controle Monetário\r\nMensal";
+        LabelText.Text = loading ? "Loading..." : "Monetary Monthly\r\nControl System";
 
         PictureBoxLogo.Location = new Point(
             (Width / 2) - (PictureBoxLogo.Width / 2) - 120,

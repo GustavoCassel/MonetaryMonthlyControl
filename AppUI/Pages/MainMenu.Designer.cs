@@ -36,7 +36,6 @@ partial class MainMenu
         // PictureBoxLogo
         // 
         PictureBoxLogo.Anchor = AnchorStyles.None;
-        PictureBoxLogo.Image = Properties.Resources.book_512;
         PictureBoxLogo.Location = new Point(3, 3);
         PictureBoxLogo.Name = "PictureBoxLogo";
         PictureBoxLogo.Size = new Size(128, 128);
@@ -51,9 +50,9 @@ partial class MainMenu
         LabelText.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
         LabelText.Location = new Point(137, 3);
         LabelText.Name = "LabelText";
-        LabelText.Size = new Size(303, 68);
+        LabelText.Size = new Size(191, 34);
         LabelText.TabIndex = 1;
-        LabelText.Text = "Controle Monetário\r\nMensal";
+        LabelText.Text = "logger text";
         LabelText.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // MainMenu
@@ -63,7 +62,6 @@ partial class MainMenu
         Controls.Add(LabelText);
         Controls.Add(PictureBoxLogo);
         DoubleBuffered = true;
-        Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
         Margin = new Padding(4);
         Name = "MainMenu";
         Size = new Size(450, 200);

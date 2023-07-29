@@ -7,26 +7,33 @@ public partial class FormMenu : Form
     private readonly CancellationTokenSource _cancellationTokenSource;
     private readonly CancellationToken _cancellationToken;
     private Button? _activeButton;
+
     public FormMenu()
     {
         InitializeComponent();
 
         _cancellationTokenSource = new();
         _cancellationToken = _cancellationTokenSource.Token;
-        Shown += FormMenu_Load;
 
-        AddControlToMainPanel(new MainMenu(true));
+        Shown += FormMenu_Load;
     }
+
+    #region Loading Updater
 
     private async void FormMenu_Load(object? sender, EventArgs e)
     {
+        SetLoadingBehavior(true);
+
         try
         {
             await LocalDbManager.CheckLocalDBInstance(_cancellationToken);
 
             await DatabaseManager.ConfigureEntireDatabase(_cancellationToken);
 
-            await Task.Delay(1000);
+            // a chad one second delay to make the system seems
+            // that is making a lot of complicated stuff
+            const int OneSecondInMilliseconds = 1000;
+            await Task.Delay(OneSecondInMilliseconds);
         }
         catch (Exception ex)
         {
@@ -38,8 +45,14 @@ public partial class FormMenu : Form
             return;
         }
 
-        AddControlToMainPanel(new MainMenu(false));
+        SetLoadingBehavior(false);
     }
+    private void SetLoadingBehavior(bool loading)
+    {
+        AddControlToMainPanel(new MainMenu(loading));
+    }
+
+    #endregion
 
     #region Button Style
 
@@ -58,7 +71,6 @@ public partial class FormMenu : Form
 
         AddControlToMainPanel(control);
     }
-
     private void AddControlToMainPanel(UserControl control)
     {
         control.Dock = DockStyle.Fill;
@@ -66,7 +78,6 @@ public partial class FormMenu : Form
         PanelMainContainer.Controls.Clear();
         PanelMainContainer.Controls.Add(control);
     }
-
     private void ActivateButton()
     {
         if (_activeButton is null)
@@ -76,7 +87,6 @@ public partial class FormMenu : Form
         //_activeButton.BackColor = UIConfig.MidColor;
         _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
     }
-
     private void DeactivateButton()
     {
         if (_activeButton is null)
@@ -88,53 +98,61 @@ public partial class FormMenu : Form
 
         _activeButton = null;
     }
-
     private void ReturnToMainMenu()
     {
         DeactivateButton();
-        OpenChildForm(new MainMenu(false), ButtonMainMenu);
+        OpenChildForm(new MainMenu(), ButtonMainMenu);
         ButtonMainMenu.Visible = false;
     }
 
     #endregion
 
-    #region Buttons Events
-
-    private void ButtonMainMenu_Click(object sender, EventArgs e)
-    {
-        LabelTitle.Text = "Início";
-        ReturnToMainMenu();
-    }
-
-    private void ButtonClose_Click(object sender, EventArgs e)
-    {
-        Application.Exit();
-    }
-
-    private void ButtonMaximize_Click(object sender, EventArgs e)
-    {
-        if (WindowState == FormWindowState.Normal)
-            WindowState = FormWindowState.Maximized;
-        else
-            WindowState = FormWindowState.Normal;
-    }
+    #region Upper Ribbon Buttons Events
 
     private void ButtonMinimize_Click(object sender, EventArgs e)
     {
         WindowState = FormWindowState.Minimized;
     }
+    private void ButtonMaximize_Click(object sender, EventArgs e)
+    {
+        bool normal = WindowState == FormWindowState.Normal;
+        WindowState = normal ? FormWindowState.Maximized : FormWindowState.Normal;
+    }
+    private void ButtonClose_Click(object sender, EventArgs e)
+    {
+        Application.Exit();
+    }
 
+    #endregion
+
+    #region Left Ribbon Buttons Events
+
+    private void ButtonMainMenu_Click(object sender, EventArgs e)
+    {
+        LabelTitle.Text = "Main Menu";
+        ReturnToMainMenu();
+    }
     private void ButtonConfigurations_Click(object sender, EventArgs e)
     {
-        LabelTitle.Text = "Configurações";
+        LabelTitle.Text = "Configurations";
         //OpenChildForm(new Configurations(), (Button)sender);
     }
-
     private void ButtonInsertEntry_Click(object sender, EventArgs e)
     {
-        LabelTitle.Text = "Adicionar Entrada";
+        LabelTitle.Text = "Add New Entry";
         OpenChildForm(new FormInsertEntry(), (Button)sender);
     }
+
+    #endregion
+
+    #region Drag Move Window
+
+    [System.Runtime.InteropServices.LibraryImport("user32.dll", EntryPoint = "SendMessageA")]
+    internal static partial int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+    [System.Runtime.InteropServices.LibraryImport("user32.dll")]
+    [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+    internal static partial bool ReleaseCapture();
 
     private void PanelWindowButtons_MouseDown(object sender, MouseEventArgs e)
     {
@@ -153,17 +171,6 @@ public partial class FormMenu : Form
             }
         }
     }
-
-    #endregion
-
-    #region Drag Move Window
-
-    [System.Runtime.InteropServices.DllImport("user32.dll")]
-    internal static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-
-    [System.Runtime.InteropServices.LibraryImport("user32.dll")]
-    [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
-    internal static partial bool ReleaseCapture();
 
     #endregion
 }
