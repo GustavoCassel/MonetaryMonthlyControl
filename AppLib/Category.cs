@@ -1,22 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.Reflection;
 
 namespace AppLib;
-
-/*
- internal
- public
- private
- protected
- */
-
-public record Teste();
-
 
 [PrimaryKey(nameof(Id))]
 public sealed class Category

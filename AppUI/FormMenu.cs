@@ -1,13 +1,41 @@
-﻿namespace AppUI;
+﻿using AppLib;
 
-public partial class FormMenu : Form, IUserInterfaceUpdater
+namespace AppUI;
+
+public partial class FormMenu : Form
 {
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
+
     private Button? _activeButton;
     public FormMenu()
     {
         InitializeComponent();
 
-        UpdateUserInterface();
+        try
+        {
+            LocalDbManager.LocalDBInstanceExists(_cancellationTokenSource.Token).Wait();
+        }
+        catch (Exception ex)
+        {
+            UserMessage.ShowError($"""
+                An unexpected error occurred!
+                Error Message: {ex.Message}
+                """, Level.Unknown);
+            return;
+        }
+
+        try
+        {
+            DatabaseManager.Main(_cancellationTokenSource.Token).Wait();
+        }
+        catch (Exception ex)
+        {
+            UserMessage.ShowError($"""
+                An unexpected error occurred!
+                Error Message: {ex.Message}
+                """, Level.Unknown);
+            return;
+        }
 
         ReturnToMainMenu();
     }
@@ -31,8 +59,6 @@ public partial class FormMenu : Form, IUserInterfaceUpdater
 
         PanelMainContainer.Controls.Clear();
         PanelMainContainer.Controls.Add(control);
-
-        UpdateUserInterface();
     }
 
     private void ActivateButton()
@@ -41,7 +67,7 @@ public partial class FormMenu : Form, IUserInterfaceUpdater
             return;
 
         _activeButton.FlatAppearance.BorderSize = 2;
-        _activeButton.BackColor = UIConfig.MidColor;
+        //_activeButton.BackColor = UIConfig.MidColor;
         _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
     }
 
@@ -101,7 +127,7 @@ public partial class FormMenu : Form, IUserInterfaceUpdater
     private void ButtonConfigurations_Click(object sender, EventArgs e)
     {
         LabelTitle.Text = "Configurações";
-        OpenChildForm(new Configurations(), (Button)sender);
+        //OpenChildForm(new Configurations(), (Button)sender);
     }
 
     private void ButtonInsertEntry_Click(object sender, EventArgs e)
@@ -126,13 +152,6 @@ public partial class FormMenu : Form, IUserInterfaceUpdater
                     WindowState = FormWindowState.Maximized;
             }
         }
-    }
-
-    public void UpdateUserInterface()
-    {
-        BackColor = UIConfig.BackColor;
-        PanelWindowButtons.BackColor = UIConfig.MidColor;
-        UIConfig.UpdateStyles(Controls);
     }
 
     #endregion

@@ -59,23 +59,5 @@ namespace AppLib.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MyDatabase.
-        /// </summary>
-        internal static string DatabaseName {
-            get {
-                return ResourceManager.GetString("DatabaseName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to MSSQLLocalDB.
-        /// </summary>
-        internal static string SqlLocalDBName {
-            get {
-                return ResourceManager.GetString("SqlLocalDBName", resourceCulture);
-            }
-        }
     }
 }

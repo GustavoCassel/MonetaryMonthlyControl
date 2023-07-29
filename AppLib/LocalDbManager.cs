@@ -1,26 +1,13 @@
-﻿using AppLib.Properties;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
 
 namespace AppLib;
 
 public static class LocalDbManager
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public static async Task Main()
-    {
-        _ = await GetLocalDBInstances();
-    }
-
-    /// <summary>
-    /// Get all SQLLocalDB instances with a cmd command
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="LocalDBNotInstalledException"></exception>
-    /// <exception cref="LocalDBNotFoundException"></exception>
-    private static async Task<IReadOnlyCollection<string>> GetLocalDBInstances()
+    /// <returns>
+    ///     Gets if the nedded SQLLocalDB instance is installed
+    /// </returns>
+    public static async Task<bool> LocalDBInstanceExists(CancellationToken cancellationToken)
     {
         ProcessStartInfo processStartInfo = new()
         {
@@ -39,14 +26,14 @@ public static class LocalDbManager
 
         process.Start();
 
-        string output = await process.StandardOutput.ReadToEndAsync();
+        string output = await process.StandardOutput.ReadToEndAsync(cancellationToken);
 
-        await process.WaitForExitAsync();
+        await process.WaitForExitAsync(cancellationToken);
 
         // If LocalDb is not installed then it will return that 'sqllocaldb' is not
         // recognized as an internal or external command operable program or batch file.
         if (string.IsNullOrWhiteSpace(output) || output.Contains("not recognized"))
-            throw new LocalDBNotInstalledException();
+            throw new Exception("SQLLocalDB is not installed correctly!");
 
         string[] instances = output.Split(Environment.NewLine, StringSplitOptions.None);
 
@@ -54,10 +41,6 @@ public static class LocalDbManager
 
         lstInstances.RemoveAll(string.IsNullOrWhiteSpace);
 
-        if (!lstInstances.Contains(Resources.SqlLocalDBName))
-            throw new LocalDBNotFoundException();
-
-        return lstInstances.AsReadOnly();
+        return lstInstances.Contains(DatabaseManager.LocalDBName);
     }
-
 }

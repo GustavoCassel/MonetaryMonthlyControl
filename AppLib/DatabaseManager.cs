@@ -1,7 +1,6 @@
 ﻿using AppLib.Properties;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 
 /*
 * SQL queries run in this order:
@@ -19,32 +18,36 @@ namespace AppLib;
 
 public static class DatabaseManager
 {
+    public const string LocalDBName = "MSSQLLocalDB";
+    public const string DatabaseName = "MonetaryControl";
     public static string ShortConnectionString { get; }
     public static string FullConnectionString { get; }
     public static string AttachDBPath { get; } = "C:\\MonetaryControlDatabaseFiles";
+    public static async Task<string> GetSqlStatementFromFile(string fileName)
+    => await File.ReadAllTextAsync($"SQL-Commands\\{fileName}.sql");
 
     static DatabaseManager()
     {
         Directory.CreateDirectory(AttachDBPath);
 
-        ShortConnectionString = $"Data Source=(LocalDB)\\{Resources.SqlLocalDBName};";
+        ShortConnectionString = $"Data Source=(LocalDB)\\{LocalDBName};";
 
         FullConnectionString = $"""
             {ShortConnectionString}
             Integrated Security = True
             """;
-            //AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
+        //AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
     }
 
-    public static async Task Main()
+    public static async Task Main(CancellationToken cancellationToken)
     {
-        string sql = await DBGlobal.GetSqlStatementFromFile("CreateDatabase");
+        string sql = await GetSqlStatementFromFile("CreateDatabase");
 
         using SqlConnection sqlConnection = new(FullConnectionString);
-        sqlConnection.Open();
-        using SqlCommand cmd = new(sql, sqlConnection);
+        await sqlConnection.OpenAsync(cancellationToken);
+        await using SqlCommand cmd = new(sql, sqlConnection);
         // cmd.Parameters.AddWithValue("@teste", Resources.DatabaseName);
-        await cmd.ExecuteNonQueryAsync();
+        await cmd.ExecuteNonQueryAsync(cancellationToken);
 
         using SqlDataAdapter dataAdapter = new(cmd);
 
@@ -77,7 +80,7 @@ public static class DatabaseManager
         connection.Open();
 
         using SqlCommand command = new(sql, connection);
-        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
+        command.Parameters.AddWithValue("@Database", DatabaseName);
 
         await command.ExecuteNonQueryAsync();
     }
@@ -108,41 +111,6 @@ public static class DatabaseManager
         connection.Open();
 
         using SqlCommand command = new(sql, connection);
-
-        await command.ExecuteNonQueryAsync();
-    }
-
-    private static async Task CreateTable(string tableName)
-    {
-        const string sql = $"""
-            USE @Database
-            IF NOT EXISTS
-            (
-                SELECT TABLE_NAME
-                FROM @Database.INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME = '@TableName'
-            )
-            BEGIN
-            CREATE TABLE [@TableName]
-            (
-                [Id] INT NOT NULL IDENTITY(1,1),
-                [Description] VARCHAR(128) NOT NULL,
-                [Amount] DECIMAL(9,2) NOT NULL,
-                PRIMARY KEY (Id)
-            )
-            END;
-            """;
-
-        /*ALTER TABLE {tableName}
-        ADD [Teste] INT NOT NULL
-        ";*/
-
-        using SqlConnection connection = new(FullConnectionString);
-        connection.Open();
-
-        using SqlCommand command = new(sql, connection);
-        command.Parameters.AddWithValue("@Database", Resources.DatabaseName);
-        command.Parameters.AddWithValue("@TableName", tableName);
 
         await command.ExecuteNonQueryAsync();
     }

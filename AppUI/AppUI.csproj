@@ -39,9 +39,6 @@
 		<Compile Update="FormManager.cs">
 			<SubType>Form</SubType>
 		</Compile>
-		<Compile Update="Pages\Configurations.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
 		<Compile Update="Pages\MainMenu.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
