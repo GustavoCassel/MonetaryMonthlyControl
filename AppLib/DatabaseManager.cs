@@ -39,8 +39,11 @@ public static class DatabaseManager
         //AttachDbFilename = {AttachDBPath}\{Resources.DatabaseName}.mdf;
     }
 
-    public static async Task Main(CancellationToken cancellationToken)
+    public static async Task ConfigureEntireDatabase(CancellationToken cancellationToken)
     {
+        await CreateDatabase(cancellationToken);
+        return;
+
         string sql = await GetSqlStatementFromFile("CreateDatabase");
 
         using SqlConnection sqlConnection = new(FullConnectionString);
@@ -68,7 +71,6 @@ public static class DatabaseManager
 
         return;
 
-        await CreateDatabase();
     }
 
     [Obsolete("Test Purposes")]
@@ -85,33 +87,17 @@ public static class DatabaseManager
         await command.ExecuteNonQueryAsync();
     }
 
-    private static async Task CreateDatabase()
+    private static async Task CreateDatabase(CancellationToken cancellationToken)
     {
-        string sql = $"""
-            IF NOT EXISTS
-            (
-                SELECT name
-                FROM sys.databases
-                WHERE name = '{Resources.DatabaseName}'
-            )
-            CREATE DATABASE {Resources.DatabaseName}
-            ON PRIMARY
-            (
-                NAME = {Resources.DatabaseName},
-                FILENAME = '{AttachDBPath}\{Resources.DatabaseName}.mdf'
-            )
-            LOG ON
-            (
-                NAME = {Resources.DatabaseName}_log,
-                FILENAME = '{AttachDBPath}\{Resources.DatabaseName}_log.ldf'
-            );
-            """;
+        return;
+
+        string sql = await GetSqlStatementFromFile("CreateDatabase");
 
         using SqlConnection connection = new(ShortConnectionString);
-        connection.Open();
+        await connection.OpenAsync(cancellationToken);
 
-        using SqlCommand command = new(sql, connection);
+        await using SqlCommand command = new(sql, connection);
 
-        await command.ExecuteNonQueryAsync();
+        await command.ExecuteNonQueryAsync(cancellationToken);
     }
 }

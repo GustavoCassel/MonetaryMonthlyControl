@@ -7,7 +7,7 @@ public static class LocalDbManager
     /// <returns>
     ///     Gets if the nedded SQLLocalDB instance is installed
     /// </returns>
-    public static async Task<bool> LocalDBInstanceExists(CancellationToken cancellationToken)
+    public static async Task CheckLocalDBInstance(CancellationToken cancellationToken)
     {
         ProcessStartInfo processStartInfo = new()
         {
@@ -41,6 +41,7 @@ public static class LocalDbManager
 
         lstInstances.RemoveAll(string.IsNullOrWhiteSpace);
 
-        return lstInstances.Contains(DatabaseManager.LocalDBName);
+        if (!lstInstances.Contains(DatabaseManager.LocalDBName))
+            throw new Exception("SQLLocalDB instance not found!");
     }
 }

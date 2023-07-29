@@ -127,6 +127,9 @@
   <data name="close-window-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close-window-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="loading-gif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\loading-gif.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="maximize-window-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maximize-window-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

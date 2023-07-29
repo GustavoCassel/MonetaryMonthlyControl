@@ -4,16 +4,29 @@ namespace AppUI;
 
 public partial class FormMenu : Form
 {
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
-
+    private readonly CancellationTokenSource _cancellationTokenSource;
+    private readonly CancellationToken _cancellationToken;
     private Button? _activeButton;
     public FormMenu()
     {
         InitializeComponent();
 
+        _cancellationTokenSource = new();
+        _cancellationToken = _cancellationTokenSource.Token;
+        Shown += FormMenu_Load;
+
+        AddControlToMainPanel(new MainMenu(true));
+    }
+
+    private async void FormMenu_Load(object? sender, EventArgs e)
+    {
         try
         {
-            LocalDbManager.LocalDBInstanceExists(_cancellationTokenSource.Token).Wait();
+            await LocalDbManager.CheckLocalDBInstance(_cancellationToken);
+
+            await DatabaseManager.ConfigureEntireDatabase(_cancellationToken);
+
+            await Task.Delay(1000);
         }
         catch (Exception ex)
         {
@@ -21,23 +34,11 @@ public partial class FormMenu : Form
                 An unexpected error occurred!
                 Error Message: {ex.Message}
                 """, Level.Unknown);
+            Close();
             return;
         }
 
-        try
-        {
-            DatabaseManager.Main(_cancellationTokenSource.Token).Wait();
-        }
-        catch (Exception ex)
-        {
-            UserMessage.ShowError($"""
-                An unexpected error occurred!
-                Error Message: {ex.Message}
-                """, Level.Unknown);
-            return;
-        }
-
-        ReturnToMainMenu();
+        AddControlToMainPanel(new MainMenu(false));
     }
 
     #region Button Style
@@ -55,6 +56,11 @@ public partial class FormMenu : Form
 
         ActivateButton();
 
+        AddControlToMainPanel(control);
+    }
+
+    private void AddControlToMainPanel(UserControl control)
+    {
         control.Dock = DockStyle.Fill;
 
         PanelMainContainer.Controls.Clear();
@@ -86,17 +92,11 @@ public partial class FormMenu : Form
     private void ReturnToMainMenu()
     {
         DeactivateButton();
-        OpenChildForm(new MainMenu(), ButtonMainMenu);
+        OpenChildForm(new MainMenu(false), ButtonMainMenu);
         ButtonMainMenu.Visible = false;
     }
 
     #endregion
-
-    private void Menu_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.KeyCode == Keys.Escape)
-            Application.Exit();
-    }
 
     #region Buttons Events
 

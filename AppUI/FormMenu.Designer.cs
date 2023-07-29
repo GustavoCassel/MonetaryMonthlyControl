@@ -329,13 +329,11 @@ partial class FormMenu
         ForeColor = Color.White;
         FormBorderStyle = FormBorderStyle.None;
         Icon = (Icon)resources.GetObject("$this.Icon");
-        KeyPreview = true;
         Margin = new Padding(4);
         MinimumSize = new Size(1200, 700);
         Name = "FormMenu";
         SizeGripStyle = SizeGripStyle.Show;
         StartPosition = FormStartPosition.CenterScreen;
-        KeyDown += Menu_KeyDown;
         PanelWindowButtons.ResumeLayout(false);
         PanelSideBar.ResumeLayout(false);
         PanelTitle.ResumeLayout(false);
