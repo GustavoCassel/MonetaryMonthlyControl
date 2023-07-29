@@ -49,6 +49,22 @@ public partial class FormMenu : Form
     }
     private void SetLoadingBehavior(bool loading)
     {
+        foreach (Control control in PanelSideBar.Controls)
+        {
+            if (control is not Button button)
+                continue;
+
+            button.Enabled = !loading;
+        }
+
+        foreach (Control control in MainTableLayoutPanel.Controls)
+        {
+            if (control is not Button button)
+                continue;
+
+            button.Enabled = !loading;
+        }
+
         AddControlToMainPanel(new MainMenu(loading));
     }
 
@@ -120,6 +136,7 @@ public partial class FormMenu : Form
     }
     private void ButtonClose_Click(object sender, EventArgs e)
     {
+        _cancellationTokenSource.Cancel();
         Application.Exit();
     }
 
