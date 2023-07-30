@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿namespace AppUI.Pages;
 
-namespace AppUI.Pages
+public partial class CategoriesControl : UserControl
 {
-    public partial class CategoriesControl : UserControl
+    public CategoriesControl()
     {
-        public CategoriesControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
+
+    private void ListViewCategories_ItemActivate(object? sender, EventArgs e)
+    {
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using AppLib;
-using AppLib.Data;
+﻿using AppLib.Models;
 using AppUI.Pages;
 
 namespace AppUI;
