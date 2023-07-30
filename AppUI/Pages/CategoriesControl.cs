@@ -1,5 +1,4 @@
 ﻿using AppLib.Models;
-using System.Windows.Forms;
 
 namespace AppUI.Pages;
 
@@ -44,8 +43,19 @@ public partial class CategoriesControl : UserControl
         }
     }
 
-    private void ButtonNewCategory_Click(object sender, EventArgs e)
+    private async void ButtonNewCategory_Click(object sender, EventArgs e)
     {
+        if (Parent is not Panel parentPanel)
+            return;
 
+        Hide();
+
+        using EntriesControl form = new();
+        MessageBox.Show(parentPanel.Controls.Count.ToString());
+        parentPanel.Controls.Add(form);
+        
+        await Task.Delay(2000);
+
+        Show();
     }
 }

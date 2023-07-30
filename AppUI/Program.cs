@@ -15,7 +15,7 @@ internal static class Program
 
         Bogus.Faker faker = new("pt_BR");
 
-        using var context = new DataContext();
+        using DataContext context = new();
 
         context.Database.EnsureCreated();
 
