@@ -22,6 +22,7 @@ public partial class FormMenu : Form
         ReturnToMainMenu();
     }
 
+
     #region Loading Updater
 
     private async void FormMenu_Load(object? sender, EventArgs e)
@@ -171,6 +172,7 @@ public partial class FormMenu : Form
     }
 
     #endregion
+
 
     #region Left Ribbon Buttons Events
 

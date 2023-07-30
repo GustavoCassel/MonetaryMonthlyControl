@@ -36,7 +36,8 @@ public sealed class DataContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.Modified).HasColumnType("datetime");
-            entity.Property(e => e.Name).HasMaxLength(128);
+            entity.Property(e => e.Name).HasMaxLength(20);
+            entity.Property(e => e.Description).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Entry>(entity =>
