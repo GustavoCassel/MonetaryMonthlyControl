@@ -1,12 +1,16 @@
-﻿using AppLib.Models;
+﻿using AppLib;
+using AppLib.Models;
 
 namespace AppUI.Pages;
 
 public partial class CategoriesControl : UserControl
 {
-    public CategoriesControl()
+    private readonly FormMenu _formMenu;
+
+    public CategoriesControl(FormMenu formMenu)
     {
         InitializeComponent();
+        _formMenu = formMenu;
 
         FulfillView();
 
@@ -30,12 +34,10 @@ public partial class CategoriesControl : UserControl
 
     private void FulfillView()
     {
-        using DataContext dataContext = new();
-
         DataGridViewCategories.Columns.Add("Name", "Name");
         DataGridViewCategories.Columns.Add("Description", "Description");
 
-        foreach (Category category in dataContext.Categories)
+        foreach (Category category in Server.DataContext.Categories)
         {
             string?[] row = new string?[2] { category.Name, category.Description };
 
@@ -43,19 +45,17 @@ public partial class CategoriesControl : UserControl
         }
     }
 
-    private async void ButtonNewCategory_Click(object sender, EventArgs e)
+    private void ButtonNewCategory_Click(object sender, EventArgs e)
     {
-        if (Parent is not Panel parentPanel)
-            return;
+        Panel parentPanel = default;
 
-        Hide();
+        parentPanel.Controls.Clear();
+        NewCategoryControl control = new()
+        {
+            Dock = DockStyle.Fill,
+            Padding = new Padding(0, 0, 10, 10)
+        };
 
-        using EntriesControl form = new();
-        MessageBox.Show(parentPanel.Controls.Count.ToString());
-        parentPanel.Controls.Add(form);
-        
-        await Task.Delay(2000);
-
-        Show();
+        parentPanel.Controls.Add(control);
     }
 }

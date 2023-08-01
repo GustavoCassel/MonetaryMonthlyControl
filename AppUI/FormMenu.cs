@@ -1,4 +1,4 @@
-﻿using AppLib.Models;
+﻿using AppLib;
 using AppUI.Pages;
 
 namespace AppUI;
@@ -16,7 +16,7 @@ public partial class FormMenu : Form
         _cancellationTokenSource = new();
         _cancellationToken = _cancellationTokenSource.Token;
 
-        Shown += FormMenu_Load;
+        Load += FormMenu_Load;
 
         _activeButton = ButtonMainMenu;
         ReturnToMainMenu();
@@ -27,32 +27,26 @@ public partial class FormMenu : Form
 
     private async void FormMenu_Load(object? sender, EventArgs e)
     {
-        SetLoadingBehavior(true);
-
         try
         {
-            await Task.Run(delegate
-            {
-                using DataContext context = new();
-                context.Database.EnsureCreatedAsync(_cancellationToken);
-            });
+            SetLoadingBehavior(true);
 
-            // a chad one second delay to make the system seems
-            // that is making a lot of complicated stuff
-            const int OneSecondInMilliseconds = 1000;
-            await Task.Delay(OneSecondInMilliseconds);
+            await Server.StartDatabase(_cancellationToken);
+
+#if DEBUG
+            await Server.FulfillFakeData(_cancellationToken);
+#endif
+
+            SetLoadingBehavior(false);
         }
         catch (Exception ex)
         {
             UserMessage.ShowError($"""
-                An unexpected error occurred!
-                Error Message: {ex.Message}
-                """, Level.Unknown);
+                {ex.Message}
+                Inner Exception: {ex.InnerException?.Message}
+                """, Level.FatalError);
             Close();
-            return;
         }
-
-        SetLoadingBehavior(false);
     }
     private void SetLoadingBehavior(bool loading)
     {
@@ -72,7 +66,7 @@ public partial class FormMenu : Form
             button.Enabled = !loading;
         }
 
-        AddControlToMainPanel(new MainMenuPlaceholderControl(loading));
+        AddControlToMainPanel(new MainMenuPlaceholderControl(_cancellationTokenSource, loading));
     }
 
     #endregion
@@ -110,7 +104,7 @@ public partial class FormMenu : Form
 
     #region Button Style
 
-    private void OpenChildForm(UserControl control, Button button)
+    public void OpenChildForm(UserControl control, Button button)
     {
         if (button.Equals(_activeButton))
             return;
@@ -147,7 +141,7 @@ public partial class FormMenu : Form
     private void ReturnToMainMenu()
     {
         DeactivateButton();
-        OpenChildForm(new MainMenuPlaceholderControl(), ButtonMainMenu);
+        OpenChildForm(new MainMenuPlaceholderControl(_cancellationTokenSource), ButtonMainMenu);
         ButtonMainMenu.Visible = false;
     }
 
@@ -192,7 +186,7 @@ public partial class FormMenu : Form
     }
     private void ButtonCategories_Click(object sender, EventArgs e)
     {
-        OpenChildForm(new CategoriesControl(), (Button)sender);
+        OpenChildForm(new CategoriesControl(this), (Button)sender);
     }
     private void ButtonReport_Click(object sender, EventArgs e)
     {

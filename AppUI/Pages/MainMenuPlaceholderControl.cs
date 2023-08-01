@@ -4,9 +4,12 @@ namespace AppUI;
 
 public partial class MainMenuPlaceholderControl : UserControl
 {
-    public MainMenuPlaceholderControl(bool loading = false)
+    private readonly CancellationTokenSource _cancellationTokenSource;
+
+    public MainMenuPlaceholderControl(CancellationTokenSource cancellationTokenSource, bool loading = false)
     {
         InitializeComponent();
+        _cancellationTokenSource = cancellationTokenSource;
 
         PictureBoxLogo.Image = loading ? Resources.loading_gif : Resources.book_512;
 
@@ -19,5 +22,12 @@ public partial class MainMenuPlaceholderControl : UserControl
         LabelText.Location = new Point(
             (Width / 2) - (LabelText.Width / 2) + 120,
             (Height / 2) - (LabelText.Height / 2));
+
+        ButtonCancel.Visible = loading;
+    }
+
+    private void ButtonCancel_Click(object sender, EventArgs e)
+    {
+        _cancellationTokenSource.Cancel();
     }
 }

@@ -10,10 +10,10 @@ public static class UserMessage
     private static readonly IReadOnlyDictionary<Level, string> _captions =
         new Dictionary<Level, string>()
         {
-            { Level.FatalError, "Ocorreu um Erro Fatal" },
-            { Level.Warning, "Aviso!" },
-            { Level.Success, "Erro Capturado com Sucesso!" },
-            { Level.Unknown, "Erro Desconhecido!" }
+            { Level.FatalError, "An fatal error occurred" },
+            { Level.Warning, "Warning!" },
+            { Level.Success, "An error was captured with success!" },
+            { Level.Unknown, "An unknown error occurred!" }
         };
 
     private static readonly IReadOnlyDictionary<Level, MessageBoxIcon> _icons =
@@ -40,7 +40,7 @@ public static class UserMessage
     {
         MessageBox.Show(
             message,
-            "Operação Concluída com Sucesso!",
+            "Process finished with success!",
             MessageBoxButtons.OK,
             MessageBoxIcon.Information,
             MessageBoxDefaultButton.Button1,

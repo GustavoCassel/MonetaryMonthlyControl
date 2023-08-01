@@ -38,16 +38,15 @@ partial class EntriesControl
         textBox1.Size = new Size(252, 26);
         textBox1.TabIndex = 0;
         // 
-        // FormInsertEntry
+        // EntriesControl
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
         Controls.Add(textBox1);
         DoubleBuffered = true;
-        Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point);
         Margin = new Padding(4);
-        Name = "FormInsertEntry";
-        Size = new Size(808, 471);
+        Name = "EntriesControl";
+        Size = new Size(600, 400);
         ResumeLayout(false);
         PerformLayout();
     }

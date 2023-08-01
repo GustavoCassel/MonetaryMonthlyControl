@@ -313,6 +313,7 @@ partial class FormMenu
         ButtonMainMenu.TabIndex = 7;
         ButtonMainMenu.TabStop = false;
         ButtonMainMenu.Text = "Main Menu";
+        ButtonMainMenu.TextImageRelation = TextImageRelation.TextBeforeImage;
         ButtonMainMenu.UseVisualStyleBackColor = true;
         ButtonMainMenu.Visible = false;
         ButtonMainMenu.Click += ButtonMainMenu_Click;
@@ -343,7 +344,6 @@ partial class FormMenu
 
     #endregion
     private Panel PanelSideBar;
-    private PictureBox PictureLogo;
     private Panel PanelTitle;
     private Label LabelTitle;
     private Button ButtonClose;

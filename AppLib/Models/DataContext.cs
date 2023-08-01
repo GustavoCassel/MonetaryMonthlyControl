@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AppLib.Properties;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppLib.Models;
 
 public sealed class DataContext : DbContext
 {
-    public const string ConnectionString = $"""
-        Server=(LocalDB)\MSSQLLocalDB;
-        Database=MonetaryControl;
-        Integrated Security = True;
-        Trusted_Connection=True;
-        """;
-
     public DbSet<Category> Categories { get; set; }
     public DbSet<Entry> Entries { get; set; }
 
@@ -18,7 +12,7 @@ public sealed class DataContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseSqlServer(ConnectionString);
+        optionsBuilder.UseSqlServer(Resources.ConnectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +31,7 @@ public sealed class DataContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.Modified).HasColumnType("datetime");
             entity.Property(e => e.Name).HasMaxLength(20);
-            entity.Property(e => e.Description).HasMaxLength(100);
+            entity.Property(e => e.Description).HasMaxLength(150);
         });
 
         modelBuilder.Entity<Entry>(entity =>

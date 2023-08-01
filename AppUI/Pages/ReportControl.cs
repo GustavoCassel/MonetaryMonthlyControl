@@ -1,10 +1,9 @@
-﻿namespace AppUI.Pages
+﻿namespace AppUI.Pages;
+
+public partial class ReportControl : UserControl
 {
-    public partial class ReportControl : UserControl
+    public ReportControl()
     {
-        public ReportControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
