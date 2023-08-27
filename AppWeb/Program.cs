@@ -1,4 +1,6 @@
 using AppWeb.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppWeb;
 
@@ -16,15 +18,20 @@ public class Program
 
         WebApplication app = builder.Build();
 
-        app.UseAuthentication();
-        app.UseAuthorization();
+        app.UseHttpsRedirection();
 
         app.UseDefaultFiles();
-
         app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapRazorPages();
 
         app.Run();
+
+        // asp.net core identity
     }
 }
