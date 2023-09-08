@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<ApplicationIcon>book-256.ico</ApplicationIcon>
 		<ApplicationDefaultFont>Consolas, 12pt</ApplicationDefaultFont>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
@@ -42,6 +42,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="FormConfigurations.cs">
+		  <SubType>Form</SubType>
+		</Compile>
 		<Compile Update="Pages\MainMenuPlaceholderControl.cs">
 			<SubType>UserControl</SubType>
 		</Compile>

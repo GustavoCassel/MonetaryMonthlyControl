@@ -16,7 +16,7 @@ internal static class Program
         try
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormMenu());
+            Application.Run(new FormConfigurations());
         }
         finally
         {
