@@ -1,5 +1,4 @@
 ﻿using AppLib;
-using AppUI.Pages;
 
 namespace AppUI;
 
@@ -7,7 +6,6 @@ public partial class FormMenu : Form
 {
     private readonly CancellationTokenSource _cancellationTokenSource;
     private readonly CancellationToken _cancellationToken;
-    private Button _activeButton;
 
     public FormMenu()
     {
@@ -17,9 +15,6 @@ public partial class FormMenu : Form
         _cancellationToken = _cancellationTokenSource.Token;
 
         Load += FormMenu_Load;
-
-        _activeButton = ButtonMainMenu;
-        ReturnToMainMenu();
     }
 
 
@@ -29,7 +24,11 @@ public partial class FormMenu : Form
     {
         try
         {
-            SetLoadingBehavior(true);
+            using Loading loading = new(_cancellationTokenSource);
+
+            AddControlToMainPanel(loading);
+
+            SetEnabledStatusOfAllControls(false);
 
             await Server.StartDatabase(_cancellationToken);
 
@@ -37,7 +36,9 @@ public partial class FormMenu : Form
             await Server.FulfillFakeData(_cancellationToken);
 #endif
 
-            SetLoadingBehavior(false);
+            SetEnabledStatusOfAllControls(true);
+
+            AddControlToMainPanel(new SystemPlaceholder());
         }
         catch (Exception ex)
         {
@@ -48,14 +49,15 @@ public partial class FormMenu : Form
             Close();
         }
     }
-    private void SetLoadingBehavior(bool loading)
+
+    private void SetEnabledStatusOfAllControls(bool enabled)
     {
         foreach (Control control in PanelSideBar.Controls)
         {
             if (control is not Button button)
                 continue;
 
-            button.Enabled = !loading;
+            button.Enabled = enabled;
         }
 
         foreach (Control control in MainTableLayoutPanel.Controls)
@@ -63,10 +65,8 @@ public partial class FormMenu : Form
             if (control is not Button button)
                 continue;
 
-            button.Enabled = !loading;
+            button.Enabled = enabled;
         }
-
-        AddControlToMainPanel(new MainMenuPlaceholderControl(_cancellationTokenSource, loading));
     }
 
     #endregion
@@ -102,52 +102,6 @@ public partial class FormMenu : Form
     #endregion
 
 
-    #region Button Style
-
-    public void OpenChildForm(UserControl control, Button button)
-    {
-        if (button.Equals(_activeButton))
-            return;
-
-        LabelTitle.Text = button.Text;
-        ButtonMainMenu.Visible = true;
-
-        DeactivateButton();
-
-        _activeButton = button;
-
-        ActivateButton();
-
-        AddControlToMainPanel(control);
-    }
-    private void AddControlToMainPanel(UserControl control)
-    {
-        control.Dock = DockStyle.Fill;
-
-        PanelMainContainer.Controls.Clear();
-        PanelMainContainer.Controls.Add(control);
-    }
-    private void ActivateButton()
-    {
-        _activeButton.FlatAppearance.BorderSize = 2;
-        _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Bold);
-    }
-    private void DeactivateButton()
-    {
-        _activeButton.FlatAppearance.BorderSize = 0;
-        _activeButton.BackColor = Color.Transparent;
-        _activeButton.Font = new Font(_activeButton.Font.FontFamily, _activeButton.Font.Size, FontStyle.Regular);
-    }
-    private void ReturnToMainMenu()
-    {
-        DeactivateButton();
-        OpenChildForm(new MainMenuPlaceholderControl(_cancellationTokenSource), ButtonMainMenu);
-        ButtonMainMenu.Visible = false;
-    }
-
-    #endregion
-
-
     #region Upper Ribbon Buttons Events
 
     private void ButtonMinimize_Click(object sender, EventArgs e)
@@ -170,28 +124,57 @@ public partial class FormMenu : Form
 
     #region Left Ribbon Buttons Events
 
-    private void ButtonMainMenu_Click(object sender, EventArgs e)
-    {
-        ReturnToMainMenu();
-    }
     private void ButtonConfigurations_Click(object sender, EventArgs e)
     {
-        //Button button = (Button)sender;
-        //LabelTitle.Text = button.Text;
-        //OpenChildForm(new Configurations(), button);
+        OpenChildForm<FormConfigurations>();
     }
+
     private void ButtonEntries_Click(object sender, EventArgs e)
     {
-        OpenChildForm(new EntriesControl(), (Button)sender);
+
     }
+
     private void ButtonCategories_Click(object sender, EventArgs e)
     {
-        OpenChildForm(new CategoriesControl(this), (Button)sender);
+
     }
+
     private void ButtonReport_Click(object sender, EventArgs e)
     {
-        OpenChildForm(new ReportControl(), (Button)sender);
+
+    }
+
+    private void ButtonAbout_Click(object sender, EventArgs e)
+    {
+
     }
 
     #endregion
+
+    private void AddControlToMainPanel(Control control)
+    {
+        control.Dock = DockStyle.Fill;
+
+        PanelMainContainer.Controls.Clear();
+        PanelMainContainer.Controls.Add(control);
+    }
+
+    private void OpenChildForm<T>() where T : Form, new()
+    {
+        Hide();
+
+        try
+        {
+            using T form = new();
+            form.ShowDialog(this);
+        }
+        catch (Exception ex)
+        {
+            UserMessage.ShowError(ex.Message, Level.Unknown);
+        }
+        finally
+        {
+            Show();
+        }
+    }
 }

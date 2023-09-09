@@ -44,9 +44,9 @@ partial class Loading
         LabelLoading.Location = new Point(113, 41);
         LabelLoading.Margin = new Padding(4, 0, 4, 0);
         LabelLoading.Name = "LabelLoading";
-        LabelLoading.Size = new Size(164, 32);
+        LabelLoading.Size = new Size(119, 32);
         LabelLoading.TabIndex = 1;
-        LabelLoading.Text = "Carregando";
+        LabelLoading.Text = "Loading";
         // 
         // PictureBoxLoading
         // 

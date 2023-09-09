@@ -39,14 +39,12 @@ partial class FormMenu
         ButtonClose = new Button();
         PanelSideBar = new Panel();
         ButtonReport = new Button();
-        PanelTitle = new Panel();
         LabelTitle = new Label();
         MainTableLayoutPanel = new TableLayoutPanel();
         PanelMainContainer = new Panel();
-        ButtonMainMenu = new Button();
+        ButtonAbout = new Button();
         PanelWindowButtons.SuspendLayout();
         PanelSideBar.SuspendLayout();
-        PanelTitle.SuspendLayout();
         MainTableLayoutPanel.SuspendLayout();
         SuspendLayout();
         // 
@@ -63,7 +61,7 @@ partial class FormMenu
         ButtonCategories.Location = new Point(0, 60);
         ButtonCategories.Margin = new Padding(1);
         ButtonCategories.Name = "ButtonCategories";
-        ButtonCategories.Size = new Size(221, 60);
+        ButtonCategories.Size = new Size(225, 60);
         ButtonCategories.TabIndex = 0;
         ButtonCategories.TabStop = false;
         ButtonCategories.Text = "Manage Categories";
@@ -83,7 +81,7 @@ partial class FormMenu
         ButtonEntries.Location = new Point(0, 0);
         ButtonEntries.Margin = new Padding(1);
         ButtonEntries.Name = "ButtonEntries";
-        ButtonEntries.Size = new Size(221, 60);
+        ButtonEntries.Size = new Size(225, 60);
         ButtonEntries.TabIndex = 0;
         ButtonEntries.TabStop = false;
         ButtonEntries.Text = "Manage Entries";
@@ -100,10 +98,10 @@ partial class FormMenu
         ButtonConfigurations.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
         ButtonConfigurations.FlatStyle = FlatStyle.Flat;
         ButtonConfigurations.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ButtonConfigurations.Location = new Point(0, 546);
+        ButtonConfigurations.Location = new Point(0, 550);
         ButtonConfigurations.Margin = new Padding(1);
         ButtonConfigurations.Name = "ButtonConfigurations";
-        ButtonConfigurations.Size = new Size(221, 60);
+        ButtonConfigurations.Size = new Size(225, 60);
         ButtonConfigurations.TabIndex = 0;
         ButtonConfigurations.TabStop = false;
         ButtonConfigurations.Text = "Configurations";
@@ -120,10 +118,10 @@ partial class FormMenu
         ButtonDataToCSV.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
         ButtonDataToCSV.FlatStyle = FlatStyle.Flat;
         ButtonDataToCSV.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ButtonDataToCSV.Location = new Point(0, 486);
+        ButtonDataToCSV.Location = new Point(0, 490);
         ButtonDataToCSV.Margin = new Padding(1);
         ButtonDataToCSV.Name = "ButtonDataToCSV";
-        ButtonDataToCSV.Size = new Size(221, 60);
+        ButtonDataToCSV.Size = new Size(225, 60);
         ButtonDataToCSV.TabIndex = 0;
         ButtonDataToCSV.TabStop = false;
         ButtonDataToCSV.Text = "Import / Export\r\nData - CSV";
@@ -209,17 +207,17 @@ partial class FormMenu
         // 
         // PanelSideBar
         // 
-        PanelSideBar.BackColor = Color.Transparent;
+        PanelSideBar.BackColor = Color.FromArgb(17, 58, 101);
         PanelSideBar.Controls.Add(ButtonDataToCSV);
         PanelSideBar.Controls.Add(ButtonConfigurations);
         PanelSideBar.Controls.Add(ButtonReport);
         PanelSideBar.Controls.Add(ButtonCategories);
         PanelSideBar.Controls.Add(ButtonEntries);
         PanelSideBar.Dock = DockStyle.Fill;
-        PanelSideBar.Location = new Point(2, 67);
-        PanelSideBar.Margin = new Padding(2);
+        PanelSideBar.Location = new Point(0, 65);
+        PanelSideBar.Margin = new Padding(0);
         PanelSideBar.Name = "PanelSideBar";
-        PanelSideBar.Size = new Size(221, 606);
+        PanelSideBar.Size = new Size(225, 610);
         PanelSideBar.TabIndex = 1;
         // 
         // ButtonReport
@@ -235,31 +233,22 @@ partial class FormMenu
         ButtonReport.Location = new Point(0, 120);
         ButtonReport.Margin = new Padding(1);
         ButtonReport.Name = "ButtonReport";
-        ButtonReport.Size = new Size(221, 60);
+        ButtonReport.Size = new Size(225, 60);
         ButtonReport.TabIndex = 0;
         ButtonReport.TabStop = false;
         ButtonReport.Text = "Generate Report";
         ButtonReport.UseVisualStyleBackColor = true;
         ButtonReport.Click += ButtonReport_Click;
         // 
-        // PanelTitle
-        // 
-        PanelTitle.BackColor = Color.Transparent;
-        PanelTitle.Controls.Add(LabelTitle);
-        PanelTitle.Dock = DockStyle.Fill;
-        PanelTitle.Location = new Point(227, 2);
-        PanelTitle.Margin = new Padding(2);
-        PanelTitle.Name = "PanelTitle";
-        PanelTitle.Size = new Size(971, 61);
-        PanelTitle.TabIndex = 2;
-        // 
         // LabelTitle
         // 
+        LabelTitle.BackColor = Color.FromArgb(17, 58, 101);
         LabelTitle.Dock = DockStyle.Fill;
         LabelTitle.Font = new Font("Consolas", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-        LabelTitle.Location = new Point(0, 0);
+        LabelTitle.Location = new Point(225, 0);
+        LabelTitle.Margin = new Padding(0);
         LabelTitle.Name = "LabelTitle";
-        LabelTitle.Size = new Size(971, 61);
+        LabelTitle.Size = new Size(975, 65);
         LabelTitle.TabIndex = 3;
         LabelTitle.Text = "Main Menu";
         LabelTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -269,13 +258,12 @@ partial class FormMenu
         MainTableLayoutPanel.ColumnCount = 2;
         MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 225F));
         MainTableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-        MainTableLayoutPanel.Controls.Add(PanelTitle, 1, 0);
+        MainTableLayoutPanel.Controls.Add(LabelTitle, 1, 0);
         MainTableLayoutPanel.Controls.Add(PanelMainContainer, 1, 1);
         MainTableLayoutPanel.Controls.Add(PanelSideBar, 0, 1);
-        MainTableLayoutPanel.Controls.Add(ButtonMainMenu, 0, 0);
+        MainTableLayoutPanel.Controls.Add(ButtonAbout, 0, 0);
         MainTableLayoutPanel.Dock = DockStyle.Fill;
         MainTableLayoutPanel.Location = new Point(0, 25);
-        MainTableLayoutPanel.Margin = new Padding(2);
         MainTableLayoutPanel.Name = "MainTableLayoutPanel";
         MainTableLayoutPanel.RowCount = 2;
         MainTableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
@@ -294,29 +282,30 @@ partial class FormMenu
         PanelMainContainer.Size = new Size(971, 606);
         PanelMainContainer.TabIndex = 6;
         // 
-        // ButtonMainMenu
+        // ButtonAbout
         // 
-        ButtonMainMenu.BackColor = Color.Transparent;
-        ButtonMainMenu.Cursor = Cursors.Hand;
-        ButtonMainMenu.Dock = DockStyle.Fill;
-        ButtonMainMenu.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
-        ButtonMainMenu.FlatAppearance.BorderSize = 0;
-        ButtonMainMenu.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
-        ButtonMainMenu.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
-        ButtonMainMenu.FlatStyle = FlatStyle.Flat;
-        ButtonMainMenu.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ButtonMainMenu.Image = Properties.Resources.book_48;
-        ButtonMainMenu.ImageAlign = ContentAlignment.MiddleLeft;
-        ButtonMainMenu.Location = new Point(3, 3);
-        ButtonMainMenu.Name = "ButtonMainMenu";
-        ButtonMainMenu.Size = new Size(219, 59);
-        ButtonMainMenu.TabIndex = 7;
-        ButtonMainMenu.TabStop = false;
-        ButtonMainMenu.Text = "Main Menu";
-        ButtonMainMenu.TextImageRelation = TextImageRelation.TextBeforeImage;
-        ButtonMainMenu.UseVisualStyleBackColor = true;
-        ButtonMainMenu.Visible = false;
-        ButtonMainMenu.Click += ButtonMainMenu_Click;
+        ButtonAbout.BackColor = Color.FromArgb(17, 58, 101);
+        ButtonAbout.Cursor = Cursors.Hand;
+        ButtonAbout.Dock = DockStyle.Fill;
+        ButtonAbout.FlatAppearance.BorderColor = Color.FromArgb(32, 82, 149);
+        ButtonAbout.FlatAppearance.BorderSize = 0;
+        ButtonAbout.FlatAppearance.MouseDownBackColor = Color.FromArgb(73, 66, 228);
+        ButtonAbout.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 82, 149);
+        ButtonAbout.FlatStyle = FlatStyle.Flat;
+        ButtonAbout.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonAbout.Image = Properties.Resources.book_48;
+        ButtonAbout.ImageAlign = ContentAlignment.MiddleLeft;
+        ButtonAbout.Location = new Point(0, 0);
+        ButtonAbout.Margin = new Padding(0);
+        ButtonAbout.Name = "ButtonAbout";
+        ButtonAbout.Padding = new Padding(1);
+        ButtonAbout.Size = new Size(225, 65);
+        ButtonAbout.TabIndex = 7;
+        ButtonAbout.TabStop = false;
+        ButtonAbout.Text = "About";
+        ButtonAbout.TextImageRelation = TextImageRelation.TextBeforeImage;
+        ButtonAbout.UseVisualStyleBackColor = false;
+        ButtonAbout.Click += ButtonAbout_Click;
         // 
         // FormMenu
         // 
@@ -337,14 +326,12 @@ partial class FormMenu
         StartPosition = FormStartPosition.CenterScreen;
         PanelWindowButtons.ResumeLayout(false);
         PanelSideBar.ResumeLayout(false);
-        PanelTitle.ResumeLayout(false);
         MainTableLayoutPanel.ResumeLayout(false);
         ResumeLayout(false);
     }
 
     #endregion
     private Panel PanelSideBar;
-    private Panel PanelTitle;
     private Label LabelTitle;
     private Button ButtonClose;
     private Button ButtonMinimize;
@@ -357,5 +344,5 @@ partial class FormMenu
     private Button ButtonDataToCSV;
     private Button ButtonReport;
     private Panel PanelMainContainer;
-    private Button ButtonMainMenu;
+    private Button ButtonAbout;
 }

@@ -184,7 +184,6 @@ partial class FormConfigurations
         ButtonReturn.Text = "Return";
         ButtonReturn.TextImageRelation = TextImageRelation.TextBeforeImage;
         ButtonReturn.UseVisualStyleBackColor = true;
-        ButtonReturn.Visible = false;
         ButtonReturn.Click += ButtonReturn_Click;
         // 
         // ComboBoxLanguages
@@ -226,6 +225,7 @@ partial class FormConfigurations
         // button1
         // 
         button1.BackColor = Color.FromArgb(20, 66, 114);
+        button1.Cursor = Cursors.Hand;
         button1.Location = new Point(400, 311);
         button1.Name = "button1";
         button1.Size = new Size(123, 54);

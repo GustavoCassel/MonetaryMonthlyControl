@@ -16,6 +16,16 @@ public partial class FormConfigurations : Form
         _token = _cancellationTokenSource.Token;
 
         Load += FormConfigurations_Load;
+
+        FormClosing += FormConfigurations_FormClosing;
+    }
+
+    private void FormConfigurations_FormClosing(object? sender, FormClosingEventArgs e)
+    {
+        const string message = "Do you want to discard the edits and exit?";
+
+        if (!UserMessage.ShowQuestionUserYes(message))
+            e.Cancel = true;
     }
 
     private async void FormConfigurations_Load(object? sender, EventArgs e)
@@ -23,8 +33,6 @@ public partial class FormConfigurations : Form
         try
         {
             using Loading loading = await Loading.DockOnParentForm(this, _cancellationTokenSource);
-
-            await Task.Delay(20000, _token);
 
             await LoadDependenciesAsync();
 
@@ -122,7 +130,9 @@ public partial class FormConfigurations : Form
 
     private void ButtonReturn_Click(object sender, EventArgs e)
     {
+        FormClosing -= FormConfigurations_FormClosing;
 
+        Close();
     }
 
     #endregion

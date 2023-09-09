@@ -1,6 +1,6 @@
 ﻿namespace AppUI;
 
-partial class MainMenuPlaceholderControl
+partial class SystemPlaceholder
 {
     /// <summary> 
     /// Required designer variable.
@@ -30,7 +30,6 @@ partial class MainMenuPlaceholderControl
     {
         PictureBoxLogo = new PictureBox();
         LabelText = new Label();
-        ButtonCancel = new Button();
         ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).BeginInit();
         SuspendLayout();
         // 
@@ -56,24 +55,10 @@ partial class MainMenuPlaceholderControl
         LabelText.Text = "logger text";
         LabelText.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // ButtonCancel
-        // 
-        ButtonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-        ButtonCancel.BackColor = Color.IndianRed;
-        ButtonCancel.Location = new Point(327, 157);
-        ButtonCancel.Name = "ButtonCancel";
-        ButtonCancel.Size = new Size(120, 40);
-        ButtonCancel.TabIndex = 2;
-        ButtonCancel.Text = "Cancel";
-        ButtonCancel.UseVisualStyleBackColor = false;
-        ButtonCancel.Visible = false;
-        ButtonCancel.Click += ButtonCancel_Click;
-        // 
         // MainMenuPlaceholderControl
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
-        Controls.Add(ButtonCancel);
         Controls.Add(LabelText);
         Controls.Add(PictureBoxLogo);
         DoubleBuffered = true;
@@ -89,5 +74,4 @@ partial class MainMenuPlaceholderControl
 
     private PictureBox PictureBoxLogo;
     private Label LabelText;
-    private Button ButtonCancel;
 }

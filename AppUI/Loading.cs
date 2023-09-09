@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace AppUI;
+﻿namespace AppUI;
 
 public partial class Loading : UserControl
 {
