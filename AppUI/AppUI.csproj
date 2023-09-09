@@ -8,7 +8,7 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<ApplicationIcon>book-256.ico</ApplicationIcon>
+		<ApplicationIcon>book-512.ico</ApplicationIcon>
 		<ApplicationDefaultFont>Consolas, 12pt</ApplicationDefaultFont>
 		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	</PropertyGroup>
@@ -16,21 +16,15 @@
 	<ItemGroup>
 		<None Remove="Resources\book-48.png" />
 		<None Remove="Resources\book-512.png" />
-		<None Remove="Resources\close-window-512.png" />
-		<None Remove="Resources\maximize-window-512.png" />
-		<None Remove="Resources\minimize-window-512.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="book-256.ico" />
+	  <Content Include="book-512.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\book-48.png" />
 		<EmbeddedResource Include="Resources\book-512.png" />
-		<EmbeddedResource Include="Resources\close-window-512.png" />
-		<EmbeddedResource Include="Resources\maximize-window-512.png" />
-		<EmbeddedResource Include="Resources\minimize-window-512.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,19 +36,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="FormManageCategory.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormCategories.cs">
+		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="FormBase.cs">
+		  <SubType>Form</SubType>
+		</Compile>
 		<Compile Update="FormConfigurations.cs">
 		  <SubType>Form</SubType>
 		</Compile>
-		<Compile Update="Pages\SystemPlaceholder.cs">
+		<Compile Update="Util\SystemPlaceholder.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
-		<Compile Update="Pages\EntriesControl.cs">
-			<SubType>UserControl</SubType>
 		</Compile>
 	</ItemGroup>
 

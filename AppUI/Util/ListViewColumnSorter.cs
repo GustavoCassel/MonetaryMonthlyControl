@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace AppUI;
+namespace AppUI.Util;
 
 public sealed class ListViewColumnSorter : IComparer
 {

@@ -1,6 +1,6 @@
 ﻿using AppUI.Properties;
 
-namespace AppUI;
+namespace AppUI.Util;
 
 partial class Loading
 {
@@ -65,7 +65,7 @@ partial class Loading
         ButtonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         ButtonCancel.BackColor = Color.IndianRed;
         ButtonCancel.Cursor = Cursors.Hand;
-        ButtonCancel.FlatAppearance.BorderColor = Color.FromArgb(20, 66, 114);
+        ButtonCancel.FlatAppearance.BorderColor = Color.FromArgb(196, 223, 223);
         ButtonCancel.FlatAppearance.MouseOverBackColor = Color.Red;
         ButtonCancel.FlatStyle = FlatStyle.Flat;
         ButtonCancel.Location = new Point(243, 61);

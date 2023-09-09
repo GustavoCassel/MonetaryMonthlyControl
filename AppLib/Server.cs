@@ -5,22 +5,24 @@ namespace AppLib;
 
 public static class Server
 {
-    public static DataContext DataContext { get; private set; }
     private static readonly Faker _faker = new("pt_BR");
 
-    static Server()
+    public async static Task StartDatabase(CancellationToken cancellationToken)
     {
-        DataContext = new();
+        using DataContext context = new();
+        await context.Database.EnsureCreatedAsync(cancellationToken);
     }
 
-    public async static Task StartDatabase(CancellationToken cancellationToken)
-        => await DataContext.Database.EnsureCreatedAsync(cancellationToken);
-
     public async static Task DropDatabase(CancellationToken cancellationToken)
-        => await DataContext.Database.EnsureDeletedAsync(cancellationToken);
+    {
+        using DataContext context = new();
+        await context.Database.EnsureDeletedAsync(cancellationToken);
+    }
 
     public async static Task FulfillFakeData(CancellationToken cancellationToken)
     {
+        using DataContext context = new();
+
         const int NumberOfFakeCategories = 20;
         for (int i = 0; i < NumberOfFakeCategories; i++)
         {
@@ -28,7 +30,7 @@ public static class Server
             if (name.Length > 20)
                 name = name[..20];
 
-            DataContext.Categories.Add(new Category()
+            context.Categories.Add(new Category()
             {
                 Name = name,
                 Description = string.Join(" ", _faker.Lorem.Words(5))
@@ -37,6 +39,6 @@ public static class Server
             //context.Entries.Add(new Entry());
         }
 
-        await DataContext.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
     }
 }

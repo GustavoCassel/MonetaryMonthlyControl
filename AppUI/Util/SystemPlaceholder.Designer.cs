@@ -1,4 +1,4 @@
-﻿namespace AppUI;
+﻿namespace AppUI.Util;
 
 partial class SystemPlaceholder
 {

@@ -1,4 +1,4 @@
-﻿namespace AppUI;
+﻿namespace AppUI.Util;
 
 public partial class Loading : UserControl
 {

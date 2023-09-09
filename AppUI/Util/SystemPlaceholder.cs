@@ -1,6 +1,6 @@
 ﻿using AppUI.Properties;
 
-namespace AppUI;
+namespace AppUI.Util;
 
 public partial class SystemPlaceholder : UserControl
 {
