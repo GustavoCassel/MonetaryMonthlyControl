@@ -37,6 +37,11 @@ partial class FormConfigurations
         LabelTitle = new Label();
         MainTableLayoutPanel = new TableLayoutPanel();
         ButtonReturn = new Button();
+        ComboBoxLanguages = new ComboBox();
+        ComboBoxThemes = new ComboBox();
+        label1 = new Label();
+        label2 = new Label();
+        button1 = new Button();
         PanelWindowButtons.SuspendLayout();
         PanelTitle.SuspendLayout();
         MainTableLayoutPanel.SuspendLayout();
@@ -182,12 +187,63 @@ partial class FormConfigurations
         ButtonReturn.Visible = false;
         ButtonReturn.Click += ButtonReturn_Click;
         // 
+        // ComboBoxLanguages
+        // 
+        ComboBoxLanguages.DropDownStyle = ComboBoxStyle.DropDownList;
+        ComboBoxLanguages.FormattingEnabled = true;
+        ComboBoxLanguages.Location = new Point(58, 182);
+        ComboBoxLanguages.Name = "ComboBoxLanguages";
+        ComboBoxLanguages.Size = new Size(209, 27);
+        ComboBoxLanguages.TabIndex = 9;
+        // 
+        // ComboBoxThemes
+        // 
+        ComboBoxThemes.DropDownStyle = ComboBoxStyle.DropDownList;
+        ComboBoxThemes.FormattingEnabled = true;
+        ComboBoxThemes.Location = new Point(58, 248);
+        ComboBoxThemes.Name = "ComboBoxThemes";
+        ComboBoxThemes.Size = new Size(209, 27);
+        ComboBoxThemes.TabIndex = 10;
+        // 
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Location = new Point(58, 158);
+        label1.Name = "label1";
+        label1.Size = new Size(90, 19);
+        label1.TabIndex = 11;
+        label1.Text = "Language:";
+        // 
+        // label2
+        // 
+        label2.AutoSize = true;
+        label2.Location = new Point(58, 224);
+        label2.Name = "label2";
+        label2.Size = new Size(63, 19);
+        label2.TabIndex = 12;
+        label2.Text = "Theme:";
+        // 
+        // button1
+        // 
+        button1.BackColor = Color.FromArgb(20, 66, 114);
+        button1.Location = new Point(400, 311);
+        button1.Name = "button1";
+        button1.Size = new Size(123, 54);
+        button1.TabIndex = 13;
+        button1.Text = "Save";
+        button1.UseVisualStyleBackColor = false;
+        // 
         // FormConfigurations
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(10, 38, 71);
         ClientSize = new Size(1200, 700);
+        Controls.Add(button1);
+        Controls.Add(label2);
+        Controls.Add(label1);
+        Controls.Add(ComboBoxThemes);
+        Controls.Add(ComboBoxLanguages);
         Controls.Add(MainTableLayoutPanel);
         Controls.Add(PanelWindowButtons);
         DoubleBuffered = true;
@@ -203,6 +259,7 @@ partial class FormConfigurations
         PanelTitle.ResumeLayout(false);
         MainTableLayoutPanel.ResumeLayout(false);
         ResumeLayout(false);
+        PerformLayout();
     }
 
     #endregion
@@ -214,4 +271,9 @@ partial class FormConfigurations
     private Panel PanelWindowButtons;
     private TableLayoutPanel MainTableLayoutPanel;
     private Button ButtonReturn;
+    private ComboBox ComboBoxLanguages;
+    private ComboBox ComboBoxThemes;
+    private Label label1;
+    private Label label2;
+    private Button button1;
 }

@@ -19,23 +19,28 @@ public static class ConfigurationsManager
 {
     public static Configurations? Configurations { get; set; }
 
-    public static async Task<Configurations> GetConfigurationAsync()
+    public static async Task<Configurations> GetConfigurationAsync(CancellationToken cancellationToken)
     {
         string path = GetConfigurationFileName();
+        if (!File.Exists(path))
+            return new();
 
         using Stream stream = File.Open(path, FileMode.OpenOrCreate);
 
-        return await JsonSerializer.DeserializeAsync<Configurations>(stream)
+        return await JsonSerializer.DeserializeAsync<Configurations>(
+            stream, cancellationToken: cancellationToken)
             ?? throw new NullReferenceException();
     }
 
-    public static async Task SaveConfigurationAsync(Configurations configurations)
+    public static async Task SaveConfigurationAsync(Configurations configurations, CancellationToken cancellationToken)
     {
         string path = GetConfigurationFileName();
 
         using Stream stream = File.Create(path);
 
-        await JsonSerializer.SerializeAsync(stream, configurations);
+        await JsonSerializer.SerializeAsync(
+            stream, configurations,
+            cancellationToken: cancellationToken);
     }
 
     private static string GetConfigurationFileName()

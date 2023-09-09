@@ -31,9 +31,7 @@ public static class UserMessage
             message,
             _captions[level],
             MessageBoxButtons.OK,
-            _icons[level],
-            MessageBoxDefaultButton.Button1,
-            MessageBoxOptions.ServiceNotification);
+            _icons[level]);
     }
 
     public static void ShowSuccess(string message)
@@ -42,8 +40,15 @@ public static class UserMessage
             message,
             "Process finished with success!",
             MessageBoxButtons.OK,
-            MessageBoxIcon.Information,
-            MessageBoxDefaultButton.Button1,
-            MessageBoxOptions.ServiceNotification);
+            MessageBoxIcon.Information);
+    }
+
+    public static bool ShowQuestionUserYes(string message)
+    {
+        return MessageBox.Show(
+            message,
+            "Confirmation",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question) == DialogResult.Yes;
     }
 }

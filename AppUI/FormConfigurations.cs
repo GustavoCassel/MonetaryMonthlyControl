@@ -1,13 +1,70 @@
 ﻿using AppLib;
-using AppUI.Pages;
 
 namespace AppUI;
 
 public partial class FormConfigurations : Form
 {
+    private readonly CancellationTokenSource _cancellationTokenSource;
+    private readonly CancellationToken _token;
+
+    private Configurations? _configurations;
     public FormConfigurations()
     {
         InitializeComponent();
+
+        _cancellationTokenSource = new();
+        _token = _cancellationTokenSource.Token;
+
+        Load += FormConfigurations_Load;
+    }
+
+    private async void FormConfigurations_Load(object? sender, EventArgs e)
+    {
+        try
+        {
+            using Loading loading = await Loading.DockOnParentForm(this, _cancellationTokenSource);
+
+            await Task.Delay(20000, _token);
+
+            await LoadDependenciesAsync();
+
+            SetValues();
+        }
+        catch (TaskCanceledException ex)
+        {
+            Hide();
+            UserMessage.ShowError(ex.Message, Level.Success);
+            Close();
+        }
+        catch (Exception ex)
+        {
+            Hide();
+            UserMessage.ShowError($"""
+                An unknown error occurred!
+                Error message: {ex.Message}
+                """, Level.Unknown);
+            Close();
+        }
+    }
+
+    private void SetValues()
+    {
+        Theme[] themes = Enum.GetValues<Theme>();
+        foreach (Theme theme in themes)
+            ComboBoxThemes.Items.Add(theme);
+
+        ComboBoxThemes.SelectedItem = _configurations!.ActiveTheme;
+
+        Language[] languages = Enum.GetValues<Language>();
+        foreach (Language language in languages)
+            ComboBoxLanguages.Items.Add(language);
+
+        ComboBoxLanguages.SelectedItem = _configurations!.ActiveLanguage;
+    }
+
+    private async Task LoadDependenciesAsync()
+    {
+        _configurations = await ConfigurationsManager.GetConfigurationAsync(_token);
     }
 
     #region Drag Move Window
