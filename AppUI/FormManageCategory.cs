@@ -5,13 +5,11 @@ namespace AppUI;
 
 public partial class FormManageCategory : Form
 {
-    private readonly Category _category;
-
     public FormManageCategory(Category category)
     {
         InitializeComponent();
 
-        _category = category;
+        bsCategory.DataSource = category;
     }
 
     #region Buttons Events
