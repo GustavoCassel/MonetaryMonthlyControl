@@ -1,75 +1,62 @@
 ﻿using System.Diagnostics;
 using AppLib.Models;
 using AppUI.Util;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppUI;
 
 public partial class FormCategories : Form
 {
-    private readonly CancellationTokenSource _cancellationTokenSource;
-    private readonly CancellationToken _token;
-    private List<Category>? _categories;
+    private readonly CancellationTokenSource cancellationTokenSource;
+    private readonly CancellationToken cancellationToken;
 
+    private readonly DataContext _dataContext;
     public FormCategories()
     {
         InitializeComponent();
 
-        _cancellationTokenSource = new();
-        _token = _cancellationTokenSource.Token;
+        cancellationTokenSource = new();
+        cancellationToken = cancellationTokenSource.Token;
+
+        _dataContext = new();
 
         Load += Form_Load;
 
-        DataGridViewCategories.SelectionChanged += DataGridViewCategories_SelectionChanged;
-
-        DataGridViewCategories.CellDoubleClick += DataGridViewCategories_CellDoubleClick;
+        //DataGridViewCategories.CellDoubleClick += DataGridViewCategories_CellDoubleClickAsync;
     }
 
-    private void DataGridViewCategories_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+    private void DataGridViewCategories_CellDoubleClickAsync(object? sender, DataGridViewCellEventArgs e)
     {
+        if (e.RowIndex == -1)
+            return;
+
         DataGridViewRow row = DataGridViewCategories.Rows[e.RowIndex];
 
-        MessageBox.Show(row.ToString());
-    }
-
-    private void DataGridViewCategories_SelectionChanged(object? sender, EventArgs e)
-    {
-        if (DataGridViewCategories.Rows.Count == 0)
+        if (row.DataBoundItem is not Category category)
         {
-            ButtonEdit.Visible = false;
-            ButtonDelete.Visible = false;
+            UserMessage.ShowError("Category not found!", Level.Success);
             return;
         }
 
-        if (DataGridViewCategories.SelectedRows.Count != 1)
-            return;
+        FormManageCategory formManageCategory = new(category);
+        formManageCategory.ShowDialog(this);
 
-        DataGridViewRow selectedRow = DataGridViewCategories.SelectedRows[0];
-        if (selectedRow.Tag is not Category)
-            return;
-
-        ButtonEdit.Visible = true;
-        ButtonDelete.Visible = true;
+        DataGridViewCategories.InvalidateRow(e.RowIndex);
     }
 
     private async void Form_Load(object? sender, EventArgs e)
     {
         try
         {
-            using Loading loading = await Loading.DockOnParentForm(this, _cancellationTokenSource);
+            using Loading loading = await Loading.DockOnParentForm(this, cancellationTokenSource);
 
-            using DataContext context = new();
-            _categories = context.Categories.Select(x => new Category()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-                Created = x.Created,
-                Modified = x.Modified
-            }).ToList();
+            await _dataContext.Categories.LoadAsync(cancellationToken);
+            DataGridViewCategories.DataSource = _dataContext.Categories.Local.ToBindingList();
 
-            DataGridViewCategories.DataSource = _categories;
             DataGridViewCategories.Columns.Remove(nameof(Category.Id));
             DataGridViewCategories.Columns.Remove(nameof(Category.Entries));
+            DataGridViewCategories.Columns.Remove(nameof(Category.Created));
+            DataGridViewCategories.Columns.Remove(nameof(Category.Modified));
         }
         catch (TaskCanceledException ex)
         {
@@ -97,32 +84,62 @@ public partial class FormCategories : Form
 
     private void ButtonAdd_Click(object sender, EventArgs e)
     {
-
+        //FormManageCategory form = new();
     }
 
     private void ButtonEdit_Click(object sender, EventArgs e)
     {
-        DataGridViewRow selectedRow = DataGridViewCategories.SelectedRows[0];
-
-        if (selectedRow.Tag is not Category)
+        if (DataGridViewCategories.SelectedRows.Count != 1)
             return;
 
+        DataGridViewRow selectedRow = DataGridViewCategories.SelectedRows[0];
 
+        if (selectedRow.DataBoundItem is not Category category)
+            return;
+
+        FormManageCategory formManageCategory = new(category);
+        formManageCategory.ShowDialog(this);
+
+        DataGridViewCategories.InvalidateRow(selectedRow.Index);
     }
 
     private void ButtonDelete_Click(object sender, EventArgs e)
     {
         DataGridViewRow selectedRow = DataGridViewCategories.SelectedRows[0];
 
-        if (selectedRow.Tag is not Category)
+        if (selectedRow.DataBoundItem is not Category category)
             return;
 
-        DataGridViewCategories.Rows.Remove(selectedRow);
+        if (!UserMessage.ShowQuestionUserYes($"""
+            u sure?
+            {category.Name}
+            """))
+            return;
+
+        _dataContext.Categories.Remove(category);
     }
 
-    private void ButtonSave_Click(object sender, EventArgs e)
+    private async void ButtonSave_Click(object sender, EventArgs e)
     {
+        try
+        {
+            using Loading loading = await Loading.DockOnParentForm(this, cancellationTokenSource);
 
+            await _dataContext.SaveChangesAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            Hide();
+            UserMessage.ShowError($"""
+                An unknown error occurred!
+                Error message: {ex.Message}
+                """, Level.Unknown);
+            return;
+        }
+
+        UserMessage.ShowSuccess("Saved successfully!");
+
+        Close();
     }
 
     #endregion

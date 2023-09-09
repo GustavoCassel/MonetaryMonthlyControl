@@ -10,14 +10,26 @@ public partial class FormManageCategory : Form
         InitializeComponent();
 
         bsCategory.DataSource = category;
+
+        FormClosing += Form_FormClosing;
     }
 
-    #region Buttons Events
+    private void Form_FormClosing(object? sender, FormClosingEventArgs e)
+    {
+        const string message = "Do you want to discard the edits and exit?";
+
+        if (!UserMessage.ShowQuestionUserYes(message))
+            e.Cancel = true;
+    }
 
     private void ButtonReturn_Click(object sender, EventArgs e)
     {
+        FormClosing -= Form_FormClosing;
         Close();
     }
 
-    #endregion
+    private void ButtonConfirm_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
 }

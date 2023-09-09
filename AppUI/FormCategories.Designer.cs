@@ -37,10 +37,10 @@ partial class FormCategories
         ButtonReturn = new Button();
         DataGridViewCategories = new DataGridView();
         PanelSideBar = new Panel();
+        ButtonSave = new Button();
         ButtonDelete = new Button();
         ButtonEdit = new Button();
         ButtonAdd = new Button();
-        ButtonSave = new Button();
         MainTableLayoutPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DataGridViewCategories).BeginInit();
         PanelSideBar.SuspendLayout();
@@ -103,7 +103,7 @@ partial class FormCategories
         // 
         DataGridViewCategories.AllowUserToAddRows = false;
         DataGridViewCategories.AllowUserToDeleteRows = false;
-        DataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        DataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
         DataGridViewCategories.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         DataGridViewCategories.BackgroundColor = Color.FromArgb(227, 244, 244);
         DataGridViewCategories.BorderStyle = BorderStyle.None;
@@ -164,6 +164,26 @@ partial class FormCategories
         PanelSideBar.Size = new Size(225, 596);
         PanelSideBar.TabIndex = 21;
         // 
+        // ButtonSave
+        // 
+        ButtonSave.Cursor = Cursors.Hand;
+        ButtonSave.Dock = DockStyle.Bottom;
+        ButtonSave.FlatAppearance.BorderColor = Color.FromArgb(196, 223, 223);
+        ButtonSave.FlatAppearance.BorderSize = 0;
+        ButtonSave.FlatAppearance.MouseDownBackColor = Color.FromArgb(202, 237, 255);
+        ButtonSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(196, 223, 223);
+        ButtonSave.FlatStyle = FlatStyle.Flat;
+        ButtonSave.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonSave.Location = new Point(0, 536);
+        ButtonSave.Margin = new Padding(1);
+        ButtonSave.Name = "ButtonSave";
+        ButtonSave.Size = new Size(225, 60);
+        ButtonSave.TabIndex = 1;
+        ButtonSave.TabStop = false;
+        ButtonSave.Text = "Save and Exit";
+        ButtonSave.UseVisualStyleBackColor = true;
+        ButtonSave.Click += ButtonSave_Click;
+        // 
         // ButtonDelete
         // 
         ButtonDelete.Cursor = Cursors.Hand;
@@ -182,7 +202,6 @@ partial class FormCategories
         ButtonDelete.TabStop = false;
         ButtonDelete.Text = "Delete Category";
         ButtonDelete.UseVisualStyleBackColor = true;
-        ButtonDelete.Visible = false;
         ButtonDelete.Click += ButtonDelete_Click;
         // 
         // ButtonEdit
@@ -203,7 +222,6 @@ partial class FormCategories
         ButtonEdit.TabStop = false;
         ButtonEdit.Text = "Edit Category";
         ButtonEdit.UseVisualStyleBackColor = true;
-        ButtonEdit.Visible = false;
         ButtonEdit.Click += ButtonEdit_Click;
         // 
         // ButtonAdd
@@ -225,26 +243,6 @@ partial class FormCategories
         ButtonAdd.Text = "Add New Category";
         ButtonAdd.UseVisualStyleBackColor = true;
         ButtonAdd.Click += ButtonAdd_Click;
-        // 
-        // ButtonSave
-        // 
-        ButtonSave.Cursor = Cursors.Hand;
-        ButtonSave.Dock = DockStyle.Bottom;
-        ButtonSave.FlatAppearance.BorderColor = Color.FromArgb(196, 223, 223);
-        ButtonSave.FlatAppearance.BorderSize = 0;
-        ButtonSave.FlatAppearance.MouseDownBackColor = Color.FromArgb(202, 237, 255);
-        ButtonSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(196, 223, 223);
-        ButtonSave.FlatStyle = FlatStyle.Flat;
-        ButtonSave.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-        ButtonSave.Location = new Point(0, 536);
-        ButtonSave.Margin = new Padding(1);
-        ButtonSave.Name = "ButtonSave";
-        ButtonSave.Size = new Size(225, 60);
-        ButtonSave.TabIndex = 1;
-        ButtonSave.TabStop = false;
-        ButtonSave.Text = "Save and Exit";
-        ButtonSave.UseVisualStyleBackColor = true;
-        ButtonSave.Click += ButtonSave_Click;
         // 
         // FormCategories
         // 
@@ -274,8 +272,8 @@ partial class FormCategories
     private Button ButtonReturn;
     private DataGridView DataGridViewCategories;
     private Panel PanelSideBar;
-    private Button ButtonDelete;
-    private Button ButtonEdit;
     private Button ButtonAdd;
     private Button ButtonSave;
+    private Button ButtonDelete;
+    private Button ButtonEdit;
 }
