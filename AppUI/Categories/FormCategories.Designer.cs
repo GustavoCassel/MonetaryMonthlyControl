@@ -1,4 +1,4 @@
-﻿namespace AppUI;
+﻿namespace AppUI.Categories;
 
 partial class FormCategories
 {
@@ -41,6 +41,7 @@ partial class FormCategories
         ButtonDelete = new Button();
         ButtonEdit = new Button();
         ButtonAdd = new Button();
+        ButtonZoom = new Button();
         MainTableLayoutPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)DataGridViewCategories).BeginInit();
         PanelSideBar.SuspendLayout();
@@ -153,6 +154,7 @@ partial class FormCategories
         // PanelSideBar
         // 
         PanelSideBar.BackColor = Color.FromArgb(210, 233, 233);
+        PanelSideBar.Controls.Add(ButtonZoom);
         PanelSideBar.Controls.Add(ButtonSave);
         PanelSideBar.Controls.Add(ButtonDelete);
         PanelSideBar.Controls.Add(ButtonEdit);
@@ -240,9 +242,29 @@ partial class FormCategories
         ButtonAdd.Size = new Size(225, 60);
         ButtonAdd.TabIndex = 0;
         ButtonAdd.TabStop = false;
-        ButtonAdd.Text = "Add New Category";
+        ButtonAdd.Text = "Create Category";
         ButtonAdd.UseVisualStyleBackColor = true;
-        ButtonAdd.Click += ButtonAdd_Click;
+        ButtonAdd.Click += ButtonCreate_Click;
+        // 
+        // ButtonZoom
+        // 
+        ButtonZoom.Cursor = Cursors.Hand;
+        ButtonZoom.Dock = DockStyle.Top;
+        ButtonZoom.FlatAppearance.BorderColor = Color.FromArgb(196, 223, 223);
+        ButtonZoom.FlatAppearance.BorderSize = 0;
+        ButtonZoom.FlatAppearance.MouseDownBackColor = Color.FromArgb(202, 237, 255);
+        ButtonZoom.FlatAppearance.MouseOverBackColor = Color.FromArgb(196, 223, 223);
+        ButtonZoom.FlatStyle = FlatStyle.Flat;
+        ButtonZoom.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        ButtonZoom.Location = new Point(0, 180);
+        ButtonZoom.Margin = new Padding(1);
+        ButtonZoom.Name = "ButtonZoom";
+        ButtonZoom.Size = new Size(225, 60);
+        ButtonZoom.TabIndex = 2;
+        ButtonZoom.TabStop = false;
+        ButtonZoom.Text = "Zoom in Category";
+        ButtonZoom.UseVisualStyleBackColor = true;
+        ButtonZoom.Click += ButtonZoom_Click;
         // 
         // FormCategories
         // 
@@ -276,4 +298,5 @@ partial class FormCategories
     private Button ButtonSave;
     private Button ButtonDelete;
     private Button ButtonEdit;
+    private Button ButtonZoom;
 }

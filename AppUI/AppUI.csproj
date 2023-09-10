@@ -36,10 +36,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="FormManageCategory.cs">
+		<Compile Update="Categories\FormManageCategory.cs">
 		  <SubType>Form</SubType>
 		</Compile>
-		<Compile Update="FormCategories.cs">
+		<Compile Update="Categories\FormCategories.cs">
 		  <SubType>Form</SubType>
 		</Compile>
 		<Compile Update="FormBase.cs">

@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
+using AppLib.Enums;
 using AppLib.Models;
 using AppUI.Util;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppUI;
+namespace AppUI.Categories;
 
 public partial class FormCategories : Form
 {
@@ -21,27 +22,6 @@ public partial class FormCategories : Form
         _dataContext = new();
 
         Load += Form_Load;
-
-        //DataGridViewCategories.CellDoubleClick += DataGridViewCategories_CellDoubleClickAsync;
-    }
-
-    private void DataGridViewCategories_CellDoubleClickAsync(object? sender, DataGridViewCellEventArgs e)
-    {
-        if (e.RowIndex == -1)
-            return;
-
-        DataGridViewRow row = DataGridViewCategories.Rows[e.RowIndex];
-
-        if (row.DataBoundItem is not Category category)
-        {
-            UserMessage.ShowError("Category not found!", Level.Success);
-            return;
-        }
-
-        FormManageCategory formManageCategory = new(category);
-        formManageCategory.ShowDialog(this);
-
-        DataGridViewCategories.InvalidateRow(e.RowIndex);
     }
 
     private async void Form_Load(object? sender, EventArgs e)
@@ -82,9 +62,18 @@ public partial class FormCategories : Form
         Close();
     }
 
-    private void ButtonAdd_Click(object sender, EventArgs e)
+    private void ButtonCreate_Click(object sender, EventArgs e)
     {
-        //FormManageCategory form = new();
+        Category category = new()
+        {
+            Id = Guid.NewGuid(),
+            Created = DateTime.Now
+        };
+
+        using FormManageCategory form = new(category, ManageMode.Create);
+        form.ShowDialog(this);
+
+        _dataContext.Categories.Add(category);
     }
 
     private void ButtonEdit_Click(object sender, EventArgs e)
@@ -97,8 +86,8 @@ public partial class FormCategories : Form
         if (selectedRow.DataBoundItem is not Category category)
             return;
 
-        FormManageCategory formManageCategory = new(category);
-        formManageCategory.ShowDialog(this);
+        using FormManageCategory form = new(category, ManageMode.Edit);
+        form.ShowDialog(this);
 
         DataGridViewCategories.InvalidateRow(selectedRow.Index);
     }
@@ -110,13 +99,22 @@ public partial class FormCategories : Form
         if (selectedRow.DataBoundItem is not Category category)
             return;
 
-        if (!UserMessage.ShowQuestionUserYes($"""
-            u sure?
-            {category.Name}
-            """))
+        using FormManageCategory form = new(category, ManageMode.Delete);
+        if (form.ShowDialog(this) == DialogResult.Cancel)
             return;
 
         _dataContext.Categories.Remove(category);
+    }
+
+    private void ButtonZoom_Click(object sender, EventArgs e)
+    {
+        DataGridViewRow selectedRow = DataGridViewCategories.SelectedRows[0];
+
+        if (selectedRow.DataBoundItem is not Category category)
+            return;
+
+        using FormManageCategory form = new(category, ManageMode.Zoom);
+        form.ShowDialog(this);
     }
 
     private async void ButtonSave_Click(object sender, EventArgs e)

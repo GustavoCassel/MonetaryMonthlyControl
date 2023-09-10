@@ -1,4 +1,4 @@
-﻿namespace AppUI;
+﻿namespace AppUI.Categories;
 
 partial class FormManageCategory
 {
@@ -45,6 +45,7 @@ partial class FormManageCategory
         TextBoxModified = new TextBox();
         TextBoxCreated = new TextBox();
         ButtonConfirm = new Button();
+        LabelMessage = new Label();
         MainTableLayoutPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)bsCategory).BeginInit();
         SuspendLayout();
@@ -59,7 +60,7 @@ partial class FormManageCategory
         LabelTitle.Name = "LabelTitle";
         LabelTitle.Size = new Size(359, 65);
         LabelTitle.TabIndex = 3;
-        LabelTitle.Text = "Manage Category";
+        LabelTitle.Text = "Title";
         LabelTitle.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // MainTableLayoutPanel
@@ -177,6 +178,7 @@ partial class FormManageCategory
         TextBoxDescription.Location = new Point(12, 220);
         TextBoxDescription.Multiline = true;
         TextBoxDescription.Name = "TextBoxDescription";
+        TextBoxDescription.ScrollBars = ScrollBars.Vertical;
         TextBoxDescription.Size = new Size(560, 132);
         TextBoxDescription.TabIndex = 2;
         // 
@@ -217,12 +219,24 @@ partial class FormManageCategory
         ButtonConfirm.UseVisualStyleBackColor = false;
         ButtonConfirm.Click += ButtonConfirm_Click;
         // 
+        // LabelMessage
+        // 
+        LabelMessage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        LabelMessage.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+        LabelMessage.Location = new Point(12, 490);
+        LabelMessage.Name = "LabelMessage";
+        LabelMessage.Size = new Size(431, 54);
+        LabelMessage.TabIndex = 19;
+        LabelMessage.Text = "Message";
+        LabelMessage.TextAlign = ContentAlignment.MiddleCenter;
+        // 
         // FormManageCategory
         // 
         AutoScaleDimensions = new SizeF(9F, 19F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(227, 244, 244);
         ClientSize = new Size(584, 556);
+        Controls.Add(LabelMessage);
         Controls.Add(ButtonConfirm);
         Controls.Add(TextBoxCreated);
         Controls.Add(TextBoxModified);
@@ -264,4 +278,5 @@ partial class FormManageCategory
     private TextBox TextBoxModified;
     private TextBox TextBoxCreated;
     private Button ButtonConfirm;
+    private Label LabelMessage;
 }

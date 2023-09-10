@@ -1,4 +1,5 @@
 ﻿using AppLib;
+using AppUI.Categories;
 using AppUI.Util;
 
 namespace AppUI;
